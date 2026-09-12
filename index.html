@@ -3,557 +3,558 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rick Lee — Digital & Technical Builder</title>
-<meta name="description" content="Rick Lee. One person, every discipline — web development, software & automation, VAG coding & diagnostics, CAD design, 3D printing, and design & print-on-demand. Built directly, nothing outsourced." />
+<title>Ric Lee — Digital & Technical Builder</title>
+<meta name="description" content="Ric Lee. One person, every discipline — web development, software & automation, VAG coding & diagnostics, CAD design, 3D printing, and design & print-on-demand. Built directly, nothing outsourced." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
-  (function(){
-    var t = localStorage.getItem('rl-theme') || 'light';
-    if (t === 'dark') document.documentElement.classList.add('dark');
-  })();
+(function(){
+var t = localStorage.getItem('rl-theme') || 'light';
+if (t === 'dark') document.documentElement.classList.add('dark');
+})();
 </script>
 <style>
-  :root{
-    --bg:#f7f4ee;
-    --bg-soft:#ffffff;
-    --panel:rgba(0,0,0,0.03);
-    --text:#17160f;
-    --muted:#6b6a60;
-    --accent:#2c3a5e;
-    --accent-soft:rgba(44,58,94,0.07);
-    --accent-line:rgba(44,58,94,0.28);
-    --line:rgba(0,0,0,0.1);
-    --radius:3px;
-    color-scheme: light;
-  }
-  html.dark{
-    --bg:#141310;
-    --bg-soft:#1c1b17;
-    --panel:rgba(255,255,255,0.04);
-    --text:#f2efe6;
-    --muted:#9a978c;
-    --accent:#7f9bd6;
-    --accent-soft:rgba(127,155,214,0.1);
-    --accent-line:rgba(127,155,214,0.32);
-    --line:rgba(255,255,255,0.1);
-    color-scheme: dark;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth; scrollbar-gutter:stable;}
-  body{
-    font-family:'IBM Plex Sans',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.65;
-    min-height:100vh;
-    transition:background 0.3s, color 0.3s;
-  }
-  .container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
-  a{color:inherit;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
+:root{
+--bg:#f7f4ee;
+--bg-soft:#ffffff;
+--panel:rgba(0,0,0,0.03);
+--text:#17160f;
+--muted:#6b6a60;
+--accent:#2c3a5e;
+--accent-soft:rgba(44,58,94,0.07);
+--accent-line:rgba(44,58,94,0.28);
+--line:rgba(0,0,0,0.1);
+--radius:3px;
+color-scheme: light;
+}
+html.dark{
+--bg:#141310;
+--bg-soft:#1c1b17;
+--panel:rgba(255,255,255,0.04);
+--text:#f2efe6;
+--muted:#9a978c;
+--accent:#7f9bd6;
+--accent-soft:rgba(127,155,214,0.1);
+--accent-line:rgba(127,155,214,0.32);
+--line:rgba(255,255,255,0.1);
+color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth; scrollbar-gutter:stable;}
+body{
+font-family:'IBM Plex Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.65;
+min-height:100vh;
+transition:background 0.3s, color 0.3s;
+}
+.container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
+a{color:inherit;}
+.mono{font-family:'IBM Plex Mono',monospace;}
 
-  /* NAV */
-  header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
-  .wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
-  .wordmark img{height:46px; width:auto; display:block;}
-  .wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
-  .logo-dark{display:block !important;}
-  .logo-light{display:none !important;}
-  html.dark .logo-dark{display:none !important;}
-  html.dark .logo-light{display:block !important;}
-  .nav-links{display:flex; gap:28px; list-style:none;}
-  .nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
-  .nav-links a:hover{color:var(--accent);}
-  .nav-right{display:flex; align-items:center; gap:18px;}
-  .theme-toggle{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s;}
-  .theme-toggle:hover{color:var(--text); border-color:var(--accent);}
-  .nav-cta{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--bg-soft); background:var(--accent); padding:9px 18px; border-radius:var(--radius); transition:opacity 0.2s;}
-  .nav-cta:hover{opacity:0.85;}
+/* NAV */
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.wordmark img{height:46px; width:auto; display:block;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
+.logo-dark{display:block !important;}
+.logo-light{display:none !important;}
+html.dark .logo-dark{display:none !important;}
+html.dark .logo-light{display:block !important;}
+.nav-links{display:flex; gap:28px; list-style:none;}
+.nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex; align-items:center; gap:18px;}
+.theme-toggle{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s;}
+.theme-toggle:hover{color:var(--text); border-color:var(--accent);}
+.nav-cta{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--bg-soft); background:var(--accent); padding:9px 18px; border-radius:var(--radius); transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.85;}
 
-  /* HERO */
-  .hero{padding:100px 0 84px; border-bottom:1px solid var(--line);}
-  .hero-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px;}
-  .hero-eyebrow::before{content:''; width:22px; height:1px; background:var(--accent);}
-  h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2.1rem, 5vw, 3.5rem); line-height:1.12; letter-spacing:-0.01em; max-width:760px; margin-bottom:26px;}
-  h1 em{font-style:italic; color:var(--accent);}
-  .hero-desc{color:var(--muted); font-size:1rem; max-width:520px; margin-bottom:38px;}
-  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
-  .btn-primary{background:var(--accent); color:var(--bg-soft); border-color:var(--accent);}
-  .btn-primary:hover{opacity:0.85;}
-  .btn-ghost{color:var(--text); background:transparent;}
-  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+/* HERO */
+.hero{padding:100px 0 84px; border-bottom:1px solid var(--line);}
+.hero-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px;}
+.hero-eyebrow::before{content:''; width:22px; height:1px; background:var(--accent);}
+h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2.1rem, 5vw, 3.5rem); line-height:1.12; letter-spacing:-0.01em; max-width:760px; margin-bottom:26px;}
+h1 em{font-style:italic; color:var(--accent);}
+.hero-desc{color:var(--muted); font-size:1rem; max-width:520px; margin-bottom:38px;}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
+.btn-primary{background:var(--accent); color:var(--bg-soft); border-color:var(--accent);}
+.btn-primary:hover{opacity:0.85;}
+.btn-ghost{color:var(--text); background:transparent;}
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
 
-  /* SCALE STRIP */
-  .scale-strip{border-bottom:1px solid var(--line); background:var(--bg-soft);}
-  .scale-grid{display:grid; grid-template-columns:repeat(4,1fr); }
-  .scale-item{padding:34px 26px; border-left:1px solid var(--line);}
-  .scale-item:first-child{border-left:none;}
-  .scale-num{font-family:'Fraunces',serif; font-weight:600; font-size:2.1rem; letter-spacing:-0.01em; color:var(--accent); line-height:1;}
-  .scale-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:10px;}
-  @media (max-width:900px){ .scale-grid{grid-template-columns:1fr 1fr;} .scale-item:nth-child(3){border-left:none;} }
-  @media (max-width:640px){ .scale-grid{grid-template-columns:1fr 1fr;} }
+/* SCALE STRIP */
+.scale-strip{border-bottom:1px solid var(--line); background:var(--bg-soft);}
+.scale-grid{display:grid; grid-template-columns:repeat(4,1fr); }
+.scale-item{padding:34px 26px; border-left:1px solid var(--line);}
+.scale-item:first-child{border-left:none;}
+.scale-num{font-family:'Fraunces',serif; font-weight:600; font-size:2.1rem; letter-spacing:-0.01em; color:var(--accent); line-height:1;}
+.scale-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:10px;}
+@media (max-width:900px){ .scale-grid{grid-template-columns:1fr 1fr;} .scale-item:nth-child(3){border-left:none;} }
+@media (max-width:640px){ .scale-grid{grid-template-columns:1fr 1fr;} }
 
-  /* PACKAGES */
-  .pkg-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  .pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative;}
-  .pkg-card.featured{border-color:var(--accent-line); box-shadow:0 18px 44px rgba(0,0,0,0.06);}
-  .pkg-featured-tag{position:absolute; top:-12px; left:28px; background:var(--accent); color:var(--bg-soft); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:999px;}
-  .pkg-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; margin-bottom:6px;}
-  .pkg-for{font-size:0.8rem; color:var(--muted); margin-bottom:18px; min-height:40px;}
-  .pkg-price{font-family:'IBM Plex Mono',monospace; font-size:1.5rem; color:var(--accent); margin-bottom:6px;}
-  .pkg-price-note{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;}
-  .pkg-list{list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex:1;}
-  .pkg-list li{font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;}
-  .pkg-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
-  .pkg-btn{align-self:flex-start;}
-  .care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
-  .care-strip-text h4{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:6px;}
-  .care-strip-text p{font-size:0.82rem; color:var(--muted); max-width:460px;}
-  .care-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent); white-space:nowrap;}
-  .care-price span{display:block; font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
-  @media (max-width:900px){ .pkg-grid{grid-template-columns:1fr;} }
+/* PACKAGES */
+.pkg-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative;}
+.pkg-card.featured{border-color:var(--accent-line); box-shadow:0 18px 44px rgba(0,0,0,0.06);}
+.pkg-featured-tag{position:absolute; top:-12px; left:28px; background:var(--accent); color:var(--bg-soft); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:999px;}
+.pkg-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; margin-bottom:6px;}
+.pkg-for{font-size:0.8rem; color:var(--muted); margin-bottom:18px; min-height:40px;}
+.pkg-price{font-family:'IBM Plex Mono',monospace; font-size:1.5rem; color:var(--accent); margin-bottom:6px;}
+.pkg-price-note{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;}
+.pkg-list{list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex:1;}
+.pkg-list li{font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;}
+.pkg-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
+.pkg-btn{align-self:flex-start;}
+.care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+.care-strip-text h4{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:6px;}
+.care-strip-text p{font-size:0.82rem; color:var(--muted); max-width:460px;}
+.care-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent); white-space:nowrap;}
+.care-price span{display:block; font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
+@media (max-width:900px){ .pkg-grid{grid-template-columns:1fr;} }
 
-  /* SECTION SHELL */
-  section{padding:76px 0; border-bottom:1px solid var(--line);}
-  .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
-  .sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
-  h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.005em;}
-  .sec-note{color:var(--muted); font-size:0.85rem; max-width:340px; font-family:'IBM Plex Mono',monospace; line-height:1.7;}
+/* SECTION SHELL */
+section{padding:76px 0; border-bottom:1px solid var(--line);}
+.sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
+.sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.005em;}
+.sec-note{color:var(--muted); font-size:0.85rem; max-width:340px; font-family:'IBM Plex Mono',monospace; line-height:1.7;}
 
-  /* BUILD LOG */
-  .log-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
-  .log-row{display:grid; grid-template-columns:110px 130px 1fr; gap:18px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);}
-  .log-date{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted);}
-  .log-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent);}
-  .log-desc{font-size:0.87rem; color:var(--text);}
+/* BUILD LOG */
+.log-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
+.log-row{display:grid; grid-template-columns:110px 130px 1fr; gap:18px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);}
+.log-date{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted);}
+.log-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent);}
+.log-desc{font-size:0.87rem; color:var(--text);}
 
-  /* CAPABILITY INDEX */
-  .cap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  .cap-card{background:var(--bg); display:flex; flex-direction:column; transition:background 0.2s;}
-  .cap-card:hover{background:var(--bg-soft);}
-  .cap-img-wrap{width:100%; height:170px; overflow:hidden; background:var(--panel);}
-  .cap-img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;}
-  .cap-card:hover .cap-img{transform:scale(1.03);}
-  .cap-body{padding:26px 26px 28px;}
-  .cap-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:14px; display:block;}
-  .cap-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:10px;}
-  .cap-card p{font-size:0.83rem; color:var(--muted); line-height:1.7;}
+/* CAPABILITY INDEX */
+.cap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+.cap-card{background:var(--bg); display:flex; flex-direction:column; transition:background 0.2s;}
+.cap-card:hover{background:var(--bg-soft);}
+.cap-img-wrap{width:100%; height:170px; overflow:hidden; background:var(--panel);}
+.cap-img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;}
+.cap-card:hover .cap-img{transform:scale(1.03);}
+.cap-body{padding:26px 26px 28px;}
+.cap-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:14px; display:block;}
+.cap-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:10px;}
+.cap-card p{font-size:0.83rem; color:var(--muted); line-height:1.7;}
 
-  /* WORK */
-  .work-grid{display:flex; flex-direction:column;}
-  .work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 0; border-top:1px solid var(--line);}
-  .work-row:last-child{border-bottom:1px solid var(--line);}
-  .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
-  .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
-  .work-desc{font-size:0.85rem; color:var(--muted); max-width:440px;}
-  .work-link{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--accent-line); padding-bottom:3px; white-space:nowrap; transition:color 0.2s;}
-  .work-link:hover{color:var(--accent);}
+/* WORK */
+.work-grid{display:flex; flex-direction:column;}
+.work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 0; border-top:1px solid var(--line);}
+.work-row:last-child{border-bottom:1px solid var(--line);}
+.work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
+.work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
+.work-desc{font-size:0.85rem; color:var(--muted); max-width:440px;}
+.work-link{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--accent-line); padding-bottom:3px; white-space:nowrap; transition:color 0.2s;}
+.work-link:hover{color:var(--accent);}
 
-  /* ABOUT */
-  .about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:start;}
-  .about-mark{width:100%; max-width:280px; opacity:0.12; display:block;}
-  html.dark .about-mark{opacity:0.15;}
-  .about-body p{font-size:0.94rem; color:var(--text); margin-bottom:16px; max-width:520px;}
-  .about-body p.muted{color:var(--muted);}
-  .about-facts{list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:8px;}
-  .about-facts li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
-  .about-facts strong{color:var(--text); font-weight:500;}
+/* ABOUT */
+.about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:start;}
+.about-mark{width:100%; max-width:280px; opacity:0.12; display:block;}
+html.dark .about-mark{opacity:0.15;}
+.about-body p{font-size:0.94rem; color:var(--text); margin-bottom:16px; max-width:520px;}
+.about-body p.muted{color:var(--muted);}
+.about-facts{list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:8px;}
+.about-facts li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
+.about-facts strong{color:var(--text); font-weight:500;}
 
-  /* CONTACT */
-  .contact-layout{display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start;}
-  .contact-info p{color:var(--muted); font-size:0.88rem; margin-bottom:22px; max-width:340px;}
-  .contact-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
-  .contact-list li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
-  .contact-list a{color:var(--accent); text-decoration:none;}
-  .form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px;}
-  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .field-full{grid-column:1/-1;}
-  .field{display:flex; flex-direction:column; gap:6px;}
-  label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--muted);}
-  input,select,textarea{width:100%; min-height:46px; border-radius:var(--radius); border:1px solid var(--line); padding:11px 13px; background:var(--panel); color:var(--text); font-family:'IBM Plex Sans',sans-serif; font-size:0.86rem; transition:border-color 0.2s;}
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
-  textarea{min-height:120px; resize:vertical;}
-  .submit-row{grid-column:1/-1; display:flex; gap:14px; align-items:center; margin-top:4px;}
-  .submit-note{font-size:0.66rem; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
-  .form-status{grid-column:1/-1; display:none; padding:12px 16px; border-radius:var(--radius); font-size:0.8rem;}
-  .form-status.is-visible{display:block;}
-  .form-status.is-success{background:rgba(34,197,94,0.12); color:#16a34a;}
-  .form-status.is-error{background:rgba(239,68,68,0.12); color:#dc2626;}
-  button{font-family:inherit; cursor:pointer;}
+/* CONTACT */
+.contact-layout{display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start;}
+.contact-info p{color:var(--muted); font-size:0.88rem; margin-bottom:22px; max-width:340px;}
+.contact-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
+.contact-list li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
+.contact-list a{color:var(--accent); text-decoration:none;}
+.form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px;}
+.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.field-full{grid-column:1/-1;}
+.field{display:flex; flex-direction:column; gap:6px;}
+label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--muted);}
+input,select,textarea{width:100%; min-height:46px; border-radius:var(--radius); border:1px solid var(--line); padding:11px 13px; background:var(--panel); color:var(--text); font-family:'IBM Plex Sans',sans-serif; font-size:0.86rem; transition:border-color 0.2s;}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
+textarea{min-height:120px; resize:vertical;}
+.submit-row{grid-column:1/-1; display:flex; gap:14px; align-items:center; margin-top:4px;}
+.submit-note{font-size:0.66rem; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
+.form-status{grid-column:1/-1; display:none; padding:12px 16px; border-radius:var(--radius); font-size:0.8rem;}
+.form-status.is-visible{display:block;}
+.form-status.is-success{background:rgba(34,197,94,0.12); color:#16a34a;}
+.form-status.is-error{background:rgba(239,68,68,0.12); color:#dc2626;}
+button{font-family:inherit; cursor:pointer;}
 
-  /* FOOTER */
-  footer{padding:36px 0;}
-  .foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
-  .foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;}
-  .foot-links{display:flex; gap:20px; list-style:none;}
-  .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
-  .foot-links a:hover{color:var(--accent);}
+/* FOOTER */
+footer{padding:36px 0;}
+.foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+.foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;}
+.foot-links{display:flex; gap:20px; list-style:none;}
+.foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
+.foot-links a:hover{color:var(--accent);}
 
-  @media (max-width:900px){
-    .cap-grid{grid-template-columns:1fr 1fr;}
-    .about-layout, .contact-layout{grid-template-columns:1fr;}
-    .work-row{grid-template-columns:1fr; gap:8px;}
-  }
-  @media (max-width:640px){
-    .nav-links{display:none;}
-    .cap-grid{grid-template-columns:1fr;}
-    .form-grid{grid-template-columns:1fr;}
-    .field-full{grid-column:1;}
-    .log-row{grid-template-columns:1fr; gap:4px;}
-    .wordmark img{height:36px;}
-    .wordmark-sub{display:none;}
-  }
+@media (max-width:900px){
+.cap-grid{grid-template-columns:1fr 1fr;}
+.about-layout, .contact-layout{grid-template-columns:1fr;}
+.work-row{grid-template-columns:1fr; gap:8px;}
+}
+@media (max-width:640px){
+.nav-links{display:none;}
+.cap-grid{grid-template-columns:1fr;}
+.form-grid{grid-template-columns:1fr;}
+.field-full{grid-column:1;}
+.log-row{grid-template-columns:1fr; gap:4px;}
+.wordmark img{height:36px;}
+.wordmark-sub{display:none;}
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="container nav">
-    <a href="#" class="wordmark">
-      <img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
-      <img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
-      <span class="wordmark-sub">Digital Consultancy</span>
-    </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#log">Build log</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
-      <a href="#contact" class="nav-cta">Start a build</a>
-    </div>
-  </div>
+<div class="container nav">
+<a href="#" class="wordmark">
+<img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
+<img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
+<span class="wordmark-sub">Ric-Lee Digital</span>
+</a>
+<nav>
+<ul class="nav-links">
+<li><a href="#packages">Packages</a></li>
+<li><a href="#capabilities">Capabilities</a></li>
+<li><a href="#log">Build log</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#about">About</a></li>
+</ul>
+</nav>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+<a href="#contact" class="nav-cta">Start a build</a>
+</div>
+</div>
 </header>
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-eyebrow">London, UK — Available for direct work</div>
-      <h1>One person. <em>Every discipline.</em> Nothing outsourced.</h1>
-      <p class="hero-desc">Web development, software &amp; automation, and brand &amp; design work for businesses that need to be set up properly online — planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Start a build →</a>
-        <a href="#capabilities" class="btn btn-ghost">See capabilities</a>
-      </div>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-eyebrow">London, UK — Available for direct work</div>
+<h1>One person. <em>Every discipline.</em> Nothing outsourced.</h1>
+<p class="hero-desc">Web development, software &amp; automation, and brand &amp; design work for businesses that need to be set up properly online — planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
+<div class="hero-cta">
+<a href="#contact" class="btn btn-primary">Start a build →</a>
+<a href="#capabilities" class="btn btn-ghost">See capabilities</a>
+</div>
+</div>
+</section>
 
-  <!-- SCALE STRIP -->
-  <section class="scale-strip" style="padding:0; border-bottom:1px solid var(--line);">
-    <div class="container" style="width:100%; max-width:none; padding:0;">
-      <div class="scale-grid">
-        <div class="scale-item">
-          <div class="scale-num mono">3</div>
-          <div class="scale-label">Core disciplines</div>
-        </div>
-        <div class="scale-item">
-          <div class="scale-num mono">3</div>
-          <div class="scale-label">Platforms live in production</div>
-        </div>
-        <div class="scale-item">
-          <div class="scale-num mono">26</div>
-          <div class="scale-label">Software products published</div>
-        </div>
-        <div class="scale-item">
-          <div class="scale-num mono">100%</div>
-          <div class="scale-label">Built in-house, no subcontracting</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- SCALE STRIP -->
+<section class="scale-strip" style="padding:0; border-bottom:1px solid var(--line);">
+<div class="container" style="width:100%; max-width:none; padding:0;">
+<div class="scale-grid">
+<div class="scale-item">
+<div class="scale-num mono">3</div>
+<div class="scale-label">Core disciplines</div>
+</div>
+<div class="scale-item">
+<div class="scale-num mono">3</div>
+<div class="scale-label">Platforms live in production</div>
+</div>
+<div class="scale-item">
+<div class="scale-num mono">26</div>
+<div class="scale-label">Software products published</div>
+</div>
+<div class="scale-item">
+<div class="scale-num mono">100%</div>
+<div class="scale-label">Built in-house, no subcontracting</div>
+</div>
+</div>
+</div>
+</section>
 
-  <!-- PACKAGES -->
-  <section id="packages">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <div class="sec-tag">Packages</div>
-          <h2>Not sure what you need? Start here.</h2>
-        </div>
-        <p class="sec-note">Most new businesses need more than a landing page — a mark, a working site, and the basic paperwork to launch properly. Picked by outcome, not by service name.</p>
-      </div>
+<!-- PACKAGES -->
+<section id="packages">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Packages</div>
+<h2>Not sure what you need? Start here.</h2>
+</div>
+<p class="sec-note">Most new businesses need more than a landing page — a mark, a working site, and the basic paperwork to launch properly. Picked by outcome, not by service name.</p>
+</div>
 
-      <div class="pkg-grid">
-        <div class="pkg-card">
-          <div class="pkg-name">Launch</div>
-          <div class="pkg-for">Getting a new business online, properly, for the first time.</div>
-          <div class="pkg-price mono">From £750</div>
-          <div class="pkg-price-note">One-off · RL-01</div>
-          <ul class="pkg-list">
-            <li>Logo / brand mark</li>
-            <li>Single-page site, built from scratch</li>
-            <li>Domain &amp; hosting set up</li>
-            <li>Standard policy docs — privacy policy, T&amp;Cs, cookie notice</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost pkg-btn">Enquire →</a>
-        </div>
+<div class="pkg-grid">
+<div class="pkg-card">
+<div class="pkg-name">Launch</div>
+<div class="pkg-for">Getting a new business online, properly, for the first time.</div>
+<div class="pkg-price mono">From £750</div>
+<div class="pkg-price-note">One-off · RL-01</div>
+<ul class="pkg-list">
+<li>Logo / brand mark</li>
+<li>Single-page site, built from scratch</li>
+<li>Domain &amp; hosting set up</li>
+<li>Standard policy docs — privacy policy, T&amp;Cs, cookie notice</li>
+</ul>
+<a href="#contact" class="btn btn-ghost pkg-btn">Enquire →</a>
+</div>
 
-        <div class="pkg-card featured">
-          <span class="pkg-featured-tag">Most requested</span>
-          <div class="pkg-name">Brand</div>
-          <div class="pkg-for">A full identity, not just a site — for a business that wants to look established from day one.</div>
-          <div class="pkg-price mono">From £1,500</div>
-          <div class="pkg-price-note">One-off · RL-01 · RL-03</div>
-          <ul class="pkg-list">
-            <li>Everything in Launch</li>
-            <li>Multi-page site (home, services, work, contact)</li>
-            <li>Full brand asset kit — logo variants, colours, type</li>
-            <li>Merch mockups — mugs, apparel, business cards</li>
-            <li>Standard policy docs, tailored to the business</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary pkg-btn">Enquire →</a>
-        </div>
+<div class="pkg-card featured">
+<span class="pkg-featured-tag">Most requested</span>
+<div class="pkg-name">Brand</div>
+<div class="pkg-for">A full identity, not just a site — for a business that wants to look established from day one.</div>
+<div class="pkg-price mono">From £1,500</div>
+<div class="pkg-price-note">One-off · RL-01 · RL-03</div>
+<ul class="pkg-list">
+<li>Everything in Launch</li>
+<li>Multi-page site (home, services, work, contact)</li>
+<li>Full brand asset kit — logo variants, colours, type</li>
+<li>Merch mockups — mugs, apparel, business cards</li>
+<li>Standard policy docs, tailored to the business</li>
+</ul>
+<a href="#contact" class="btn btn-primary pkg-btn">Enquire →</a>
+</div>
 
-        <div class="pkg-card">
-          <div class="pkg-name">Build</div>
-          <div class="pkg-for">Businesses that need software behind the site, not just in front of it.</div>
-          <div class="pkg-price mono">From £2,500</div>
-          <div class="pkg-price-note">One-off · RL-01 · RL-02</div>
-          <ul class="pkg-list">
-            <li>Everything in Brand</li>
-            <li>Custom functionality — bookings, dashboards, integrations</li>
-            <li>Automation &amp; workflow tooling behind the scenes</li>
-            <li>Scoped per-project — priced after a build call</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost pkg-btn">Enquire →</a>
-        </div>
-      </div>
+<div class="pkg-card">
+<div class="pkg-name">Build</div>
+<div class="pkg-for">Businesses that need software behind the site, not just in front of it.</div>
+<div class="pkg-price mono">From £2,500</div>
+<div class="pkg-price-note">One-off · RL-01 · RL-02</div>
+<ul class="pkg-list">
+<li>Everything in Brand</li>
+<li>Custom functionality — bookings, dashboards, integrations</li>
+<li>Automation &amp; workflow tooling behind the scenes</li>
+<li>Scoped per-project — priced after a build call</li>
+</ul>
+<a href="#contact" class="btn btn-ghost pkg-btn">Enquire →</a>
+</div>
+</div>
 
-      <div class="care-strip">
-        <div class="care-strip-text">
-          <h4>Care Plan — ongoing hosting &amp; maintenance</h4>
-          <p>Hosting, security updates, backups, and a small pool of minor edits each month. Runs alongside any package above.</p>
-        </div>
-        <div class="care-price mono">From £25<span>/ month</span></div>
-      </div>
-    </div>
-  </section>
+<div class="care-strip">
+<div class="care-strip-text">
+<h4>Care Plan — ongoing hosting &amp; maintenance</h4>
+<p>Hosting, security updates, backups, and a small pool of minor edits each month. Runs alongside any package above.</p>
+</div>
+<div class="care-price mono">From £25<span>/ month</span></div>
+</div>
+</div>
+</section>
 
-  <!-- BUILD LOG -->
-  <section id="log">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <div class="sec-tag">Build log</div>
-          <h2>Currently in progress</h2>
-        </div>
-        <p class="sec-note">A running record of active work. Real entries, updated as builds move — not a portfolio highlight reel.</p>
-      </div>
-      <div class="log-list">
-        <div class="log-row">
-          <span class="log-date mono">2026</span>
-          <span class="log-tag">SOFTWARE</span>
-          <span class="log-desc">Live trading infrastructure — signal routing, execution agents, and reconciliation logic running across MT4/MT5 in production.</span>
-        </div>
-        <div class="log-row">
-          <span class="log-date mono">2026</span>
-          <span class="log-tag">WEB</span>
-          <span class="log-desc">Full platform build for a behavioural-assessment product — scoring engine, payment flow, and report generation, end to end.</span>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- BUILD LOG -->
+<section id="log">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Build log</div>
+<h2>Currently in progress</h2>
+</div>
+<p class="sec-note">A running record of active work. Real entries, updated as builds move — not a portfolio highlight reel.</p>
+</div>
+<div class="log-list">
+<div class="log-row">
+<span class="log-date mono">2026</span>
+<span class="log-tag">SOFTWARE</span>
+<span class="log-desc">Live trading infrastructure — signal routing, execution agents, and reconciliation logic running across MT4/MT5 in production.</span>
+</div>
+<div class="log-row">
+<span class="log-date mono">2026</span>
+<span class="log-tag">WEB</span>
+<span class="log-desc">Full platform build for a behavioural-assessment product — scoring engine, payment flow, and report generation, end to end.</span>
+</div>
+</div>
+</div>
+</section>
 
-  <!-- CAPABILITIES -->
-  <section id="capabilities">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <div class="sec-tag">Capability index</div>
-          <h2>The full menu</h2>
-        </div>
-        <p class="sec-note">Every package above is built from these three. Already know what you need? Quote a reference code directly.</p>
-      </div>
-      <div class="cap-grid">
-        <a href="web-development.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-          <div class="cap-img-wrap"><img class="cap-img" src="img_webdev.jpg" alt="Web development" /></div>
-          <div class="cap-body">
-            <span class="cap-code mono">RL-01 · WEB</span>
-            <h3>Web Development</h3>
-            <p>Sites and web apps built from scratch — no page builders. HTML/CSS/JS, custom domains, API integrations, hosting setup.</p>
-          </div>
-        </div></a>
-        <a href="software-automation.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-          <div class="cap-img-wrap"><img class="cap-img" src="img_coding.jpg" alt="Software and automation" /></div>
-          <div class="cap-body">
-            <span class="cap-code mono">RL-02 · SOFTWARE</span>
-            <h3>Software &amp; Automation</h3>
-            <p>Python scripts, trading EAs, n8n workflows, Telegram bots, and Claude API integrations. Systems that run unattended.</p>
-          </div>
-        </div></a>
-        <a href="design-print-on-demand.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-          <div class="cap-img-wrap"><img class="cap-img" src="img_mug.jpg" alt="Design and print on demand" /></div>
-          <div class="cap-body">
-            <span class="cap-code mono">RL-03 · DESIGN</span>
-            <h3>Design &amp; Print-on-Demand</h3>
-            <p>Brand assets, digital design, and POD product concepts — apparel, merchandise, and packaging.</p>
-          </div>
-        </div></a>
-      </div>
-    </div>
-  </section>
+<!-- CAPABILITIES -->
+<section id="capabilities">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Capability index</div>
+<h2>The full menu</h2>
+</div>
+<p class="sec-note">Every package above is built from these three. Already know what you need? Quote a reference code directly.</p>
+</div>
+<div class="cap-grid">
+<a href="web-development.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
+<div class="cap-img-wrap"><img class="cap-img" src="img_webdev.jpg" alt="Web development" /></div>
+<div class="cap-body">
+<span class="cap-code mono">RL-01 · WEB</span>
+<h3>Web Development</h3>
+<p>Sites and web apps built from scratch — no page builders. HTML/CSS/JS, custom domains, API integrations, hosting setup.</p>
+</div>
+</div></a>
+<a href="software-automation.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
+<div class="cap-img-wrap"><img class="cap-img" src="img_coding.jpg" alt="Software and automation" /></div>
+<div class="cap-body">
+<span class="cap-code mono">RL-02 · SOFTWARE</span>
+<h3>Software &amp; Automation</h3>
+<p>Python scripts, trading EAs, n8n workflows, Telegram bots, and Claude API integrations. Systems that run unattended.</p>
+</div>
+</div></a>
+<a href="design-print-on-demand.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
+<div class="cap-img-wrap"><img class="cap-img" src="img_mug.jpg" alt="Design and print on demand" /></div>
+<div class="cap-body">
+<span class="cap-code mono">RL-03 · DESIGN</span>
+<h3>Design &amp; Print-on-Demand</h3>
+<p>Brand assets, digital design, and POD product concepts — apparel, merchandise, and packaging.</p>
+</div>
+</div></a>
+</div>
+</div>
+</section>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <div class="sec-tag">Selected work</div>
-          <h2>Live builds</h2>
-        </div>
-        <p class="sec-note">Independent products and platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
-      </div>
-      <div class="work-grid">
-        <div class="work-row">
-          <div>
-            <div class="work-name">PsyTectrics</div>
-            <span class="work-role">RL-01 · RL-02</span>
-          </div>
-          <p class="work-desc">Behavioural-assessment platform — scoring engine, psychometric reporting, and payment infrastructure built and shipped solo.</p>
-          <a class="work-link" href="https://psytectrics.com" target="_blank" rel="noopener">psytectrics.com ↗</a>
-        </div>
-        <div class="work-row">
-          <div>
-            <div class="work-name">UMNi Systems</div>
-            <span class="work-role">RL-01 · RL-02</span>
-          </div>
-          <p class="work-desc">Trading infrastructure — signal routing, execution agents, and a published catalogue of MT4/MT5 products.</p>
-          <a class="work-link" href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- WORK -->
+<section id="work">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Selected work</div>
+<h2>Live builds</h2>
+</div>
+<p class="sec-note">Independent products and platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
+</div>
+<div class="work-grid">
+<div class="work-row">
+<div>
+<div class="work-name">PsyTectrics</div>
+<span class="work-role">RL-01 · RL-02</span>
+</div>
+<p class="work-desc">Behavioural-assessment platform — scoring engine, psychometric reporting, and payment infrastructure built and shipped solo.</p>
+<a class="work-link" href="https://psytectrics.com" target="_blank" rel="noopener">psytectrics.com ↗</a>
+</div>
+<div class="work-row">
+<div>
+<div class="work-name">UMNi Systems</div>
+<span class="work-role">RL-01 · RL-02</span>
+</div>
+<p class="work-desc">Trading infrastructure — signal routing, execution agents, and a published catalogue of MT4/MT5 products.</p>
+<a class="work-link" href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a>
+</div>
+</div>
+</div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container about-layout">
-      <div>
-        <img class="about-mark logo-dark" src="ric-lee-logo-dark.png" alt="" />
-        <img class="about-mark logo-light" src="ric-lee-logo-light.png" alt="" />
-      </div>
-      <div class="about-body">
-        <div class="sec-tag">About</div>
-        <h2 style="margin-bottom:18px;">Direct, hands-on, and built to last past the handover.</h2>
-        <p>I'm a solo builder working across web, software, automation, and mechanical work — the kind of range that's usually split across an agency's departments, run instead by one person who actually does the work.</p>
-        <p class="muted">That range isn't a gimmick — it comes from working across genuinely different domains at once: production trading infrastructure, a live consumer web platform, and MQL5 software distribution. The same problem-solving carries across all of it.</p>
-        <ul class="about-facts">
-          <li><strong>Based:</strong> London, UK</li>
-          <li><strong>Response time:</strong> within 24 hours, working days</li>
-          <li><strong>Delivery:</strong> direct — no subcontracting, no markup</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<!-- ABOUT -->
+<section id="about">
+<div class="container about-layout">
+<div>
+<img class="about-mark logo-dark" src="ric-lee-logo-dark.png" alt="" />
+<img class="about-mark logo-light" src="ric-lee-logo-light.png" alt="" />
+</div>
+<div class="about-body">
+<div class="sec-tag">About</div>
+<h2 style="margin-bottom:18px;">Direct, hands-on, and built to last past the handover.</h2>
+<p>I'm a solo builder working across web, software, automation, and mechanical work — the kind of range that's usually split across an agency's departments, run instead by one person who actually does the work.</p>
+<p class="muted">That range isn't a gimmick — it comes from working across genuinely different domains at once: production trading infrastructure, a live consumer web platform, and MQL5 software distribution. The same problem-solving carries across all of it.</p>
+<ul class="about-facts">
+<li><strong>Based:</strong> London, UK</li>
+<li><strong>Studio:</strong> Ric-Lee Digital</li>
+<li><strong>Response time:</strong> within 24 hours, working days</li>
+<li><strong>Delivery:</strong> direct — no subcontracting, no markup</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" style="border-bottom:none;">
-    <div class="container">
-      <div class="contact-layout">
-        <div class="contact-info">
-          <div class="sec-tag">Contact</div>
-          <h2 style="margin-bottom:14px;">Start a build</h2>
-          <p>Tell me what you're working on and which capabilities apply. All enquiries read and answered personally.</p>
-          <ul class="contact-list">
-            <li>Based in — London, UK</li>
-            <li>Reference codes — RL-01 to RL-03</li>
-          </ul>
-        </div>
-        <div class="form-card">
-          <form id="rl-form" action="https://formspree.io/f/mreorpre" method="POST">
-            <div class="form-grid">
-              <div id="formStatus" class="form-status"></div>
-              <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" required />
-              </div>
-              <div class="field">
-                <label for="contact">Email or phone</label>
-                <input id="contact" name="contact" type="text" required />
-              </div>
-              <div class="field field-full">
-                <label for="service">Reference code</label>
-                <select id="service" name="service">
-                  <option>RL-01 — Web Development</option>
-                  <option>RL-02 — Software &amp; Automation</option>
-                  <option>RL-03 — Design &amp; Print-on-Demand</option>
-                  <option>Not sure — describe below</option>
-                </select>
-              </div>
-              <div class="field field-full">
-                <label for="message">Details</label>
-                <textarea id="message" name="message" required placeholder="Tell me what you're working on."></textarea>
-              </div>
-              <input type="hidden" name="_subject" value="Rick Lee — New enquiry" />
-              <div class="submit-row">
-                <button class="btn btn-primary" type="submit">Send message</button>
-                <span class="submit-note mono">Sent securely via Formspree</span>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- CONTACT -->
+<section id="contact" style="border-bottom:none;">
+<div class="container">
+<div class="contact-layout">
+<div class="contact-info">
+<div class="sec-tag">Contact</div>
+<h2 style="margin-bottom:14px;">Start a build</h2>
+<p>Tell me what you're working on and which capabilities apply. All enquiries read and answered personally.</p>
+<ul class="contact-list">
+<li>Based in — London, UK</li>
+<li>Reference codes — RL-01 to RL-03</li>
+</ul>
+</div>
+<div class="form-card">
+<form id="rl-form" action="https://formspree.io/f/mreorpre" method="POST">
+<div class="form-grid">
+<div id="formStatus" class="form-status"></div>
+<div class="field">
+<label for="name">Name</label>
+<input id="name" name="name" type="text" required />
+</div>
+<div class="field">
+<label for="contact">Email or phone</label>
+<input id="contact" name="contact" type="text" required />
+</div>
+<div class="field field-full">
+<label for="service">Reference code</label>
+<select id="service" name="service">
+<option>RL-01 — Web Development</option>
+<option>RL-02 — Software &amp; Automation</option>
+<option>RL-03 — Design &amp; Print-on-Demand</option>
+<option>Not sure — describe below</option>
+</select>
+</div>
+<div class="field field-full">
+<label for="message">Details</label>
+<textarea id="message" name="message" required placeholder="Tell me what you're working on."></textarea>
+</div>
+<input type="hidden" name="_subject" value="Ric Lee — New enquiry" />
+<div class="submit-row">
+<button class="btn btn-primary" type="submit">Send message</button>
+<span class="submit-note mono">Sent securely via Formspree</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
 
 </main>
 
 <footer>
-  <div class="container foot-inner">
-    <span class="foot-copy">© 2026 Rick Lee — All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
-    <ul class="foot-links">
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
+<div class="container foot-inner">
+<span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
+<ul class="foot-links">
+<li><a href="#capabilities">Capabilities</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
 </footer>
 
 <script>
-  const html = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  function updateThemeUI(){
-    btn.textContent = html.classList.contains('dark') ? 'Light mode' : 'Dark mode';
-  }
-  btn.addEventListener('click', function(){
-    html.classList.toggle('dark');
-    localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light');
-    updateThemeUI();
-  });
-  updateThemeUI();
+const html = document.documentElement;
+const btn = document.getElementById('themeToggle');
+function updateThemeUI(){
+btn.textContent = html.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+}
+btn.addEventListener('click', function(){
+html.classList.toggle('dark');
+localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light');
+updateThemeUI();
+});
+updateThemeUI();
 
-  const form = document.getElementById('rl-form');
-  const status = document.getElementById('formStatus');
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true; submitBtn.textContent = 'Sending...';
-    try{
-      const res = await fetch(form.action, {
-        method:'POST', body:new FormData(form),
-        headers:{ 'Accept':'application/json' }
-      });
-      if(res.ok){
-        status.className = 'form-status is-visible is-success';
-        status.textContent = "Message sent. I'll be in touch within 24 hours.";
-        form.reset();
-      } else { throw new Error(); }
-    } catch {
-      status.className = 'form-status is-visible is-error';
-      status.textContent = 'Something went wrong. Please try again later.';
-    }
-    submitBtn.disabled = false; submitBtn.textContent = 'Send message';
-  });
+const form = document.getElementById('rl-form');
+const status = document.getElementById('formStatus');
+form.addEventListener('submit', async function(e){
+e.preventDefault();
+const submitBtn = form.querySelector('button[type="submit"]');
+submitBtn.disabled = true; submitBtn.textContent = 'Sending...';
+try{
+const res = await fetch(form.action, {
+method:'POST', body:new FormData(form),
+headers:{ 'Accept':'application/json' }
+});
+if(res.ok){
+status.className = 'form-status is-visible is-success';
+status.textContent = "Message sent. I'll be in touch within 24 hours.";
+form.reset();
+} else { throw new Error(); }
+} catch {
+status.className = 'form-status is-visible is-error';
+status.textContent = 'Something went wrong. Please try again later.';
+}
+submitBtn.disabled = false; submitBtn.textContent = 'Send message';
+});
 </script>
 
 </body>
