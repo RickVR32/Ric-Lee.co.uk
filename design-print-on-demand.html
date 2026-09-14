@@ -72,6 +72,16 @@ html.dark .logo-light{display:block;}
 .theme-toggle:hover{color:var(--text); border-color:var(--accent);}
 .nav-cta{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--bg-soft); background:var(--accent); padding:9px 18px; border-radius:var(--radius); transition:opacity 0.2s;}
 .nav-cta:hover{opacity:0.85;}
+.burger-btn{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:38px; height:38px; border:1px solid var(--line); border-radius:var(--radius); background:transparent; cursor:pointer; padding:0; flex-shrink:0;}
+.burger-btn span{display:block; width:16px; height:1.5px; background:var(--text); transition:transform 0.2s, opacity 0.2s;}
+.burger-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.burger-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.burger-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; box-shadow:0 16px 28px rgba(0,0,0,0.08);}
+.mobile-menu.is-open{display:flex;}
+.mobile-menu a{font-family:'IBM Plex Mono',monospace; font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--text); padding:16px 22px; border-top:1px solid var(--line);}
+.mobile-menu a:first-child{border-top:none;}
+.mobile-menu a.mobile-cta{color:var(--accent);}
 
 /* HERO */
 .hero{padding:100px 0 84px; border-bottom:1px solid var(--line);}
@@ -200,6 +210,8 @@ footer{padding:36px 0;}
 }
 @media (max-width:640px){
 .nav-links{display:none;}
+.nav-cta{display:none;}
+.burger-btn{display:flex;}
 .cap-grid{grid-template-columns:1fr;}
 .form-grid{grid-template-columns:1fr;}
 .field-full{grid-column:1;}
@@ -261,7 +273,16 @@ footer{padding:36px 0;}
 <div class="nav-right">
 <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
 <a href="index.html#contact" class="nav-cta">Start a build</a>
+<button class="burger-btn" id="burgerBtn" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html#packages">Packages</a>
+<a href="index.html#capabilities">Capabilities</a>
+<a href="index.html#work">Work</a>
+<a href="index.html#build-specs">Build Specs</a>
+<a href="index.html#about">About</a>
+<a href="index.html#contact" class="mobile-cta">Start a build</a>
 </div>
 </header>
 
@@ -374,5 +395,24 @@ updateThemeUI();
 });
 updateThemeUI();
 </script>
+<script>
+(function(){
+var burgerBtn = document.getElementById('burgerBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+if(burgerBtn && mobileMenu){
+burgerBtn.addEventListener('click', function(){
+var isOpen = mobileMenu.classList.toggle('is-open');
+burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+mobileMenu.querySelectorAll('a').forEach(function(a){
+a.addEventListener('click', function(){
+mobileMenu.classList.remove('is-open');
+burgerBtn.setAttribute('aria-expanded', 'false');
+});
+});
+}
+})();
+</script>
+
 </body>
 </html>
