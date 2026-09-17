@@ -26,6 +26,11 @@ if (t === 'dark') document.documentElement.classList.add('dark');
 --accent-line:rgba(44,58,94,0.28);
 --line:rgba(0,0,0,0.1);
 --radius:3px;
+--accent-2:#4d6aa8;
+--shadow-sm:0 2px 10px rgba(23,22,15,0.05);
+--shadow-md:0 16px 40px rgba(23,22,15,0.09);
+--accent-glow:rgba(44,58,94,0.22);
+--accent-glow-strong:rgba(44,58,94,0.28);
 color-scheme: light;
 }
 html.dark{
@@ -38,6 +43,11 @@ html.dark{
 --accent-soft:rgba(127,155,214,0.1);
 --accent-line:rgba(127,155,214,0.32);
 --line:rgba(255,255,255,0.1);
+--accent-2:#a9c0e8;
+--shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+--shadow-md:0 18px 44px rgba(0,0,0,0.4);
+--accent-glow:rgba(127,155,214,0.3);
+--accent-glow-strong:rgba(127,155,214,0.4);
 color-scheme: dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -74,7 +84,9 @@ html.dark .logo-light{display:block !important;}
 .nav-cta:hover{opacity:0.85;}
 
 /* HERO */
-.hero{padding:100px 0 84px; border-bottom:1px solid var(--line);}
+.hero{padding:100px 0 84px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;}
+.hero::before{content:''; position:absolute; top:-140px; right:-160px; width:460px; height:460px; background:radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); pointer-events:none; z-index:0;}
+.hero .container{position:relative; z-index:1;}
 .hero-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px;}
 .hero-eyebrow::before{content:''; width:22px; height:1px; background:var(--accent);}
 h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2.1rem, 5vw, 3.5rem); line-height:1.12; letter-spacing:-0.01em; max-width:760px; margin-bottom:26px;}
@@ -82,8 +94,8 @@ h1 em{font-style:italic; color:var(--accent);}
 .hero-desc{color:var(--muted); font-size:1rem; max-width:520px; margin-bottom:38px;}
 .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
 .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
-.btn-primary{background:var(--accent); color:var(--bg-soft); border-color:var(--accent);}
-.btn-primary:hover{opacity:0.85;}
+.btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border-color:var(--accent); box-shadow:0 6px 18px var(--accent-glow);}
+.btn-primary:hover{opacity:0.92; transform:translateY(-1px); box-shadow:0 10px 24px var(--accent-glow-strong);}
 .btn-ghost{color:var(--text); background:transparent;}
 .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
 
@@ -99,8 +111,10 @@ h1 em{font-style:italic; color:var(--accent);}
 
 /* PACKAGES */
 .pkg-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-.pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative;}
-.pkg-card.featured{border-color:var(--accent-line); box-shadow:0 18px 44px rgba(0,0,0,0.06);}
+.pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative; box-shadow:var(--shadow-sm); transition:transform 0.25s ease, box-shadow 0.25s ease;}
+.pkg-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md);}
+.pkg-card.featured{border-color:var(--accent-line); box-shadow:var(--shadow-md);}
+.pkg-card.featured::before{content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:16px 16px 0 0; background:linear-gradient(90deg, var(--accent), var(--accent-2));}
 .pkg-featured-tag{position:absolute; top:-12px; left:28px; background:var(--accent); color:var(--bg-soft); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:999px;}
 .pkg-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; margin-bottom:6px;}
 .pkg-for{font-size:0.8rem; color:var(--muted); margin-bottom:18px; min-height:40px;}
@@ -110,7 +124,7 @@ h1 em{font-style:italic; color:var(--accent);}
 .pkg-list li{font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;}
 .pkg-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 .pkg-btn{align-self:flex-start;}
-.care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+.care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; box-shadow:var(--shadow-sm);}
 .care-strip-text h4{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:6px;}
 .care-strip-text p{font-size:0.82rem; color:var(--muted); max-width:460px;}
 .care-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent); white-space:nowrap;}
@@ -124,20 +138,15 @@ section{padding:76px 0; border-bottom:1px solid var(--line);}
 h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.005em;}
 .sec-note{color:var(--muted); font-size:0.85rem; max-width:340px; font-family:'IBM Plex Mono',monospace; line-height:1.7;}
 
-/* BUILD LOG */
-.log-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
-.log-row{display:grid; grid-template-columns:110px 130px 1fr; gap:18px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);}
-.log-date{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted);}
-.log-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent);}
-.log-desc{font-size:0.87rem; color:var(--text);}
-
 /* CAPABILITY INDEX */
 .cap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-.cap-card{background:var(--bg); display:flex; flex-direction:column; transition:background 0.2s;}
-.cap-card:hover{background:var(--bg-soft);}
-.cap-img-wrap{width:100%; height:170px; overflow:hidden; background:var(--panel);}
-.cap-img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;}
-.cap-card:hover .cap-img{transform:scale(1.03);}
+.cap-card{background:var(--bg); display:flex; flex-direction:column; position:relative; transition:background 0.2s, transform 0.25s ease, box-shadow 0.25s ease;}
+.cap-card:hover{background:var(--bg-soft); transform:translateY(-3px); box-shadow:var(--shadow-md); z-index:1;}
+.cap-tile{width:100%; height:170px; position:relative; overflow:hidden; background:linear-gradient(135deg, var(--accent-soft), transparent 65%); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center;}
+.cap-tile::before{content:attr(data-code); position:absolute; right:-6px; bottom:-38px; font-family:'Fraunces',serif; font-weight:600; font-size:7.5rem; line-height:1; color:var(--accent); opacity:0.09; pointer-events:none; transition:opacity 0.3s ease;}
+.cap-card:hover .cap-tile::before{opacity:0.16;}
+.cap-tile-icon{width:46px; height:46px; color:var(--accent); position:relative; z-index:1;}
+.cap-tile-icon svg{width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
 .cap-body{padding:26px 26px 28px;}
 .cap-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:14px; display:block;}
 .cap-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:10px;}
@@ -145,7 +154,8 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 
 /* WORK */
 .work-grid{display:flex; flex-direction:column;}
-.work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 0; border-top:1px solid var(--line);}
+.work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
+.work-row:hover{background:var(--panel);}
 .work-row:last-child{border-bottom:1px solid var(--line);}
 .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
 .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
@@ -169,7 +179,7 @@ html.dark .about-mark{opacity:0.15;}
 .contact-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
 .contact-list li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
 .contact-list a{color:var(--accent); text-decoration:none;}
-.form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px;}
+.form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px; box-shadow:var(--shadow-sm);}
 .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
 .field-full{grid-column:1/-1;}
 .field{display:flex; flex-direction:column; gap:6px;}
@@ -203,7 +213,6 @@ footer{padding:36px 0;}
 .cap-grid{grid-template-columns:1fr;}
 .form-grid{grid-template-columns:1fr;}
 .field-full{grid-column:1;}
-.log-row{grid-template-columns:1fr; gap:4px;}
 .wordmark img{height:36px;}
 .wordmark-sub{display:none;}
 }
@@ -222,7 +231,6 @@ footer{padding:36px 0;}
 <ul class="nav-links">
 <li><a href="#packages">Packages</a></li>
 <li><a href="#capabilities">Capabilities</a></li>
-<li><a href="#log">Build log</a></li>
 <li><a href="#work">Work</a></li>
 <li><a href="#about">About</a></li>
 </ul>
@@ -241,7 +249,7 @@ footer{padding:36px 0;}
 <div class="container">
 <div class="hero-eyebrow">London, UK — Available for direct work</div>
 <h1>One person. <em>Every discipline.</em> Nothing outsourced.</h1>
-<p class="hero-desc">Web development, software &amp; automation, and brand &amp; design work for businesses that need to be set up properly online — planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
+<p class="hero-desc">Full web platforms, software, and brand work for businesses that need real infrastructure behind their site — booking and payment workflows, admin dashboards, automated client comms — not just a page online. Planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
 <div class="hero-cta">
 <a href="#contact" class="btn btn-primary">Start a build →</a>
 <a href="#capabilities" class="btn btn-ghost">See capabilities</a>
@@ -262,7 +270,7 @@ footer{padding:36px 0;}
 <div class="scale-label">Platforms live in production</div>
 </div>
 <div class="scale-item">
-<div class="scale-num mono">£115K+</div>
+<div class="scale-num mono">£100K+</div>
 <div class="scale-label">Estimated portfolio build value</div>
 </div>
 <div class="scale-item">
@@ -322,8 +330,9 @@ footer{padding:36px 0;}
 <div class="pkg-price-note">One-off · RL-01 · RL-02</div>
 <ul class="pkg-list">
 <li>Everything in Brand</li>
-<li>Custom functionality — bookings, dashboards, integrations</li>
+<li>Custom functionality — bookings, payments, dashboards, integrations</li>
 <li>Automation &amp; workflow tooling behind the scenes</li>
+<li>The same tier behind Elegant Hires' live booking, payment &amp; supplier platform</li>
 <li>Scoped per-project — priced after a build call</li>
 </ul>
 <a href="#contact" class="btn btn-ghost pkg-btn">Enquire →</a>
@@ -340,30 +349,6 @@ footer{padding:36px 0;}
 </div>
 </section>
 
-<!-- BUILD LOG -->
-<section id="log">
-<div class="container">
-<div class="sec-head">
-<div>
-<div class="sec-tag">Build log</div>
-<h2>Currently in progress</h2>
-</div>
-<p class="sec-note">A running record of active work. Real entries, updated as builds move — not a portfolio highlight reel.</p>
-</div>
-<div class="log-list">
-<div class="log-row">
-<span class="log-date mono">2026</span>
-<span class="log-tag">SOFTWARE</span>
-<span class="log-desc">Live trading infrastructure — signal routing, execution agents, and reconciliation logic running across MT4/MT5 in production.</span>
-</div>
-<div class="log-row">
-<span class="log-date mono">2026</span>
-<span class="log-tag">WEB</span>
-<span class="log-desc">Full platform build for a behavioural-assessment product — scoring engine, payment flow, and report generation, end to end.</span>
-</div>
-</div>
-</div>
-</section>
 
 <!-- CAPABILITIES -->
 <section id="capabilities">
@@ -377,23 +362,23 @@ footer{padding:36px 0;}
 </div>
 <div class="cap-grid">
 <a href="web-development.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-<div class="cap-img-wrap"><img class="cap-img" src="img_webdev.jpg" alt="Web development" /></div>
+<div class="cap-tile" data-code="01"><span class="cap-tile-icon"><svg viewBox="0 0 24 24"><path d="M8 4 2 12l6 8"/><path d="M16 4l6 8-6 8"/></svg></span></div>
 <div class="cap-body">
 <span class="cap-code mono">RL-01 · WEB</span>
 <h3>Web Development</h3>
-<p>Sites and web apps built from scratch — no page builders. HTML/CSS/JS, custom domains, API integrations, hosting setup.</p>
+<p>Full platforms built from scratch — booking and quote workflows, Stripe payments, admin dashboards, and automated client comms. Not just pages.</p>
 </div>
 </div></a>
 <a href="software-automation.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-<div class="cap-img-wrap"><img class="cap-img" src="img_coding.jpg" alt="Software and automation" /></div>
+<div class="cap-tile" data-code="02"><span class="cap-tile-icon"><svg viewBox="0 0 24 24"><circle cx="4" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="20" cy="12" r="2"/><path d="M6 12h4M13.4 6.6 18.2 10.8M13.4 17.4 18.2 13.2"/></svg></span></div>
 <div class="cap-body">
 <span class="cap-code mono">RL-02 · SOFTWARE</span>
 <h3>Software &amp; Automation</h3>
-<p>Python scripts, trading EAs, n8n workflows, Telegram bots, and Claude API integrations. Systems that run unattended.</p>
+<p>Python scripts, trading EAs, n8n workflows, Telegram bots, and AI API integrations — production systems that run unattended and report on themselves.</p>
 </div>
 </div></a>
 <a href="design-print-on-demand.html" style="text-decoration:none;color:inherit;display:block;"><div class="cap-card">
-<div class="cap-img-wrap"><img class="cap-img" src="img_mug.jpg" alt="Design and print on demand" /></div>
+<div class="cap-tile" data-code="03"><span class="cap-tile-icon"><svg viewBox="0 0 24 24"><path d="M3 21l3-1 12-12-2-2L4 18l-1 3z"/><path d="M15 6l3 3"/></svg></span></div>
 <div class="cap-body">
 <span class="cap-code mono">RL-03 · DESIGN</span>
 <h3>Design &amp; Print-on-Demand</h3>
@@ -412,7 +397,7 @@ footer{padding:36px 0;}
 <div class="sec-tag">Selected work</div>
 <h2>Live builds</h2>
 </div>
-<p class="sec-note">Independent products and platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
+<p class="sec-note">Independent products and client platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
 </div>
 <div class="work-grid">
 <div class="work-row">
@@ -430,6 +415,22 @@ footer{padding:36px 0;}
 </div>
 <p class="work-desc">Trading infrastructure — signal routing, execution agents, and a published catalogue of MT4/MT5 products.</p>
 <a class="work-link" href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a>
+</div>
+<div class="work-row">
+<div>
+<div class="work-name">Elegant Hires</div>
+<span class="work-role">RL-01 · RL-02</span>
+</div>
+<p class="work-desc">Event &amp; party hire platform — live product catalogue, quote-to-booking workflow, automated Stripe payment links, and a full supplier &amp; admin management system.</p>
+<a class="work-link" href="https://elegant-hires.com" target="_blank" rel="noopener">elegant-hires.com ↗</a>
+</div>
+<div class="work-row">
+<div>
+<div class="work-name">Rev-Restore</div>
+<span class="work-role">RL-01 · RL-03</span>
+</div>
+<p class="work-desc">Full digital handover for a motorbike restoration workshop — 16-page custom site, brand identity, hosting, and business email, delivered end to end.</p>
+<a class="work-link" href="https://rev-restore.co.uk" target="_blank" rel="noopener">rev-restore.co.uk ↗</a>
 </div>
 </div>
 </div>
