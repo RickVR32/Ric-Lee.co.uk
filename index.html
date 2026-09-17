@@ -59,7 +59,7 @@ header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1
 .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
 .wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
 .wordmark img{height:46px; width:auto; display:block;}
-.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:132px; white-space:normal;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
 .logo-dark{display:block !important;}
 .logo-light{display:none !important;}
 html.dark .logo-dark{display:none !important;}
@@ -72,16 +72,6 @@ html.dark .logo-light{display:block !important;}
 .theme-toggle:hover{color:var(--text); border-color:var(--accent);}
 .nav-cta{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--bg-soft); background:var(--accent); padding:9px 18px; border-radius:var(--radius); transition:opacity 0.2s;}
 .nav-cta:hover{opacity:0.85;}
-.burger-btn{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:38px; height:38px; border:1px solid var(--line); border-radius:var(--radius); background:transparent; cursor:pointer; padding:0; flex-shrink:0;}
-.burger-btn span{display:block; width:16px; height:1.5px; background:var(--text); transition:transform 0.2s, opacity 0.2s;}
-.burger-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.burger-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
-.burger-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.mobile-menu{display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; box-shadow:0 16px 28px rgba(0,0,0,0.08);}
-.mobile-menu.is-open{display:flex;}
-.mobile-menu a{font-family:'IBM Plex Mono',monospace; font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--text); padding:16px 22px; border-top:1px solid var(--line);}
-.mobile-menu a:first-child{border-top:none;}
-.mobile-menu a.mobile-cta{color:var(--accent);}
 
 /* HERO */
 .hero{padding:100px 0 84px; border-bottom:1px solid var(--line);}
@@ -210,8 +200,6 @@ footer{padding:36px 0;}
 }
 @media (max-width:640px){
 .nav-links{display:none;}
-.nav-cta{display:none;}
-.burger-btn{display:flex;}
 .cap-grid{grid-template-columns:1fr;}
 .form-grid{grid-template-columns:1fr;}
 .field-full{grid-column:1;}
@@ -219,71 +207,6 @@ footer{padding:36px 0;}
 .wordmark img{height:36px;}
 .wordmark-sub{display:none;}
 }
-/* BUILD SPECS PAGE */
-.breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted); margin-bottom:22px;}
-.breadcrumb a{color:var(--muted); text-decoration:none;}
-.breadcrumb a:hover{color:var(--accent);}
-.bs-hero{padding:64px 0 40px; border-bottom:1px solid var(--line);}
-.bs-hero-desc{color:var(--muted); font-size:0.94rem; max-width:600px; margin-bottom:24px;}
-.bs-hero-meta{display:flex; flex-wrap:wrap; gap:22px; font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted);}
-.bs-hero-meta strong{color:var(--text); font-weight:500;}
-
-.bs-toolbar{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-block:18px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:10;}
-.bs-toolbar-note{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.03em;}
-.bs-toolbar-actions{display:flex; gap:10px;}
-.pill-btn{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.04em; padding:8px 15px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.15s;}
-.pill-btn:hover{color:var(--text); border-color:var(--accent);}
-
-.bs-projects{padding-block:36px 70px; display:flex; flex-direction:column; gap:14px;}
-.bs-project{background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
-.bs-project[open]{border-color:var(--accent-line);}
-.bs-project > summary{list-style:none; cursor:pointer; padding:22px; display:flex; align-items:center; gap:16px;}
-.bs-project > summary::-webkit-details-marker{display:none;}
-.bs-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.04em; flex-shrink:0; width:52px;}
-.bs-summary-main{flex:1; min-width:0;}
-.bs-name-row{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
-.bs-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.2rem;}
-.bs-tag{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent-line); border-radius:999px; padding:3px 10px;}
-.bs-meta-row{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted); margin-top:7px; display:flex; gap:14px; flex-wrap:wrap;}
-.bs-meta-row a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line);}
-.bs-meta-row a:hover{color:var(--accent); border-color:var(--accent-line);}
-.status-dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:#1a7a4c; margin-right:6px; position:relative; top:-1px;}
-html.dark .status-dot{background:#4ad393;}
-.bs-chevron{flex-shrink:0; width:20px; height:20px; color:var(--muted); transition:transform 0.2s;}
-.bs-project[open] .bs-chevron{transform:rotate(180deg);}
-
-.bs-body{padding:2px 22px 32px; border-top:1px solid var(--line);}
-.bs-intro{font-size:0.9rem; color:var(--muted); max-width:660px; margin:22px 0 28px;}
-
-.stack-table{width:100%; border-collapse:collapse; margin-bottom:32px; font-size:0.84rem;}
-.stack-table tr{border-bottom:1px solid var(--line);}
-.stack-table tr:last-child{border-bottom:none;}
-.stack-table td{padding:11px 0; vertical-align:top;}
-.stack-table td:first-child{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); width:32%; padding-right:18px;}
-.stack-table td:last-child{color:var(--text);}
-
-.spec-section{margin-bottom:28px;}
-.spec-section:last-child{margin-bottom:0;}
-.spec-h{display:flex; align-items:baseline; gap:10px; margin-bottom:13px;}
-.spec-num{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--accent);}
-h4.spec-title{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
-.spec-sub{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin:15px 0 9px;}
-ul.spec-list{list-style:none; display:flex; flex-direction:column; gap:10px;}
-ul.spec-list li{font-size:0.88rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;}
-ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
-
-.notes-panel{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:22px 24px; margin-top:8px;}
-.notes-panel p{font-size:0.86rem; color:var(--text); margin-bottom:13px;}
-.notes-panel p:last-of-type{margin-bottom:15px;}
-.notes-panel .spec-sub{margin-top:0;}
-
-@media (max-width:640px){
-.bs-code{display:none;}
-.stack-table td:first-child{width:40%;}
-.bs-toolbar{padding-block:14px;}
-}
-
-
 </style>
 </head>
 <body>
@@ -293,7 +216,7 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <a href="#" class="wordmark">
 <img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
 <img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
-<span class="wordmark-sub">Web & Software<br>Development</span>
+<span class="wordmark-sub">Ric-Lee Digital</span>
 </a>
 <nav>
 <ul class="nav-links">
@@ -301,24 +224,13 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <li><a href="#capabilities">Capabilities</a></li>
 <li><a href="#log">Build log</a></li>
 <li><a href="#work">Work</a></li>
-<li><a href="#build-specs">Build Specs</a></li>
 <li><a href="#about">About</a></li>
 </ul>
 </nav>
 <div class="nav-right">
 <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
 <a href="#contact" class="nav-cta">Start a build</a>
-<button class="burger-btn" id="burgerBtn" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div>
-</div>
-<div class="mobile-menu" id="mobileMenu">
-<a href="#packages">Packages</a>
-<a href="#capabilities">Capabilities</a>
-<a href="#log">Build log</a>
-<a href="#work">Work</a>
-<a href="#build-specs">Build Specs</a>
-<a href="#about">About</a>
-<a href="#contact" class="mobile-cta">Start a build</a>
 </div>
 </header>
 
@@ -328,7 +240,7 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <section class="hero">
 <div class="container">
 <div class="hero-eyebrow">London, UK — Available for direct work</div>
-<h1><em>Web. Software. Design.</em> Nothing outsourced.</h1>
+<h1>One person. <em>Every discipline.</em> Nothing outsourced.</h1>
 <p class="hero-desc">Web development, software &amp; automation, and brand &amp; design work for businesses that need to be set up properly online — planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
 <div class="hero-cta">
 <a href="#contact" class="btn btn-primary">Start a build →</a>
@@ -350,8 +262,8 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <div class="scale-label">Platforms live in production</div>
 </div>
 <div class="scale-item">
-<div class="scale-num mono">26</div>
-<div class="scale-label">Software products published</div>
+<div class="scale-num mono">£115K+</div>
+<div class="scale-label">Estimated portfolio build value</div>
 </div>
 <div class="scale-item">
 <div class="scale-num mono">100%</div>
@@ -500,7 +412,7 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <div class="sec-tag">Selected work</div>
 <h2>Live builds</h2>
 </div>
-<p class="sec-note">Independent products, and client platforms, I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
+<p class="sec-note">Independent products and platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
 </div>
 <div class="work-grid">
 <div class="work-row">
@@ -519,390 +431,6 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <p class="work-desc">Trading infrastructure — signal routing, execution agents, and a published catalogue of MT4/MT5 products.</p>
 <a class="work-link" href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a>
 </div>
-<div class="work-row">
-<div>
-<div class="work-name">Elegant-Hires</div>
-<span class="work-role">RL-01 · RL-02 · CLIENT</span>
-</div>
-<p class="work-desc">Event furniture hire platform — quote-to-booking flow, Stripe payments, supplier portal, and automated admin reporting, built for an independent hire business.</p>
-<a class="work-link" href="https://elegant-hires.com" target="_blank" rel="noopener">elegant-hires.com ↗</a>
-</div>
-<div class="work-row">
-<div>
-<div class="work-name">Rev-Restore</div>
-<span class="work-role">RL-01 · RL-03 · CLIENT</span>
-</div>
-<p class="work-desc">Motorbike restoration &amp; powder coating workshop — full site build, brand identity, and digital handover delivered end to end.</p>
-<a class="work-link" href="https://rev-restore.co.uk" target="_blank" rel="noopener">rev-restore.co.uk ↗</a>
-</div>
-</div>
-<a href="#build-specs" class="btn btn-ghost" style="margin-top:30px;">View full technical build specs ↓</a>
-</div>
-</section>
-
-<!-- BUILD SPECS -->
-<section id="build-specs">
-<div class="container">
-<div class="sec-head">
-<div>
-<div class="sec-tag">Technical reference</div>
-<h2>Build specifications</h2>
-</div>
-<p class="sec-note">Full stack, features and scope for each live build — written so an independent developer or agency could quote a project of equivalent size from it.</p>
-</div>
-
-<div class="bs-toolbar" style="position:static; margin-bottom:8px;">
-<span class="bs-toolbar-note">Click a project to expand its full spec</span>
-<div class="bs-toolbar-actions">
-<button class="pill-btn" id="expandAllSpecs" type="button">Expand all</button>
-<button class="pill-btn" id="collapseAllSpecs" type="button">Collapse all</button>
-</div>
-</div>
-
-<div class="bs-projects" id="buildSpecsList">
-
-<!-- ============ 1. ELEGANT-HIRES ============ -->
-<details class="bs-project">
-<summary>
-<span class="bs-code mono">BS-01</span>
-<div class="bs-summary-main">
-<div class="bs-name-row">
-<span class="bs-name">Elegant-Hires</span>
-</div>
-<div class="bs-meta-row">
-<span><span class="status-dot"></span>Live · Client build</span>
-<span><a href="https://elegant-hires.com" target="_blank" rel="noopener">elegant-hires.com ↗</a></span>
-</div>
-</div>
-<svg class="bs-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</summary>
-<div class="bs-body">
-<p class="bs-intro">A custom quote-to-payment web application built for an independent event furniture hire business, replacing an informal, message-based booking process. Built for Donna, an independent hire business in Orpington, Kent. The application is live in production — this specification describes the completed, working build, as if commissioning an equivalent scope from scratch.</p>
-
-<table class="stack-table">
-<tr><td>Backend</td><td>Node.js, Express.js, server-rendered with EJS templating</td></tr>
-<tr><td>Database</td><td>PostgreSQL (hosted on Neon/Supabase)</td></tr>
-<tr><td>Payments</td><td>Stripe Checkout (dynamic payment link generation)</td></tr>
-<tr><td>Email</td><td>SMTP via Nodemailer — transactional + scheduled emails</td></tr>
-<tr><td>Hosting / CI-CD</td><td>Vercel, auto-deployed from a GitHub repository on every push</td></tr>
-<tr><td>Scheduled jobs</td><td>Vercel Cron (daily / weekly / monthly automated reports)</td></tr>
-<tr><td>Frontend</td><td>Custom CSS design system, no framework — hand-built responsive layouts</td></tr>
-<tr><td>Auth</td><td>Custom password + signed-cookie session system for the admin area</td></tr>
-</table>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">1</span><h4 class="spec-title">Public Website</h4></div>
-<div class="spec-sub">Pages</div>
-<ul class="spec-list">
-<li>Homepage — hero banner, catalogue grid, secondary banner section, trust indicators, footer</li>
-<li>Our Hire Range — category listing page + 6 individual dynamic product pages, each with its own hero image and a data-driven "variant" card grid (e.g. round vs. rectangular tables)</li>
-<li>Kids' Parties — dedicated landing page with its own hero, offer cards, and a bespoke multicolour background treatment</li>
-<li>About Us, Contact, Gallery — fully built pages, Gallery pre-wired for a future Instagram auto-import integration</li>
-<li>Custom 404 page, booking confirmation / cancellation pages</li>
-</ul>
-<div class="spec-sub">Design system</div>
-<ul class="spec-list">
-<li>Fully custom brand identity: logo, wordmark, favicon, and three colour variants of a bespoke repeating brand pattern used as a subtle site-wide background texture, swapped per page</li>
-<li>Responsive design tested across mobile and desktop breakpoints, including a from-scratch mobile navigation system</li>
-<li>All copy, structure and layout custom-written — no template or theme used</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">2</span><h4 class="spec-title">Booking &amp; Quote System</h4></div>
-<ul class="spec-list">
-<li>Public quote-request form capturing event details, date, location, budget and requirements</li>
-<li>Submissions persist to a PostgreSQL database and trigger an automated email alert to the business owner</li>
-<li>Booking status workflow: pending → sourcing → accepted / declined</li>
-<li>On acceptance, the system dynamically generates a Stripe payment link for the agreed price and emails it directly to the client</li>
-<li>General-enquiry contact form as a lighter-weight alternative to the full quote flow</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">3</span><h4 class="spec-title">Admin Dashboard</h4></div>
-<ul class="spec-list">
-<li>Password-protected admin area, not linked from the public site, excluded from search engine indexing</li>
-<li>Dashboard overview with live stats: monthly requests, revenue, bookings awaiting action, upcoming events</li>
-<li>Full booking management — view, accept (with dynamic pricing), decline, or mark as sourcing</li>
-<li>Supplier management — add/remove suppliers, record per-category pricing</li>
-<li>Catalogue pricing tool — admin-editable price ranges that update the public site's category cards live</li>
-<li>Email activity log — a searchable record of every automated email the system has sent</li>
-<li>One-click CSV export of all booking/financial data for accounting purposes</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">4</span><h4 class="spec-title">Automated Communications</h4></div>
-<ul class="spec-list">
-<li>New-booking alert emails to the business owner</li>
-<li>Payment link emails to clients on acceptance</li>
-<li>Automated event reminder emails (sent a fixed number of days before an accepted event)</li>
-<li>Automated post-event thank-you emails</li>
-<li>Scheduled daily, weekly and monthly business performance reports, generated and emailed automatically via cron jobs — covering request volume, conversion rate, and revenue with month-on-month comparison</li>
-<li>All automated sends are idempotent (built to guarantee no duplicate sends) and logged for auditing</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">5</span><h4 class="spec-title">Supplier Tools</h4></div>
-<ul class="spec-list">
-<li>Supplier availability requests — the admin can email selected suppliers a one-click accept/decline link for a specific booking, with no login required on the supplier's end</li>
-<li>Self-service supplier pricing portal — each supplier gets a permanent, unique link where they can independently view and update their own pricing at any time</li>
-<li>Automated price-match suggestions — the system scans incoming booking requirements against known supplier rates and suggests a price range to the admin before they quote the client</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">6</span><h4 class="spec-title">Infrastructure &amp; Engineering</h4></div>
-<ul class="spec-list">
-<li>Full CI/CD pipeline: GitHub → Vercel automatic deployment on every commit</li>
-<li>Environment-based configuration — the application runs with safe fallbacks when optional services (database, email, payments) are not yet configured, rather than failing</li>
-<li>Custom domain connected with DNS configuration</li>
-<li>Database schema designed for the booking/supplier/pricing relational data model, with indexing for performance</li>
-</ul>
-</div>
-
-<div class="notes-panel">
-<p><strong>Notes for the quoting party</strong> — the scope above reflects a completed, working application, not a proposal. Quote based on the full scope described, as if commissioning an equivalent build from scratch.</p>
-<div class="spec-sub">Explicitly out of scope (business/content tasks, not development work)</div>
-<ul class="spec-list">
-<li>Product photography and image asset generation</li>
-<li>Entering real supplier data into the admin</li>
-<li>Social media account setup or management</li>
-<li>Print collateral (business cards, flyers, letterhead)</li>
-<li>Legal documents (Privacy Policy, Terms &amp; Conditions)</li>
-</ul>
-</div>
-</div>
-</details>
-
-<!-- ============ 2. REV-RESTORE ============ -->
-<details class="bs-project">
-<summary>
-<span class="bs-code mono">BS-02</span>
-<div class="bs-summary-main">
-<div class="bs-name-row">
-<span class="bs-name">Rev-Restore</span>
-</div>
-<div class="bs-meta-row">
-<span><span class="status-dot"></span>Live · Client build</span>
-<span><a href="https://rev-restore.co.uk" target="_blank" rel="noopener">rev-restore.co.uk ↗</a></span>
-</div>
-</div>
-<svg class="bs-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</summary>
-<div class="bs-body">
-<p class="bs-intro">A full digital presence and brand build for a one-man motorbike restoration and powder coating workshop, delivered as a complete "Digital Handover" package — site, identity, print collateral and social presence, built for Lewis to convert enquiries into quotes. Live and delivered.</p>
-
-<table class="stack-table">
-<tr><td>Frontend</td><td>Custom HTML/CSS/JS, no framework — hand-built responsive layouts</td></tr>
-<tr><td>Hosting</td><td>GitHub Pages</td></tr>
-<tr><td>DNS / Domain</td><td>Cloudflare — custom domain plus business email routing</td></tr>
-<tr><td>Forms</td><td>Static quote-request form, no backend server required</td></tr>
-<tr><td>Brand tooling</td><td>Identity system (logo, colour, print) built alongside the site as one delivery</td></tr>
-</table>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">1</span><h4 class="spec-title">Site Structure</h4></div>
-<ul class="spec-list">
-<li>16-page custom build across six distinct service offerings — powder coating, metal polishing/plating, vapour blasting, servicing, and full frame-off restorations — each with its own detail view</li>
-<li>How-it-works process page: quote → drop-off → strip &amp; prep → finish &amp; collect</li>
-<li>Gallery, About, Contact and a public quote-request flow</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">2</span><h4 class="spec-title">Brand &amp; Design System</h4></div>
-<ul class="spec-list">
-<li>Full brand identity built alongside the site: logo, colour system, and consistent typography carried across web and print</li>
-<li>Two A5 leaflet designs and a set of business document templates</li>
-<li>Social media accounts set up as part of the handover</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">3</span><h4 class="spec-title">Quote &amp; Enquiry Flow</h4></div>
-<ul class="spec-list">
-<li>Public quote-request form capturing job type, bike details and timeline, routed directly to the business owner</li>
-<li>No admin system or database — a deliberately lightweight, static build matched to a one-person workshop's needs</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">4</span><h4 class="spec-title">Infrastructure &amp; Engineering</h4></div>
-<ul class="spec-list">
-<li>GitHub Pages hosting with push-to-publish deployment</li>
-<li>Cloudflare-managed DNS: custom domain plus business email routing configured end to end</li>
-</ul>
-</div>
-
-<div class="notes-panel">
-<p><strong>Notes for the quoting party</strong> — delivered as the template for how Riclee Digital now packages small-business launches: site, brand and handover in one engagement. The client has since commissioned a follow-on concept ("Rev-Raffles," a raffle platform for finished builds), currently in early planning and not part of this scope.</p>
-</div>
-</div>
-</details>
-
-<!-- ============ 3. PSYTECTRICS ============ -->
-<details class="bs-project">
-<summary>
-<span class="bs-code mono">BS-03</span>
-<div class="bs-summary-main">
-<div class="bs-name-row">
-<span class="bs-name">PsyTectrics</span>
-</div>
-<div class="bs-meta-row">
-<span><span class="status-dot"></span>Live · Personal product</span>
-<span><a href="https://psytectrics.com" target="_blank" rel="noopener">psytectrics.com ↗</a></span>
-</div>
-</div>
-<svg class="bs-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</summary>
-<div class="bs-body">
-<p class="bs-intro">A commercial psychometric platform built around a proprietary behavioural framework — the SC Blueprint™ — covering a scored assessment, AI-generated interpretive reports, and a path toward hardware. Developed and operated under PsyTectrics Technologies Ltd, a subsidiary of Source Code Holdings.</p>
-
-<table class="stack-table">
-<tr><td>Frontend</td><td>Vanilla HTML/CSS/JS</td></tr>
-<tr><td>Database</td><td>Supabase — assessment submission storage</td></tr>
-<tr><td>Payments</td><td>Stripe Checkout Sessions, created server-side via Vercel serverless functions (migrated off the deprecated client-only redirectToCheckout)</td></tr>
-<tr><td>AI</td><td>Anthropic API — generates the interpretive report copy per assessment</td></tr>
-<tr><td>Hosting</td><td>Vercel, serverless functions for payments and report generation</td></tr>
-<tr><td>Type</td><td>Cormorant (serif) + Geist Mono</td></tr>
-</table>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">1</span><h4 class="spec-title">Assessment Engine</h4></div>
-<ul class="spec-list">
-<li>56-question instrument scoring across two simultaneous layers — conscious and subconscious — against four Observer Codes</li>
-<li>Produces an Awareness Index, a Drift score, and a full behavioural ratio per respondent</li>
-<li>Submissions persist to Supabase for downstream report generation</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">2</span><h4 class="spec-title">Report Products</h4></div>
-<ul class="spec-list">
-<li>Three tiers: a free Solo self-assessment, a paid third-party Observer report (profiling someone else from their messages or writing), and an enterprise Business Audit</li>
-<li>Each tier's interpretive report copy is generated per-submission via the Anthropic API</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">3</span><h4 class="spec-title">Payments &amp; Delivery</h4></div>
-<ul class="spec-list">
-<li>Stripe Checkout Session created server-side per report purchase via Vercel serverless functions</li>
-<li>Fulfilment (report generation and delivery) triggered on successful payment</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">4</span><h4 class="spec-title">Framework &amp; Product Pages</h4></div>
-<ul class="spec-list">
-<li>Public reference pages explaining the SC Blueprint framework and its Observer Codes</li>
-<li>"Profile Chat" — conversational interrogation of a completed profile (in development)</li>
-<li>Hardware concept showcase: five devices at TRL 2–3 — a Duality Processor engine, a biometric smart mirror, the TRACE awareness watch, an ambient room sensor, and an EEG headset</li>
-<li>A physical product line under the same brand — board and card games translating the framework into a consumer format</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">5</span><h4 class="spec-title">Infrastructure &amp; Engineering</h4></div>
-<ul class="spec-list">
-<li>Vercel hosting with serverless functions for payments and AI report generation</li>
-<li>Environment-based configuration with safe fallbacks; custom domain</li>
-</ul>
-</div>
-
-<div class="notes-panel">
-<p><strong>Notes for the quoting party</strong> — the live web application scope is the assessment engine, report products, and payment flow above, all shipped and in production. Hardware concepts and Profile Chat are pre-revenue R&amp;D tracks, not part of the shipped web application. The previous storefront was deliberately deprecated to protect brand positioning during a repositioning phase — not a missing feature.</p>
-</div>
-</div>
-</details>
-
-<!-- ============ 4. UMNI SYSTEMS ============ -->
-<details class="bs-project">
-<summary>
-<span class="bs-code mono">BS-04</span>
-<div class="bs-summary-main">
-<div class="bs-name-row">
-<span class="bs-name">UMNi Systems</span>
-</div>
-<div class="bs-meta-row">
-<span><span class="status-dot"></span>Live · Personal product</span>
-<span><a href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a></span>
-</div>
-</div>
-<svg class="bs-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</summary>
-<div class="bs-body">
-<p class="bs-intro">Multi-year algorithmic trading infrastructure — execution EAs, Telegram automation, and signal delivery — packaged into a public product catalogue and a subscription signal service. Operated under UMNi Systems, a subsidiary of Source Code Holdings.</p>
-
-<table class="stack-table">
-<tr><td>Trading logic</td><td>MQL4 / MQL5 — 26 published products across the MetaTrader marketplaces</td></tr>
-<tr><td>Orchestration</td><td>Python (Telethon + python-telegram-bot) — umni_hub.py</td></tr>
-<tr><td>Infrastructure</td><td>Kamatera Windows VPS, London — runs MetaTrader and the Python layer continuously</td></tr>
-<tr><td>Data / logging</td><td>SQLite trade logging with CTE-based basket grouping</td></tr>
-<tr><td>Market data</td><td>Twelve Data API — feeds a market regime engine (currently shadow mode)</td></tr>
-<tr><td>Messaging</td><td>Telegram Bot API — customer support, execution alerts, public channel automation</td></tr>
-<tr><td>Commerce</td><td>Whop — subscription billing for the signal service</td></tr>
-<tr><td>Type</td><td>Space Mono (headings/product labels) + DM Sans (body)</td></tr>
-</table>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">1</span><h4 class="spec-title">Public Storefront</h4></div>
-<ul class="spec-list">
-<li>Catalogue of 26 MQL5 Marketplace products spanning notification, session, risk, execution-quality, news, journaling, copy-trading and grid/basket tools, plus a unified "Trade Assistant"</li>
-<li>Each product flagged live, published, or coming-soon</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">2</span><h4 class="spec-title">Signal Subscription Service</h4></div>
-<ul class="spec-list">
-<li>£30/month Telegram signal subscription billed via Whop, with a 7-day trial and an affiliate program</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">3</span><h4 class="spec-title">Live Execution Engine</h4></div>
-<ul class="spec-list">
-<li>Production and demo EAs (one live on XAGUSD) built on an EMA200 + RSI pullback entry model</li>
-<li>Tiered ratchet exit management, auto-scaling lot sizing, and session filters</li>
-<li>Dual-channel Telegram audit trail separating trade execution from admin alerts</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">4</span><h4 class="spec-title">Automation &amp; Bot Ecosystem</h4></div>
-<ul class="spec-list">
-<li>AMANDA — a named customer-support bot persona — plus the execution bot and public channel automation, all orchestrated through umni_hub.py</li>
-<li>Trades logged to SQLite and grouped into baskets via CTE queries for reporting</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">5</span><h4 class="spec-title">Market Regime Engine</h4></div>
-<ul class="spec-list">
-<li>Twelve Data-backed regime detection layer, currently running in shadow mode ahead of live integration into the execution engine</li>
-</ul>
-</div>
-
-<div class="spec-section">
-<div class="spec-h"><span class="spec-num mono">6</span><h4 class="spec-title">Infrastructure &amp; Engineering</h4></div>
-<ul class="spec-list">
-<li>Dedicated Windows VPS (Kamatera, London) running MetaTrader and the Python orchestration layer continuously</li>
-<li>End-of-day and weekly performance reports generated from real trade logs, not backtests</li>
-</ul>
-</div>
-
-<div class="notes-panel">
-<p><strong>Notes for the quoting party</strong> — the storefront and signal subscription service are live and revenue-generating. The live execution EA is in final pre-production hardening ahead of full public rollout.</p>
-</div>
-</div>
-</details>
-
-
-
 </div>
 </div>
 </section>
@@ -921,7 +449,7 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 <p class="muted">That range isn't a gimmick — it comes from working across genuinely different domains at once: production trading infrastructure, a live consumer web platform, and MQL5 software distribution. The same problem-solving carries across all of it.</p>
 <ul class="about-facts">
 <li><strong>Based:</strong> London, UK</li>
-<li><strong>Studio:</strong> Ric-Lee Web & Software Development</li>
+<li><strong>Studio:</strong> Ric-Lee Digital</li>
 <li><strong>Response time:</strong> within 24 hours, working days</li>
 <li><strong>Delivery:</strong> direct — no subcontracting, no markup</li>
 </ul>
@@ -983,11 +511,10 @@ ul.spec-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
 
 <footer>
 <div class="container foot-inner">
-<span class="foot-copy">© 2026 Ric Lee — Ric-Lee Web & Software Development · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
+<span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
 <ul class="foot-links">
 <li><a href="#capabilities">Capabilities</a></li>
 <li><a href="#work">Work</a></li>
-<li><a href="#build-specs">Build Specs</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </div>
@@ -1028,43 +555,6 @@ status.textContent = 'Something went wrong. Please try again later.';
 }
 submitBtn.disabled = false; submitBtn.textContent = 'Send message';
 });
-</script>
-
-<script>
-(function(){
-var expandBtn = document.getElementById('expandAllSpecs');
-var collapseBtn = document.getElementById('collapseAllSpecs');
-var items = document.querySelectorAll('#buildSpecsList .bs-project');
-if(expandBtn){
-expandBtn.addEventListener('click', function(){
-items.forEach(function(d){ d.open = true; });
-});
-}
-if(collapseBtn){
-collapseBtn.addEventListener('click', function(){
-items.forEach(function(d){ d.open = false; });
-});
-}
-})();
-</script>
-
-<script>
-(function(){
-var burgerBtn = document.getElementById('burgerBtn');
-var mobileMenu = document.getElementById('mobileMenu');
-if(burgerBtn && mobileMenu){
-burgerBtn.addEventListener('click', function(){
-var isOpen = mobileMenu.classList.toggle('is-open');
-burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-});
-mobileMenu.querySelectorAll('a').forEach(function(a){
-a.addEventListener('click', function(){
-mobileMenu.classList.remove('is-open');
-burgerBtn.setAttribute('aria-expanded', 'false');
-});
-});
-}
-})();
 </script>
 
 </body>
