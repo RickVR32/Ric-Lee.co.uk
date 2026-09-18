@@ -157,7 +157,7 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 .work-row{padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
 .work-row:hover{background:var(--panel);}
 .work-row:last-child{border-bottom:1px solid var(--line);}
-.work-thumb{display:block; width:100%; aspect-ratio:2.16/1; object-fit:cover; object-position:top; border-radius:10px; margin-bottom:20px; box-shadow:var(--shadow-md); border:1px solid var(--line);}
+.work-thumb{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; border-radius:10px; box-shadow:var(--shadow-md); border:1px solid var(--line);}
 .work-row-main{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center;}
 .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
 .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
@@ -169,7 +169,8 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 .work-details summary::-webkit-details-marker{display:none;}
 .work-details summary::before{content:'+'; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border:1px solid var(--accent-line); border-radius:4px; font-size:0.8rem; line-height:1; transition:transform 0.28s cubic-bezier(.2,.8,.2,1);}
 .work-details[open] summary::before{content:'+'; transform:rotate(135deg);}
-.work-spec-reveal{margin-top:16px;}
+.work-spec-reveal{margin-top:16px; display:grid; grid-template-columns:minmax(220px,320px) 1fr; gap:28px; align-items:start;}
+@media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} }
 .work-details[open] .work-thumb{animation:specRevealImg 0.5s cubic-bezier(.2,.8,.2,1) both;}
 .work-details[open] .work-spec-panel{animation:specRevealPanel 0.55s cubic-bezier(.2,.8,.2,1) both; animation-delay:0.07s;}
 @keyframes specRevealImg{from{opacity:0; transform:translateY(-12px) scale(0.97);} to{opacity:1; transform:translateY(0) scale(1);}}
@@ -178,7 +179,7 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 .work-details[open] .work-thumb, .work-details[open] .work-spec-panel{animation:none;}
 .work-details summary::before{transition:none;}
 }
-.work-spec-panel{padding:20px 22px; background:var(--panel); border-radius:10px; max-width:640px;}
+.work-spec-panel{padding:20px 22px; background:var(--panel); border-radius:10px;}
 .work-spec-stack{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;}
 .work-spec-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
 .work-spec-list li{font-size:0.82rem; color:var(--text); padding-left:16px; position:relative; line-height:1.6;}
