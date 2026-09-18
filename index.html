@@ -16,8 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
-var t = localStorage.getItem('rl-theme') || 'light';
-if (t === 'dark') document.documentElement.classList.add('dark');
+var stored = localStorage.getItem('rl-theme');
+var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (dark) document.documentElement.classList.add('dark');
 })();
 </script>
 <style>
@@ -653,31 +654,6 @@ footer{padding:36px 0;}
 </div>
 </section>
 
-<!-- A NOTE ON THE WORK -->
-<section style="padding:56px 0;">
-<div class="container">
-<div class="sec-tag">A note on the work</div>
-<h2 style="margin-bottom:18px;">Built, not just specified.</h2>
-<div class="lead-block">
-<p>Everything shown in this portfolio represents work I have personally designed, developed, configured, or deployed.</p>
-<p>For independent products, that means the underlying intellectual property and systems are my own. For client projects, the work was developed around the client's requirements and business operations.</p>
-<p>Where appropriate, project pages include technical details, implementation notes, and estimated engineering effort, so the work can be evaluated on what was actually built.</p>
-</div>
-</div>
-</section>
-
-<!-- WHY ONE PERSON -->
-<section style="padding:56px 0;">
-<div class="container">
-<div class="sec-tag">Why one person?</div>
-<h2 style="margin-bottom:18px;">Because fewer handovers can mean better systems.</h2>
-<div class="lead-block">
-<p>A typical project can involve a designer, a frontend developer, a backend developer, a DevOps engineer, a copywriter, and a project manager. I work across those disciplines myself — not to do everything for the sake of it, but because it means I understand how the pieces interact.</p>
-<p>The person designing the interface understands the database behind it. The person writing the backend understands the user journey. The person deploying the application understands how it was built. For the right project, that makes the entire process simpler.</p>
-</div>
-</div>
-</section>
-
 <!-- TECHNOLOGY -->
 <section>
 <div class="container">
@@ -821,6 +797,14 @@ localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'lig
 updateThemeUI();
 });
 updateThemeUI();
+if (window.matchMedia){
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+if (!localStorage.getItem('rl-theme')){
+html.classList.toggle('dark', e.matches);
+updateThemeUI();
+}
+});
+}
 
 const form = document.getElementById('rl-form');
 const status = document.getElementById('formStatus');

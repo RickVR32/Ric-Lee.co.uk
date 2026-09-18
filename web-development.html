@@ -16,8 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
-var t = localStorage.getItem('rl-theme') || 'light';
-if (t === 'dark') document.documentElement.classList.add('dark');
+var stored = localStorage.getItem('rl-theme');
+var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (dark) document.documentElement.classList.add('dark');
 })();
 </script>
 <style>
@@ -430,6 +431,14 @@ localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'lig
 updateThemeUI();
 });
 updateThemeUI();
+if (window.matchMedia){
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+if (!localStorage.getItem('rl-theme')){
+html.classList.toggle('dark', e.matches);
+updateThemeUI();
+}
+});
+}
 </script>
 </body>
 </html>

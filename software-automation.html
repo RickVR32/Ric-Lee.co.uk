@@ -5,13 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Software &amp; Automation — Ric Lee</title>
 <meta name="description" content="Custom scripts, trading EAs, workflow automation, and bot builds — designed to run unattended, log what they're doing, and fail safely when something goes wrong." />
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2c3a5e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
-var t = localStorage.getItem('rl-theme') || 'light';
-if (t === 'dark') document.documentElement.classList.add('dark');
+var stored = localStorage.getItem('rl-theme');
+var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (dark) document.documentElement.classList.add('dark');
 })();
 </script>
 <style>
@@ -367,6 +374,7 @@ footer{padding:36px 0;}
 <li><a href="index.html#packages">Packages</a></li>
 <li><a href="index.html#work">Work</a></li>
 <li><a href="index.html#contact">Contact</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li>
 </ul>
 </div>
 </footer>
@@ -387,6 +395,14 @@ localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'lig
 updateThemeUI();
 });
 updateThemeUI();
+if (window.matchMedia){
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+if (!localStorage.getItem('rl-theme')){
+html.classList.toggle('dark', e.matches);
+updateThemeUI();
+}
+});
+}
 </script>
 </body>
 </html>
