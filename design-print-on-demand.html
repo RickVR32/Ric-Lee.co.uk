@@ -78,10 +78,13 @@ html.dark .logo-light{display:block !important;}
 .nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
 .nav-links a:hover{color:var(--accent);}
 .nav-right{display:flex; align-items:center; gap:18px;}
-.theme-toggle{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s;}
+.theme-toggle{width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; flex-shrink:0;}
 .theme-toggle:hover{color:var(--text); border-color:var(--accent);}
-.nav-cta{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--bg-soft); background:var(--accent); padding:9px 18px; border-radius:var(--radius); transition:opacity 0.2s;}
-.nav-cta:hover{opacity:0.85;}
+.theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.theme-icon-sun{display:none;}
+.theme-icon-moon{display:block;}
+html.dark .theme-icon-sun{display:block;}
+html.dark .theme-icon-moon{display:none;}
 
 /* HERO */
 .hero{padding:100px 0 84px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;}
@@ -214,7 +217,6 @@ footer{padding:36px 0;}
 .form-grid{grid-template-columns:1fr;}
 .field-full{grid-column:1;}
 .wordmark img{height:36px;}
-.wordmark-sub{display:none;}
 }
 /* SERVICE PAGE ADDITIONS */
 .breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;}
@@ -266,8 +268,10 @@ footer{padding:36px 0;}
 </ul>
 </nav>
 <div class="nav-right">
-<button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
-<a href="index.html#contact" class="nav-cta">Start a build</a>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+<svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
 </div>
 </div>
 </header>
@@ -369,7 +373,7 @@ footer{padding:36px 0;}
 const html = document.documentElement;
 const btn = document.getElementById('themeToggle');
 function updateThemeUI(){
-btn.textContent = html.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+btn.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode');
 }
 (function(){
 var t = localStorage.getItem('rl-theme') || 'light';
