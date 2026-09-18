@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Design — Ric Lee</title>
-<meta name="description" content="Logo design, brand asset kits, social and marketing design, and print-on-demand product setup — all built from one consistent identity." />
+<title>Local &amp; Service-Business Sites — Ric Lee</title>
+<meta name="description" content="Websites for local and trade businesses — built for local search, mobile-first, and designed to turn a visit into a call or an enquiry." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -109,28 +109,6 @@ h1 em{font-style:italic; color:var(--accent);}
 @media (max-width:900px){ .scale-grid{grid-template-columns:1fr 1fr;} .scale-item:nth-child(3){border-left:none;} }
 @media (max-width:640px){ .scale-grid{grid-template-columns:1fr 1fr;} }
 
-/* PACKAGES */
-.pkg-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-.pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative; box-shadow:var(--shadow-sm); transition:transform 0.25s ease, box-shadow 0.25s ease;}
-.pkg-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md);}
-.pkg-card.featured{border-color:var(--accent-line); box-shadow:var(--shadow-md);}
-.pkg-card.featured::before{content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:16px 16px 0 0; background:linear-gradient(90deg, var(--accent), var(--accent-2));}
-.pkg-featured-tag{position:absolute; top:-12px; left:28px; background:var(--accent); color:var(--bg-soft); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:999px;}
-.pkg-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; margin-bottom:6px;}
-.pkg-for{font-size:0.8rem; color:var(--muted); margin-bottom:18px; min-height:40px;}
-.pkg-price{font-family:'IBM Plex Mono',monospace; font-size:1.5rem; color:var(--accent); margin-bottom:6px;}
-.pkg-price-note{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;}
-.pkg-list{list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex:1;}
-.pkg-list li{font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;}
-.pkg-list li::before{content:'—'; color:var(--accent); flex-shrink:0;}
-.pkg-btn{align-self:flex-start;}
-.care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; box-shadow:var(--shadow-sm);}
-.care-strip-text h4{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:6px;}
-.care-strip-text p{font-size:0.82rem; color:var(--muted); max-width:460px;}
-.care-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent); white-space:nowrap;}
-.care-price span{display:block; font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
-@media (max-width:900px){ .pkg-grid{grid-template-columns:1fr;} }
-
 /* SECTION SHELL */
 section{padding:76px 0; border-bottom:1px solid var(--line);}
 .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
@@ -138,62 +116,10 @@ section{padding:76px 0; border-bottom:1px solid var(--line);}
 h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.005em;}
 .sec-note{color:var(--muted); font-size:0.85rem; max-width:340px; font-family:'IBM Plex Mono',monospace; line-height:1.7;}
 
-/* CAPABILITY INDEX */
-.cap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-.cap-card{background:var(--bg); display:flex; flex-direction:column; position:relative; transition:background 0.2s, transform 0.25s ease, box-shadow 0.25s ease;}
-.cap-card:hover{background:var(--bg-soft); transform:translateY(-3px); box-shadow:var(--shadow-md); z-index:1;}
-.cap-tile{width:100%; height:170px; position:relative; overflow:hidden; background:linear-gradient(135deg, var(--accent-soft), transparent 65%); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center;}
-.cap-tile::before{content:attr(data-code); position:absolute; right:-6px; bottom:-38px; font-family:'Fraunces',serif; font-weight:600; font-size:7.5rem; line-height:1; color:var(--accent); opacity:0.09; pointer-events:none; transition:opacity 0.3s ease;}
-.cap-card:hover .cap-tile::before{opacity:0.16;}
-.cap-tile-icon{width:46px; height:46px; color:var(--accent); position:relative; z-index:1;}
-.cap-tile-icon svg{width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
-.cap-body{padding:26px 26px 28px;}
-.cap-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:14px; display:block;}
-.cap-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:10px;}
-.cap-card p{font-size:0.83rem; color:var(--muted); line-height:1.7;}
-
-/* WORK */
-.work-grid{display:flex; flex-direction:column;}
-.work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
-.work-row:hover{background:var(--panel);}
-.work-row:last-child{border-bottom:1px solid var(--line);}
-.work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
-.work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
+/* WORK-ROW (reused for related links) */
 .work-desc{font-size:0.85rem; color:var(--muted); max-width:440px;}
 .work-link{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--accent-line); padding-bottom:3px; white-space:nowrap; transition:color 0.2s;}
 .work-link:hover{color:var(--accent);}
-
-/* ABOUT */
-.about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:start;}
-.about-mark{width:100%; max-width:280px; opacity:0.12; display:block;}
-html.dark .about-mark{opacity:0.15;}
-.about-body p{font-size:0.94rem; color:var(--text); margin-bottom:16px; max-width:520px;}
-.about-body p.muted{color:var(--muted);}
-.about-facts{list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:8px;}
-.about-facts li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
-.about-facts strong{color:var(--text); font-weight:500;}
-
-/* CONTACT */
-.contact-layout{display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start;}
-.contact-info p{color:var(--muted); font-size:0.88rem; margin-bottom:22px; max-width:340px;}
-.contact-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
-.contact-list li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
-.contact-list a{color:var(--accent); text-decoration:none;}
-.form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px; box-shadow:var(--shadow-sm);}
-.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-.field-full{grid-column:1/-1;}
-.field{display:flex; flex-direction:column; gap:6px;}
-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--muted);}
-input,select,textarea{width:100%; min-height:46px; border-radius:var(--radius); border:1px solid var(--line); padding:11px 13px; background:var(--panel); color:var(--text); font-family:'IBM Plex Sans',sans-serif; font-size:0.86rem; transition:border-color 0.2s;}
-input:focus,select:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
-textarea{min-height:120px; resize:vertical;}
-.submit-row{grid-column:1/-1; display:flex; gap:14px; align-items:center; margin-top:4px;}
-.submit-note{font-size:0.66rem; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
-.form-status{grid-column:1/-1; display:none; padding:12px 16px; border-radius:var(--radius); font-size:0.8rem;}
-.form-status.is-visible{display:block;}
-.form-status.is-success{background:rgba(34,197,94,0.12); color:#16a34a;}
-.form-status.is-error{background:rgba(239,68,68,0.12); color:#dc2626;}
-button{font-family:inherit; cursor:pointer;}
 
 /* FOOTER */
 footer{padding:36px 0;}
@@ -203,16 +129,8 @@ footer{padding:36px 0;}
 .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
 .foot-links a:hover{color:var(--accent);}
 
-@media (max-width:900px){
-.cap-grid{grid-template-columns:1fr 1fr;}
-.about-layout, .contact-layout{grid-template-columns:1fr;}
-.work-row{grid-template-columns:1fr; gap:8px;}
-}
 @media (max-width:640px){
 .nav-links{display:none;}
-.cap-grid{grid-template-columns:1fr;}
-.form-grid{grid-template-columns:1fr;}
-.field-full{grid-column:1;}
 .wordmark img{height:36px;}
 .wordmark-sub{display:none;}
 }
@@ -277,16 +195,16 @@ footer{padding:36px 0;}
 <section class="svc-hero">
 <div class="container" style="display:contents;">
 <div>
-<div class="breadcrumb"><a href="index.html">Home</a> / <a href="index.html#capabilities">Capabilities</a> / RL-03</div>
-<div class="hero-eyebrow">RL-03 · Design</div>
-<h1>One identity, applied everywhere it needs to show up.</h1>
-<p class="svc-hero-desc">Logo design and brand asset kits, social and marketing design for day-to-day content, and print-on-demand product setup — apparel, mugs, packaging, and stationery — all built from the same identity as your site, not reinvented per platform.</p>
+<div class="breadcrumb"><a href="index.html">Home</a> / <a href="web-development.html">RL-01</a> / Local &amp; Service-Business Sites</div>
+<div class="hero-eyebrow">RL-01 · Web Development</div>
+<h1>Built for the businesses local search actually sends people to.</h1>
+<p class="svc-hero-desc">Workshops, tradespeople, and independent shops don't need to compete for national keywords — they need to show up locally and turn that visit into a call or an enquiry, fast, on a phone.</p>
 <div class="hero-cta">
 <a href="index.html#contact" class="btn btn-primary">Start a build →</a>
-<a href="index.html#packages" class="btn btn-ghost">See packages</a>
+<a href="web-development.html" class="btn btn-ghost">Back to RL-01</a>
 </div>
 </div>
-<img class="svc-hero-img" src="img_mug.jpg" alt="Design" />
+<img class="svc-hero-img" src="img_webdev.jpg" alt="Local &amp; Service-Business Sites" />
 </div>
 </section>
 
@@ -297,16 +215,16 @@ footer{padding:36px 0;}
 <div class="sec-tag">What's included</div>
 <h2>Scope of work</h2>
 </div>
-<p class="sec-note">Every project is scoped individually — this is the baseline for design work.</p>
+<p class="sec-note">The baseline for a local or trade-business site — scoped further per project.</p>
 </div>
 <ul class="includes-list">
-<li>Logo &amp; brand mark design</li>
-<li>Brand asset kits — colours, type, usage guidelines</li>
-<li>Social media templates and ongoing post design, matched to the brand</li>
-<li>Marketing assets — flyers, one-pagers, ad creative, email graphics</li>
-<li>Print-on-demand product setup — mugs, apparel, and more</li>
-<li>Packaging &amp; label design</li>
-<li>Business card &amp; stationery design</li>
+<li>Local SEO fundamentals — location pages, service-area coverage, structured business data</li>
+<li>Click-to-call and enquiry-first design — the fastest path from visit to contact</li>
+<li>Trust signals built in — reviews, credentials, before/after work, service areas covered</li>
+<li>Mobile-first build — most local search happens on a phone, in the moment</li>
+<li>Services or product-line pages laid out to actually sell the work</li>
+<li>Domain and hosting set up end to end</li>
+<li>Basic on-page SEO — titles, meta descriptions, structure</li>
 </ul>
 </div>
 </section>
@@ -322,32 +240,61 @@ footer{padding:36px 0;}
 <div class="process-grid">
 <div class="process-step">
 <span class="process-num mono">01</span>
-<h4>Brief &amp; direction</h4>
-<p>What the brand needs to say, and who it's saying it to.</p>
+<h4>Scope the brief</h4>
+<p>What the business does, where it serves, and what a visitor needs to see to call.</p>
 </div>
 <div class="process-step">
 <span class="process-num mono">02</span>
-<h4>Design &amp; review</h4>
-<p>Concepts built and refined until they're right, not just approved.</p>
+<h4>Design direction</h4>
+<p>A visual direction proposed and agreed before any build work starts.</p>
 </div>
 <div class="process-step">
 <span class="process-num mono">03</span>
-<h4>Assets delivered</h4>
-<p>Full kit handed over — every format and variant you'll need.</p>
+<h4>Build</h4>
+<p>Built mobile-first, tested on the devices real customers actually search from.</p>
 </div>
 <div class="process-step">
 <span class="process-num mono">04</span>
-<h4>POD store set up</h4>
-<p>Optional — mockups generated and a store connected if you want to sell.</p>
+<h4>Launch &amp; handover</h4>
+<p>Domain connected, local listings pointed at the new site, and a full handover.</p>
 </div>
 </div>
 </div>
 </section>
 
+<section id="related">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Related</div>
+<h2>Other starting points</h2>
+</div>
+</div>
+<div>
+<a href="business-websites.html" style="text-decoration:none; color:inherit; display:block;"><div class="related-row">
+<div>
+<div class="related-name">Business &amp; Brand Websites</div>
+<p class="work-desc">Multi-page sites built to represent a real, credible business.</p>
+</div>
+<span class="work-link">View →</span>
+</div></a>
+<a href="landing-pages.html" style="text-decoration:none; color:inherit; display:block;"><div class="related-row">
+<div>
+<div class="related-name">Landing Pages &amp; Campaigns</div>
+<p class="work-desc">One page, one job — for a launch, a campaign, or a single offer.</p>
+</div>
+<span class="work-link">View →</span>
+</div></a>
+</div>
+</div>
+</section>
+
+<p class="sec-note" style="max-width:600px; margin:0 auto; padding:0 22px 40px; text-align:center;">Flagship example: rev-restore.co.uk — a full 6-page workshop site delivered end to end.</p>
+
 <section class="cta-band" id="contact-cta">
 <div class="container">
 <h2>Ready to start?</h2>
-<p>Tell me what you're working on and quote RL-03 — every enquiry is read and answered personally.</p>
+<p>Tell me about the business and quote RL-01 — every enquiry is read and answered personally.</p>
 <a href="index.html#contact" class="btn btn-primary">Start a build →</a>
 </div>
 </section>
