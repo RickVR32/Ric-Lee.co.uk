@@ -169,12 +169,15 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 .work-details summary::-webkit-details-marker{display:none;}
 .work-details summary::before{content:'+'; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border:1px solid var(--accent-line); border-radius:4px; font-size:0.8rem; line-height:1; transition:transform 0.28s cubic-bezier(.2,.8,.2,1);}
 .work-details[open] summary::before{content:'+'; transform:rotate(135deg);}
-.work-spec-reveal{margin-top:16px; display:grid; grid-template-columns:minmax(220px,320px) 1fr; gap:28px; align-items:start;}
-@media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} }
-.work-details[open] .work-thumb{animation:specRevealImg 0.5s cubic-bezier(.2,.8,.2,1) both;}
-.work-details[open] .work-spec-panel{animation:specRevealPanel 0.55s cubic-bezier(.2,.8,.2,1) both; animation-delay:0.07s;}
-@keyframes specRevealImg{from{opacity:0; transform:translateY(-12px) scale(0.97);} to{opacity:1; transform:translateY(0) scale(1);}}
-@keyframes specRevealPanel{from{opacity:0; transform:translateY(-16px);} to{opacity:1; transform:translateY(0);}}
+.work-details.is-closing summary::before{transform:rotate(0deg);}
+.work-details{overflow:hidden;}
+.work-spec-reveal{margin-top:16px; display:grid; grid-template-columns:1fr minmax(220px,320px); gap:28px; align-items:start;}
+.work-spec-panel{order:1;}
+.work-thumb{order:2;}
+@media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} .work-thumb{order:1;} .work-spec-panel{order:2;} }
+.work-details[open] .work-thumb{animation:specRevealFade 0.3s ease both; animation-delay:0.12s;}
+.work-details[open] .work-spec-panel{animation:specRevealFade 0.3s ease both; animation-delay:0.16s;}
+@keyframes specRevealFade{from{opacity:0;} to{opacity:1;}}
 @media (prefers-reduced-motion:reduce){
 .work-details[open] .work-thumb, .work-details[open] .work-spec-panel{animation:none;}
 .work-details summary::before{transition:none;}
@@ -697,6 +700,73 @@ low += parseInt(el.getAttribute('data-value-low'), 10) || 0;
 if(low <= 0) return;
 var rounded = Math.round(low / 1000);
 tile.textContent = '£' + rounded + 'K+';
+})();
+
+// Build-spec expand/collapse — animates the row height so it scrolls open
+// on expand and scrolls shut on collapse, instead of the native instant
+// show/hide. The details/summary elements stay the underlying toggle, so this is
+// purely a progressive-enhancement layer: no JS (or reduced-motion) still
+// gets a working, instant-toggling build spec.
+(function(){
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+document.querySelectorAll('.work-details').forEach(function(details){
+var summary = details.querySelector('summary');
+if(!summary || typeof details.animate !== 'function') return;
+var anim = null, isClosing = false, isExpanding = false;
+
+summary.addEventListener('click', function(e){
+e.preventDefault();
+if(isClosing || !details.open){
+openDetails();
+} else if(isExpanding || details.open){
+shrinkDetails();
+}
+});
+
+function shrinkDetails(){
+isClosing = true;
+details.classList.add('is-closing');
+var startHeight = details.offsetHeight + 'px';
+var endHeight = summary.offsetHeight + 'px';
+if(anim) anim.cancel();
+anim = details.animate(
+{ height: [startHeight, endHeight] },
+{ duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
+);
+anim.onfinish = function(){ onAnimationFinish(false); };
+anim.oncancel = function(){ isClosing = false; };
+}
+
+function openDetails(){
+details.style.height = details.offsetHeight + 'px';
+details.classList.remove('is-closing');
+details.open = true;
+window.requestAnimationFrame(function(){ expandDetails(); });
+}
+
+function expandDetails(){
+isExpanding = true;
+var startHeight = details.offsetHeight + 'px';
+var endHeight = details.scrollHeight + 'px';
+if(anim) anim.cancel();
+anim = details.animate(
+{ height: [startHeight, endHeight] },
+{ duration: 380, easing: 'cubic-bezier(.2,.8,.2,1)' }
+);
+anim.onfinish = function(){ onAnimationFinish(true); };
+anim.oncancel = function(){ isExpanding = false; };
+}
+
+function onAnimationFinish(isOpen){
+details.open = isOpen;
+details.classList.remove('is-closing');
+anim = null;
+isClosing = false;
+isExpanding = false;
+details.style.height = '';
+}
+});
 })();
 </script>
 
