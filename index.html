@@ -163,6 +163,8 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 
 /* WORK */
 .work-grid{display:flex; flex-direction:column;}
+.work-group-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); padding:22px 0 6px; margin-top:4px;}
+.work-group-label:first-child{padding-top:0; margin-top:0;}
 .work-row{padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
 .work-row:hover{background:var(--panel);}
 .work-row:last-child{border-bottom:1px solid var(--line);}
@@ -239,10 +241,30 @@ footer{padding:36px 0;}
 .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
 .foot-links a:hover{color:var(--accent);}
 
+/* NEW SECTIONS */
+.lead-block{display:flex; flex-direction:column; gap:14px; max-width:700px;}
+.lead-block p{font-size:0.95rem; color:var(--muted); line-height:1.75;}
+.lead-block p:first-child{color:var(--text);}
+.process-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+.process-step{background:var(--bg); padding:26px 22px;}
+.process-num{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:12px; display:block;}
+.process-step h4{font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; margin-bottom:8px;}
+.process-step p{font-size:0.8rem; color:var(--muted); line-height:1.6;}
+.tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px 40px;}
+.tech-cat{border-top:1px solid var(--line); padding-top:16px;}
+.tech-cat-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+.tech-cat-items{font-size:0.88rem; color:var(--text); line-height:1.8;}
+.work-group-desc{font-size:0.85rem; color:var(--muted); max-width:520px; margin-top:-2px; margin-bottom:8px;}
+.foot-top{margin-bottom:20px;}
+.foot-tagline{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text); margin-bottom:6px;}
+.foot-tagline-sub{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted);}
+
 @media (max-width:900px){
 .cap-grid{grid-template-columns:1fr 1fr;}
 .about-layout, .contact-layout{grid-template-columns:1fr;}
 .work-row-main{grid-template-columns:1fr; gap:8px;}
+.process-grid{grid-template-columns:1fr 1fr 1fr;}
+.tech-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:640px){
 .nav-links{display:none;}
@@ -250,6 +272,8 @@ footer{padding:36px 0;}
 .form-grid{grid-template-columns:1fr;}
 .field-full{grid-column:1;}
 .wordmark img{height:36px;}
+.process-grid{grid-template-columns:1fr;}
+.tech-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -285,11 +309,23 @@ footer{padding:36px 0;}
 <section class="hero">
 <div class="container">
 <div class="hero-eyebrow">London, UK — Available for direct work</div>
-<h1>One person. <em>Every discipline.</em> Nothing outsourced.</h1>
-<p class="hero-desc">Full web platforms, software, and brand work for businesses that need real infrastructure behind their site — booking and payment workflows, admin dashboards, automated client comms — not just a page online. Planned, built, and delivered directly by me. No account managers, no junior handoffs, no markup on someone else's work.</p>
+<h1>I build the systems behind <em>ambitious businesses</em>.</h1>
+<p class="hero-desc">Websites, software, automation and infrastructure — designed, built and deployed directly by me. No outsourced development, no unnecessary agency layers. Just practical engineering, thoughtful design, and production-ready systems built around what the business actually needs.</p>
 <div class="hero-cta">
-<a href="#contact" class="btn btn-primary">Start a build →</a>
-<a href="#capabilities" class="btn btn-ghost">See capabilities</a>
+<a href="#work" class="btn btn-ghost">View my work</a>
+<a href="#contact" class="btn btn-primary">Start a project →</a>
+</div>
+</div>
+</section>
+
+<!-- POSITIONING -->
+<section style="padding:52px 0;">
+<div class="container">
+<div class="sec-tag">One person. Every discipline. Nothing outsourced.</div>
+<div class="lead-block">
+<p>I'm a solo developer and technical builder working across web development, software engineering, automation and infrastructure.</p>
+<p>My work ranges from bespoke commercial websites to full-stack operational platforms, proprietary software products, automated trading infrastructure, and AI-assisted applications.</p>
+<p>I design, build, integrate, deploy, and maintain the systems myself — giving every project a consistent technical direction from the first idea through to production.</p>
 </div>
 </div>
 </section>
@@ -299,20 +335,20 @@ footer{padding:36px 0;}
 <div class="container" style="width:100%; max-width:none; padding:0;">
 <div class="scale-grid">
 <div class="scale-item">
-<div class="scale-num mono">3</div>
-<div class="scale-label">Core disciplines</div>
-</div>
-<div class="scale-item">
-<div class="scale-num mono">3</div>
-<div class="scale-label">Platforms live in production</div>
-</div>
-<div class="scale-item">
 <div class="scale-num mono" id="portfolioValue">£93K+</div>
-<div class="scale-label">Estimated portfolio build value <span style="opacity:.6;">— calculated live, at a blended £75–£95/hr, from the audited hours below</span></div>
+<div class="scale-label">Estimated equivalent build value across documented projects</div>
 </div>
 <div class="scale-item">
-<div class="scale-num mono">100%</div>
-<div class="scale-label">Built in-house, no subcontracting</div>
+<div class="scale-num mono">1,200+</div>
+<div class="scale-label">Hours of documented development &amp; engineering</div>
+</div>
+<div class="scale-item">
+<div class="scale-num mono">26</div>
+<div class="scale-label">MT4 / MT5 software products developed</div>
+</div>
+<div class="scale-item">
+<div class="scale-num mono">4</div>
+<div class="scale-label">Production projects documented</div>
 </div>
 </div>
 </div>
@@ -434,6 +470,46 @@ footer{padding:36px 0;}
 </div>
 </section>
 
+<!-- HOW I WORK -->
+<section id="process">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">How I work</div>
+<h2>Start with the problem.</h2>
+</div>
+<p class="sec-note">Before choosing a framework, database, or API, I want to understand what the system actually needs to accomplish.</p>
+</div>
+<div class="process-grid">
+<div class="process-step">
+<span class="process-num mono">01</span>
+<h4>Understand</h4>
+<p>I map the business requirements, users, workflows, and constraints before deciding what needs to be built.</p>
+</div>
+<div class="process-step">
+<span class="process-num mono">02</span>
+<h4>Design</h4>
+<p>I turn the requirements into a practical technical and visual structure — from user journeys and page architecture to databases and integrations.</p>
+</div>
+<div class="process-step">
+<span class="process-num mono">03</span>
+<h4>Build</h4>
+<p>Development, integration, testing, and iteration happen together, keeping the system coherent instead of passing pieces between separate teams.</p>
+</div>
+<div class="process-step">
+<span class="process-num mono">04</span>
+<h4>Deploy</h4>
+<p>I configure the infrastructure, domains, databases, environment variables, and deployment pipeline needed to get the system into production.</p>
+</div>
+<div class="process-step">
+<span class="process-num mono">05</span>
+<h4>Refine</h4>
+<p>Real-world use exposes things planning can't. I use testing, feedback, and actual system behaviour to remove friction after launch.</p>
+</div>
+</div>
+</div>
+</section>
+
 <!-- WORK -->
 <section id="work">
 <div class="container">
@@ -445,6 +521,8 @@ footer{padding:36px 0;}
 <p class="sec-note">Independent products and client platforms I've designed and built end to end. Each one is a live, working example of the capabilities above.</p>
 </div>
 <div class="work-grid">
+<div class="work-group-label">Independent products</div>
+<p class="work-group-desc">Software and digital products I've designed, developed, and deployed independently.</p>
 <div class="work-row">
 <div class="work-row-main">
 <div>
@@ -510,6 +588,8 @@ footer{padding:36px 0;}
 </div>
 </details>
 </div>
+<div class="work-group-label">Client builds</div>
+<p class="work-group-desc">Alongside my own products, I design and develop custom digital systems for clients — from commercial websites to operational software.</p>
 <div class="work-row">
 <div class="work-row-main">
 <div>
@@ -573,6 +653,69 @@ footer{padding:36px 0;}
 </div>
 </section>
 
+<!-- A NOTE ON THE WORK -->
+<section style="padding:56px 0;">
+<div class="container">
+<div class="sec-tag">A note on the work</div>
+<h2 style="margin-bottom:18px;">Built, not just specified.</h2>
+<div class="lead-block">
+<p>Everything shown in this portfolio represents work I have personally designed, developed, configured, or deployed.</p>
+<p>For independent products, that means the underlying intellectual property and systems are my own. For client projects, the work was developed around the client's requirements and business operations.</p>
+<p>Where appropriate, project pages include technical details, implementation notes, and estimated engineering effort, so the work can be evaluated on what was actually built.</p>
+</div>
+</div>
+</section>
+
+<!-- WHY ONE PERSON -->
+<section style="padding:56px 0;">
+<div class="container">
+<div class="sec-tag">Why one person?</div>
+<h2 style="margin-bottom:18px;">Because fewer handovers can mean better systems.</h2>
+<div class="lead-block">
+<p>A typical project can involve a designer, a frontend developer, a backend developer, a DevOps engineer, a copywriter, and a project manager. I work across those disciplines myself — not to do everything for the sake of it, but because it means I understand how the pieces interact.</p>
+<p>The person designing the interface understands the database behind it. The person writing the backend understands the user journey. The person deploying the application understands how it was built. For the right project, that makes the entire process simpler.</p>
+</div>
+</div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section>
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">Technology</div>
+<h2>Tools are chosen for the problem — not the other way around.</h2>
+</div>
+</div>
+<div class="tech-grid">
+<div class="tech-cat">
+<div class="tech-cat-label">Languages &amp; Development</div>
+<div class="tech-cat-items">Python · JavaScript · HTML · CSS · SQL · MQL4 · MQL5</div>
+</div>
+<div class="tech-cat">
+<div class="tech-cat-label">Frameworks &amp; Runtime</div>
+<div class="tech-cat-items">Node.js · Express · Telethon · python-telegram-bot</div>
+</div>
+<div class="tech-cat">
+<div class="tech-cat-label">Data</div>
+<div class="tech-cat-items">PostgreSQL · SQLite · Supabase · JSON</div>
+</div>
+<div class="tech-cat">
+<div class="tech-cat-label">Platforms &amp; Infrastructure</div>
+<div class="tech-cat-items">GitHub · GitHub Pages · Vercel · Cloudflare · VPS</div>
+</div>
+<div class="tech-cat">
+<div class="tech-cat-label">Integrations</div>
+<div class="tech-cat-items">Stripe · Telegram · Anthropic API · Web3Forms</div>
+</div>
+<div class="tech-cat">
+<div class="tech-cat-label">Development Practices</div>
+<div class="tech-cat-items">Version control · CI/CD · API integration · relational data modelling · automated workflows · production deployment</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
 <div class="container about-layout">
@@ -582,9 +725,9 @@ footer{padding:36px 0;}
 </div>
 <div class="about-body">
 <div class="sec-tag">About</div>
-<h2 style="margin-bottom:18px;">Direct, hands-on, and built to last past the handover.</h2>
-<p>I'm a solo builder working across web, software, automation, and mechanical work — the kind of range that's usually split across an agency's departments, run instead by one person who actually does the work.</p>
-<p class="muted">That range isn't a gimmick — it comes from working across genuinely different domains at once: production trading infrastructure, a live consumer web platform, and MQL5 software distribution. The same problem-solving carries across all of it.</p>
+<h2 style="margin-bottom:18px;">I'm Ric — a solo developer and technical builder based in London.</h2>
+<p>I started building software to solve my own problems. That grew into UMNi, then PsyTectrics, alongside commercial projects for other businesses — the kind of range that's usually split across an agency's departments, run instead by one person who actually does the work.</p>
+<p class="muted">Today I work across software, web development, automation, and infrastructure, with a particular interest in systems where different technologies have to work together. I like understanding the whole picture — not just the interface, not just the code, the system.</p>
 <ul class="about-facts">
 <li><strong>Based:</strong> London, UK</li>
 <li><strong>Studio:</strong> Ric-Lee Digital</li>
@@ -601,8 +744,8 @@ footer{padding:36px 0;}
 <div class="contact-layout">
 <div class="contact-info">
 <div class="sec-tag">Contact</div>
-<h2 style="margin-bottom:14px;">Start a build</h2>
-<p>Tell me what you're working on and which capabilities apply. All enquiries read and answered personally.</p>
+<h2 style="margin-bottom:14px;">Have a problem that needs building?</h2>
+<p>If you already know what you need, tell me. If you only know that something in the business is inefficient, repetitive, or unnecessarily manual, that's fine too — I'll help turn the problem into something concrete. All enquiries read and answered personally.</p>
 <ul class="contact-list">
 <li>Based in — London, UK</li>
 <li>Reference codes — RL-01 to RL-04</li>
@@ -649,7 +792,12 @@ footer{padding:36px 0;}
 </main>
 
 <footer>
-<div class="container foot-inner">
+<div class="container">
+<div class="foot-top">
+<div class="foot-tagline">Digital &amp; Technical Developer</div>
+<div class="foot-tagline-sub">Web · Software · Automation · Infrastructure</div>
+</div>
+<div class="foot-inner">
 <span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
 <ul class="foot-links">
 <li><a href="#capabilities">Capabilities</a></li>
@@ -657,6 +805,7 @@ footer{padding:36px 0;}
 <li><a href="#contact">Contact</a></li>
 <li><a href="privacy.html">Privacy &amp; Terms</a></li>
 </ul>
+</div>
 </div>
 </footer>
 
