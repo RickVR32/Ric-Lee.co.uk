@@ -154,14 +154,27 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 
 /* WORK */
 .work-grid{display:flex; flex-direction:column;}
-.work-row{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center; padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
+.work-row{padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
 .work-row:hover{background:var(--panel);}
 .work-row:last-child{border-bottom:1px solid var(--line);}
+.work-row-main{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center;}
 .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
 .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
 .work-desc{font-size:0.85rem; color:var(--muted); max-width:440px;}
 .work-link{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--accent-line); padding-bottom:3px; white-space:nowrap; transition:color 0.2s;}
 .work-link:hover{color:var(--accent);}
+.work-details{margin-top:16px;}
+.work-details summary{cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); user-select:none;}
+.work-details summary::-webkit-details-marker{display:none;}
+.work-details summary::before{content:'+'; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border:1px solid var(--accent-line); border-radius:4px; font-size:0.8rem; line-height:1; transition:transform 0.2s;}
+.work-details[open] summary::before{content:'−';}
+.work-spec-panel{margin-top:16px; padding:20px 22px; background:var(--panel); border-radius:10px; max-width:640px;}
+.work-spec-stack{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;}
+.work-spec-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
+.work-spec-list li{font-size:0.82rem; color:var(--text); padding-left:16px; position:relative; line-height:1.6;}
+.work-spec-list li::before{content:'—'; position:absolute; left:0; color:var(--accent);}
+.work-spec-value{margin-top:16px; padding-top:16px; border-top:1px solid var(--line); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted); display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
+.work-spec-value strong{color:var(--accent); font-size:0.92rem;}
 
 /* ABOUT */
 .about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:start;}
@@ -206,7 +219,7 @@ footer{padding:36px 0;}
 @media (max-width:900px){
 .cap-grid{grid-template-columns:1fr 1fr;}
 .about-layout, .contact-layout{grid-template-columns:1fr;}
-.work-row{grid-template-columns:1fr; gap:8px;}
+.work-row-main{grid-template-columns:1fr; gap:8px;}
 }
 @media (max-width:640px){
 .nav-links{display:none;}
@@ -401,6 +414,7 @@ footer{padding:36px 0;}
 </div>
 <div class="work-grid">
 <div class="work-row">
+<div class="work-row-main">
 <div>
 <div class="work-name">PsyTectrics</div>
 <span class="work-role">RL-01 · RL-02</span>
@@ -408,7 +422,24 @@ footer{padding:36px 0;}
 <p class="work-desc">Behavioural-assessment platform — scoring engine, psychometric reporting, and payment infrastructure built and shipped solo.</p>
 <a class="work-link" href="https://psytectrics.com" target="_blank" rel="noopener">psytectrics.com ↗</a>
 </div>
+<details class="work-details">
+<summary>Build spec</summary>
+<div class="work-spec-panel">
+<div class="work-spec-stack">Stack — Vercel · Supabase · Stripe · Custom SVG</div>
+<ul class="work-spec-list">
+<li>56-question proprietary assessment engine (the Source Code Framework) with full scoring logic across 4 Observer Codes, 16 Source Codes, 8 Apps, a Balance Scale, Drift Score, and Awareness Index</li>
+<li>Payment gate migrated from client-only Stripe redirect to proper server-side Checkout Sessions via Vercel serverless functions</li>
+<li>Supabase backend storing every assessment submission</li>
+<li>Observer report &amp; Business report generation pages, built from the scoring output</li>
+<li>Custom geometry-based SVG diagram work (φ-scaled radii, Seed of Life construction)</li>
+<li>Designed, built, and shipped solo — live in production</li>
+</ul>
+<div class="work-spec-value"><span>Est. build value</span><strong>£38,000</strong></div>
+</div>
+</details>
+</div>
 <div class="work-row">
+<div class="work-row-main">
 <div>
 <div class="work-name">UMNi Systems</div>
 <span class="work-role">RL-01 · RL-02</span>
@@ -416,7 +447,24 @@ footer{padding:36px 0;}
 <p class="work-desc">Trading infrastructure — signal routing, execution agents, and a published catalogue of MT4/MT5 products.</p>
 <a class="work-link" href="https://umni-systems.com" target="_blank" rel="noopener">umni-systems.com ↗</a>
 </div>
+<details class="work-details">
+<summary>Build spec</summary>
+<div class="work-spec-panel">
+<div class="work-spec-stack">Stack — Python · Telethon/PTB · MQL4/MQL5 · SQLite · Telegram · VPS</div>
+<ul class="work-spec-list">
+<li>Python orchestration hub (Telethon + python-telegram-bot) coordinating 3 live/demo MT4 &amp; MT5 trading EAs</li>
+<li>4-bot Telegram automation ecosystem — an operator bot, a customer-support bot, a public signal-broadcast channel, and an n8n workflow stub</li>
+<li>SQLite-backed trade logging with CTE-based basket grouping and automated end-of-day &amp; weekly reporting</li>
+<li>Live market-regime detection layer running against a live data feed in shadow-log mode</li>
+<li>Signal-provider performance auditing across 13 months of historical execution data</li>
+<li>Published catalogue of 26 MQL5 software products (13 MT5 + 13 MT4 utilities), deployed on a production VPS</li>
+</ul>
+<div class="work-spec-value"><span>Independent technical quote — 180–240hrs</span><strong>£13,500 – £27,750</strong></div>
+</div>
+</details>
+</div>
 <div class="work-row">
+<div class="work-row-main">
 <div>
 <div class="work-name">Elegant Hires</div>
 <span class="work-role">RL-01 · RL-02</span>
@@ -424,13 +472,47 @@ footer{padding:36px 0;}
 <p class="work-desc">Event &amp; party hire platform — live product catalogue, quote-to-booking workflow, automated Stripe payment links, and a full supplier &amp; admin management system.</p>
 <a class="work-link" href="https://elegant-hires.com" target="_blank" rel="noopener">elegant-hires.com ↗</a>
 </div>
+<details class="work-details">
+<summary>Build spec</summary>
+<div class="work-spec-panel">
+<div class="work-spec-stack">Stack — Vercel · Postgres · Stripe · Cron automation · GitHub CI/CD</div>
+<ul class="work-spec-list">
+<li>Public site — Home, Gallery, About, Contact, Kids' Parties, and a Hire Range with 6 fully built product categories (Tables, Chairs, Cutlery, Plates &amp; Tableware, Glassware, Linen &amp; Accessories), each with a visual style-picker, real photos, variant specs, and add-ons</li>
+<li>Public quote form → Postgres database → email alert → booking workflow (pending → sourcing → accepted/declined) → auto-generated Stripe payment link on acceptance</li>
+<li>Password-protected admin dashboard — live stats, full booking management, supplier management, an editable catalogue pricing tool, a searchable email log, and one-click CSV export</li>
+<li>Automated, idempotent comms — booking alerts, payment links, event reminders, thank-yous, and scheduled daily/weekly/monthly performance reports, all logged</li>
+<li>Supplier tools — one-click accept/decline availability links (no login needed), a self-service pricing portal, and automatic price-match suggestions</li>
+<li>Infrastructure — GitHub → Vercel CI/CD, custom domain + DNS, full relational database schema, complete brand identity (logo, wordmark, favicon, 3-colourway brand pattern)</li>
+</ul>
+<div class="work-spec-value"><span>Independent technical quote — 165–230hrs</span><strong>£13,200 – £23,000</strong></div>
+</div>
+</details>
+</div>
 <div class="work-row">
+<div class="work-row-main">
 <div>
 <div class="work-name">Rev-Restore</div>
 <span class="work-role">RL-01 · RL-03</span>
 </div>
 <p class="work-desc">Full digital handover for a motorbike restoration workshop — 16-page custom site, brand identity, hosting, and business email, delivered end to end.</p>
 <a class="work-link" href="https://rev-restore.co.uk" target="_blank" rel="noopener">rev-restore.co.uk ↗</a>
+</div>
+<details class="work-details">
+<summary>Build spec</summary>
+<div class="work-spec-panel">
+<div class="work-spec-stack">Stack — HTML/CSS/JS · GitHub Pages · Cloudflare DNS</div>
+<ul class="work-spec-list">
+<li>16-page custom HTML/CSS site, hand-built — no page builders or templates</li>
+<li>Full brand identity — logo, wordmark, colour system</li>
+<li>GitHub Pages + Cloudflare DNS hosting, fully configured</li>
+<li>Business email routing set up</li>
+<li>Social media presence set up</li>
+<li>Document templates plus two A5 leaflet designs</li>
+<li>Delivered as a complete "Digital Handover" package, end to end</li>
+</ul>
+<div class="work-spec-value"><span>Est. build value</span><strong>£5,000</strong></div>
+</div>
+</details>
 </div>
 </div>
 </div>
