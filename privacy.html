@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy &amp; Terms — Ric Lee</title>
+<meta name="description" content="Privacy policy and website terms of use for ric-lee.co.uk." />
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2c3a5e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+var t = localStorage.getItem('rl-theme') || 'light';
+if (t === 'dark') document.documentElement.classList.add('dark');
+})();
+</script>
+<style>
+:root{
+--bg:#f7f4ee;
+--bg-soft:#ffffff;
+--panel:rgba(0,0,0,0.03);
+--text:#17160f;
+--muted:#6b6a60;
+--accent:#2c3a5e;
+--accent-soft:rgba(44,58,94,0.07);
+--accent-line:rgba(44,58,94,0.28);
+--line:rgba(0,0,0,0.1);
+--radius:3px;
+--accent-2:#4d6aa8;
+--shadow-sm:0 2px 10px rgba(23,22,15,0.05);
+--shadow-md:0 16px 40px rgba(23,22,15,0.09);
+--accent-glow:rgba(44,58,94,0.22);
+--accent-glow-strong:rgba(44,58,94,0.28);
+color-scheme: light;
+}
+html.dark{
+--bg:#141310;
+--bg-soft:#1c1b17;
+--panel:rgba(255,255,255,0.04);
+--text:#f2efe6;
+--muted:#9a978c;
+--accent:#7f9bd6;
+--accent-soft:rgba(127,155,214,0.1);
+--accent-line:rgba(127,155,214,0.32);
+--line:rgba(255,255,255,0.1);
+--accent-2:#a9c0e8;
+--shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+--shadow-md:0 18px 44px rgba(0,0,0,0.4);
+--accent-glow:rgba(127,155,214,0.3);
+--accent-glow-strong:rgba(127,155,214,0.4);
+color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth; scrollbar-gutter:stable;}
+body{
+font-family:'IBM Plex Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.65;
+min-height:100vh;
+transition:background 0.3s, color 0.3s;
+}
+.container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
+a{color:inherit;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* NAV */
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.wordmark img{height:46px; width:auto; display:block;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
+.logo-dark{display:block !important;}
+.logo-light{display:none !important;}
+html.dark .logo-dark{display:none !important;}
+html.dark .logo-light{display:block !important;}
+.nav-links{display:flex; gap:28px; list-style:none;}
+.nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex; align-items:center; gap:18px;}
+.theme-toggle{width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; flex-shrink:0;}
+.theme-toggle:hover{color:var(--text); border-color:var(--accent);}
+.theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.theme-icon-sun{display:none;}
+.theme-icon-moon{display:block;}
+html.dark .theme-icon-sun{display:block;}
+html.dark .theme-icon-moon{display:none;}
+
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
+.btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border-color:var(--accent); box-shadow:0 6px 18px var(--accent-glow);}
+.btn-primary:hover{opacity:0.92; transform:translateY(-1px); box-shadow:0 10px 24px var(--accent-glow-strong);}
+
+/* SECTION SHELL */
+section{padding:56px 0; border-bottom:1px solid var(--line);}
+.sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2rem, 4.4vw, 3rem); line-height:1.14; letter-spacing:-0.01em; max-width:760px; margin-bottom:18px;}
+h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.2rem,2.2vw,1.5rem); letter-spacing:-0.005em; margin-bottom:18px;}
+h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; margin:26px 0 10px;}
+
+/* LEGAL PROSE */
+.legal-intro{padding:70px 0 48px;}
+.legal-intro p{color:var(--muted); font-size:0.98rem; max-width:640px;}
+.legal-meta{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-top:22px;}
+.legal-jump{display:flex; gap:22px; margin-top:26px; flex-wrap:wrap;}
+.legal-jump a{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; color:var(--accent); border-bottom:1px solid var(--accent-line); padding-bottom:3px;}
+.legal-body{max-width:720px;}
+.legal-body p{font-size:0.92rem; color:var(--text); margin-bottom:14px;}
+.legal-body p.muted{color:var(--muted);}
+.legal-body ul{list-style:none; display:flex; flex-direction:column; gap:10px; margin:14px 0 22px;}
+.legal-body ul li{font-size:0.9rem; color:var(--text); display:flex; gap:12px; align-items:flex-start; padding-left:0;}
+.legal-body ul li::before{content:'—'; color:var(--accent); flex-shrink:0;}
+.legal-body a{color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-line);}
+.legal-table{width:100%; border-collapse:collapse; margin:14px 0 24px; font-size:0.86rem;}
+.legal-table th,.legal-table td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+.legal-table th{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); font-weight:500;}
+.cta-band{padding:64px 0; text-align:center; border-bottom:none;}
+.cta-band p{color:var(--muted); font-size:0.9rem; max-width:440px; margin:0 auto 28px;}
+
+/* FOOTER */
+footer{padding:36px 0;}
+.foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+.foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;}
+.foot-links{display:flex; gap:20px; list-style:none;}
+.foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
+.foot-links a:hover{color:var(--accent);}
+
+.breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;}
+.breadcrumb a{color:var(--muted); text-decoration:none;}
+.breadcrumb a:hover{color:var(--accent);}
+
+@media (max-width:640px){
+.nav-links{display:none;}
+.wordmark img{height:36px;}
+.legal-table{font-size:0.8rem;}
+.legal-table th,.legal-table td{padding:10px 8px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+<a href="index.html" class="wordmark">
+<img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
+<img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
+<span class="wordmark-sub">Web &amp; Software Development</span>
+</a>
+<nav>
+<ul class="nav-links">
+<li><a href="index.html#packages">Packages</a></li>
+<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="index.html#work">Work</a></li>
+<li><a href="index.html#about">About</a></li>
+</ul>
+</nav>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+<svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="legal-intro">
+<div class="container">
+<div class="breadcrumb"><a href="index.html">Home</a> / Privacy &amp; Terms</div>
+<div class="sec-tag">Legal</div>
+<h1>Privacy Policy &amp; Website Terms</h1>
+<p>Plain-language version: I collect the minimum needed to reply to your enquiry, I don't run ads or trackers on this site, and I don't sell or share your details with anyone outside the two services listed below that actually send the message.</p>
+<div class="legal-meta">Last updated — September 2026</div>
+<div class="legal-jump">
+<a href="#privacy">Privacy Policy</a>
+<a href="#terms">Website Terms</a>
+</div>
+</div>
+</section>
+
+<section id="privacy">
+<div class="container">
+<div class="legal-body">
+<h2>Privacy Policy</h2>
+
+<p>This policy explains what personal data ric-lee.co.uk collects, why, and what rights you have over it, in line with UK GDPR and the Data Protection Act 2018.</p>
+
+<h3>Who's responsible for your data</h3>
+<p>Ric Lee, trading as Ric-Lee Digital, operating ric-lee.co.uk. Based in London, UK. This site is a personal, hand-built portfolio and enquiry point — not a company with a data protection officer, so any request goes to me directly, personally, via the <a href="index.html#contact">contact form</a>.</p>
+
+<h3>What I collect, and why</h3>
+<p>The only personal data this site collects is what you choose to submit through the contact form:</p>
+<table class="legal-table">
+<tr><th>Field</th><th>Why it's collected</th></tr>
+<tr><td>Name</td><td>So I know who I'm replying to</td></tr>
+<tr><td>Email or phone</td><td>So I can reply to your enquiry</td></tr>
+<tr><td>Reference code (service)</td><td>So your enquiry reaches the right context</td></tr>
+<tr><td>Message details</td><td>The actual enquiry — what you're looking to build</td></tr>
+</table>
+<p class="muted">Legal basis: legitimate interest — responding to a business enquiry you've initiated. Nothing is collected passively, and there's no account system, checkout, or newsletter on this site.</p>
+
+<h3>Cookies &amp; local storage</h3>
+<p>This site sets no tracking or advertising cookies, and runs no analytics. The only thing stored in your browser is a single local-storage value remembering whether you last chose light or dark mode — it never leaves your device and isn't accessible to me.</p>
+
+<h3>Who else sees it</h3>
+<p>Submitting the contact form sends your details to two third-party processors that keep the site running without a custom backend:</p>
+<ul>
+<li><strong>Formspree</strong> (Formspree, Inc., US) — receives and forwards contact-form submissions by email. Their own <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">privacy policy</a> applies to data in transit through their service.</li>
+<li><strong>Google Fonts</strong> — this site's typefaces load from Google's font CDN, which means your browser makes a direct request to Google's servers (and shares your IP address, as with any external resource) when the page loads.</li>
+</ul>
+<p>Hosting and DNS run on <strong>GitHub Pages</strong> and <strong>Cloudflare</strong> respectively — both process standard server-log data (IP address, browser type, request timestamps) as part of normal web infrastructure, not anything I query or use myself.</p>
+
+<h3>How long it's kept</h3>
+<p>Enquiry details are kept only as long as needed to respond and, where a project goes ahead, for the duration of that working relationship plus a reasonable period for UK tax and accounting record-keeping. Anything else is deleted on request.</p>
+
+<h3>Your rights</h3>
+<p>Under UK GDPR you can ask to access, correct, delete, or receive a copy of your data, or object to how it's used. To do any of these, get in touch via the <a href="index.html#contact">contact form</a> with what you'd like — I answer these personally. If you're not satisfied with the response, you can complain to the <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">Information Commissioner's Office (ICO)</a>, the UK's data protection regulator.</p>
+</div>
+</div>
+</section>
+
+<section id="terms">
+<div class="container">
+<div class="legal-body">
+<h2>Website Terms of Use</h2>
+
+<h3>Using this site</h3>
+<p>This website is provided for the purpose of showcasing Ric Lee's work and enabling enquiries about new projects. You're welcome to browse, link to, and share pages from it. You may not copy, scrape, or reproduce its design, written content, or code for your own commercial use without permission.</p>
+
+<h3>Portfolio figures</h3>
+<p>Every project's build spec on this site — hours, pricing, and the resulting valuation figures — is calculated openly at a single stated blended rate (currently £75–£95/hr) applied consistently across every listed project, with the hour ranges sourced from the actual scope delivered. These are estimates for illustrative and portfolio purposes, not invoices issued to any client, and are provided as transparently as possible so the methodology can be checked rather than taken on faith.</p>
+
+<h3>Third-party links</h3>
+<p>Project links on this site (client sites such as psytectrics.com, umni-systems.com, elegant-hires.com, and rev-restore.co.uk) lead to independent businesses with their own privacy practices and terms, which this policy doesn't cover.</p>
+
+<h3>No warranty</h3>
+<p>This site and its content are provided "as is." While every effort is made to keep information accurate and current, no guarantee is made that the site will be error-free, uninterrupted, or perfectly up to date at all times.</p>
+
+<h3>Liability</h3>
+<p>To the extent permitted by law, Ric Lee is not liable for any indirect or consequential loss arising from use of this website. Nothing in these terms limits liability for anything that can't legally be limited, such as fraud or death or personal injury caused by negligence.</p>
+
+<h3>Governing law</h3>
+<p>These terms are governed by the laws of England and Wales.</p>
+</div>
+</div>
+</section>
+
+<section class="cta-band" id="contact-cta">
+<div class="container">
+<h2>Questions about any of this?</h2>
+<p>Send a message and I'll get back to you directly — no forms, no ticket numbers.</p>
+<a href="index.html#contact" class="btn btn-primary">Get in touch →</a>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container foot-inner">
+<span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
+<ul class="foot-links">
+<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="index.html#work">Work</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li>
+</ul>
+</div>
+</footer>
+
+<script>
+const html = document.documentElement;
+const btn = document.getElementById('themeToggle');
+function updateThemeUI(){
+btn.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode');
+}
+(function(){
+var t = localStorage.getItem('rl-theme') || 'light';
+if (t === 'dark') html.classList.add('dark');
+})();
+btn.addEventListener('click', function(){
+html.classList.toggle('dark');
+localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light');
+updateThemeUI();
+});
+updateThemeUI();
+</script>
+</body>
+</html>
