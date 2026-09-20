@@ -169,8 +169,9 @@ h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font
 .work-row{padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;}
 .work-row:hover{background:var(--panel);}
 .work-row:last-child{border-bottom:1px solid var(--line);}
-.work-thumb{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; border-radius:10px; box-shadow:var(--shadow-md); border:1px solid var(--line);}
-html.dark .work-thumb{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(127,155,214,0.1);}
+.work-thumb-frame{padding:6px; border-radius:14px; background:var(--panel); border:1px solid var(--line); box-shadow:var(--shadow-md); display:block;}
+html.dark .work-thumb-frame{background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.16); box-shadow:0 20px 50px rgba(0,0,0,0.55);}
+.work-thumb{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; border-radius:9px;}
 .work-row-main{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center;}
 .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;}
 .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;}
@@ -186,9 +187,9 @@ html.dark .work-thumb{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50px
 .work-details{overflow:hidden;}
 .work-spec-reveal{margin-top:16px; display:grid; grid-template-columns:1fr minmax(220px,320px); gap:28px; align-items:start;}
 .work-spec-panel{order:1;}
-.work-thumb{order:2;}
-@media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} .work-thumb{order:1;} .work-spec-panel{order:2;} }
-.work-details[open] .work-thumb{animation:specRevealFade 0.3s ease both; animation-delay:0.12s;}
+.work-thumb-frame{order:2;}
+@media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} .work-thumb-frame{order:1;} .work-spec-panel{order:2;} }
+.work-details[open] .work-thumb-frame{animation:specRevealFade 0.3s ease both; animation-delay:0.12s;}
 .work-details[open] .work-spec-panel{animation:specRevealFade 0.3s ease both; animation-delay:0.16s;}
 @keyframes specRevealFade{from{opacity:0;} to{opacity:1;}}
 @media (prefers-reduced-motion:reduce){
@@ -537,7 +538,7 @@ footer{padding:36px 0;}
 <details class="work-details">
 <summary>Build spec</summary>
 <div class="work-spec-reveal">
-<img class="work-thumb" src="work-psytectrics.jpg" alt="PsyTectrics homepage — a dark psychometric-assessment site with a live SVG blueprint diagram" loading="lazy" />
+<div class="work-thumb-frame"><img class="work-thumb" src="work-psytectrics.jpg" alt="PsyTectrics homepage — a dark psychometric-assessment site with a live SVG blueprint diagram" loading="lazy" /></div>
 <div class="work-spec-panel">
 <div class="work-spec-stack">Stack — GitHub Pages · Cloudflare · Supabase · Stripe · Anthropic API · Custom SVG</div>
 <ul class="work-spec-list">
@@ -566,7 +567,7 @@ footer{padding:36px 0;}
 <details class="work-details">
 <summary>Build spec</summary>
 <div class="work-spec-reveal">
-<img class="work-thumb" src="work-umni.jpg" alt="UMNi Systems homepage — a dark trading-tools brand site" loading="lazy" />
+<div class="work-thumb-frame"><img class="work-thumb" src="work-umni.jpg" alt="UMNi Systems homepage — a dark trading-tools brand site" loading="lazy" /></div>
 <div class="work-spec-panel">
 <div class="work-spec-stack">Stack — Python · Telethon/PTB · MQL4/MQL5 · SQLite · Telegram · VPS · GitHub Pages · Cloudflare</div>
 <ul class="work-spec-list">
@@ -604,12 +605,13 @@ footer{padding:36px 0;}
 <details class="work-details">
 <summary>Build spec</summary>
 <div class="work-spec-reveal">
-<img class="work-thumb" src="work-elegant-hires.jpg" alt="Elegant Hires homepage — a gold-on-black premium event-hire site" loading="lazy" />
+<div class="work-thumb-frame"><img class="work-thumb" src="work-elegant-hires.jpg" alt="Elegant Hires homepage — a gold-on-black premium event-hire site" loading="lazy" /></div>
 <div class="work-spec-panel">
 <div class="work-spec-stack">Stack — Node.js · Express · Postgres · Stripe · Vercel Cron · GitHub CI/CD</div>
 <ul class="work-spec-list">
 <li>Full server-rendered Node/Express application, not a static site — 8 unique page templates (Home, Hire Range index, 6 dynamic category pages, Kids' Parties, About, Contact, Gallery, custom 404), no framework or template fingerprints anywhere in the build</li>
 <li>Complete brand identity — crown-and-diamond monogram, serif wordmark + script sub-mark, and a repeating brand pattern implemented in 3 distinct colourways swapped per-page (confirmed live: general site, and a separate pink/blue/gold variant on Kids' Parties)</li>
+<li>Full product photography across the hire catalogue and Kids' Parties range — tables, chairs, cutlery, glassware, linen and accessories — shot, styled, and edited personally, not stock or supplier imagery</li>
 <li>Public quote form → Postgres database → email alert → booking workflow (pending → sourcing → accepted/declined) → auto-generated Stripe payment link on acceptance, plus a separate lighter-weight general-enquiry form</li>
 <li>Password-protected admin dashboard — live stats, full booking management, supplier management, an editable catalogue pricing tool that updates the public site live, a searchable email log, and one-click CSV export</li>
 <li>Automated, idempotent comms — booking alerts, payment links, event reminders, thank-yous, and scheduled daily/weekly/monthly performance reports with month-on-month comparisons, all logged</li>
@@ -634,13 +636,14 @@ footer{padding:36px 0;}
 <details class="work-details">
 <summary>Build spec</summary>
 <div class="work-spec-reveal">
-<img class="work-thumb" src="work-rev-restore.jpg" alt="Rev-Restore homepage — a dark motorbike-restoration workshop site" loading="lazy" />
+<div class="work-thumb-frame"><img class="work-thumb" src="work-rev-restore.jpg" alt="Rev-Restore homepage — a dark motorbike-restoration workshop site" loading="lazy" /></div>
 <div class="work-spec-panel">
 <div class="work-spec-stack">Stack — HTML/CSS/JS · GitHub Pages · Cloudflare DNS · Web3Forms</div>
 <ul class="work-spec-list">
 <li>6-page custom HTML/CSS/JS site, hand-built — no page builders, no framework or template fingerprints anywhere in the build</li>
 <li>Bespoke brand identity and positioning copy ("ONE PERSON. ONE STANDARD.") — not a generic trades-site reskin</li>
 <li>Full 10-service catalogue with detail page, and a client-side Get-a-Quote form (service dropdown, bike/part details, collection/delivery flag) wired to a third-party form API with no custom backend</li>
+<li>Before/after and workshop photography across every service page — powder coating, metal polishing, metal plating, anodizing, and vapour blasting — shot and edited personally, not stock imagery</li>
 <li>GitHub Pages + Cloudflare DNS hosting, fully configured, custom domain</li>
 <li>Business email routing and social media presence set up as part of the wider handover (outside the site-rebuild estimate below)</li>
 <li>Document templates plus two A5 leaflet designs (also outside the site-rebuild estimate below)</li>
