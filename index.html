@@ -35,17 +35,6 @@
           items.forEach(function(li){ lines.push('- ' + li.textContent.trim()); });
         }
 
-        var values = details.querySelectorAll('.work-spec-value');
-        if(values.length){
-          lines.push('');
-          values.forEach(function(v){
-            var valLabel = v.querySelector('span');
-            var valStrong = v.querySelector('strong');
-            if(valLabel && valStrong){
-              lines.push(valLabel.textContent.trim() + ': ' + valStrong.textContent.trim());
-            }
-          });
-        }
       }
 
       blocks.push(lines.join('\n'));
