@@ -296,6 +296,9 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 .cfg-discount-msg{font-size:0.72rem; margin-bottom:14px; min-height:1em;}
 .cfg-discount-msg.is-success{color:#16a34a;}
 .cfg-discount-msg.is-error{color:#dc2626;}
+.cfg-item-note{font-size:0.76rem; color:var(--accent); font-style:italic; margin-top:2px; padding-left:30px;}
+.cfg-item.is-disabled{opacity:0.5;}
+.cfg-item.is-disabled .cfg-item-top{cursor:not-allowed;}
 .cfg-summary-note{font-size:0.74rem; color:var(--muted); margin-bottom:18px; line-height:1.5;}
 .cfg-summary-btn{width:100%; justify-content:center;}
 @media (max-width:900px){ .cfg-layout{grid-template-columns:1fr;} .cfg-summary{position:static;} }
@@ -415,7 +418,7 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 <div class="cfg-start">
 <div class="cfg-start-label">Everyone starts here</div>
 <div class="cfg-start-name">Domain &amp; hosting, set up for you</div>
-<p class="cfg-start-desc">Your own domain name and a proper place for the site to live online — sorted before anything else is built.</p>
+<p class="cfg-start-desc">Your own domain name and a proper place for the site to live online, including the first year of both — sorted before anything else is built. Renews annually after that, or it's covered automatically if you're on a Care Plan.</p>
 <div class="cfg-start-price mono">£150</div>
 </div>
 <div class="cfg-start cfg-start-pages">
@@ -438,18 +441,18 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 <div class="cfg-group">
 <div class="cfg-group-label">Make it feel like yours</div>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="100" data-label="Light / dark mode toggle"><span class="cfg-item-name">Light / dark mode toggle</span><span class="cfg-item-price mono">+£100</span></div><p class="cfg-item-desc">Visitors can flip between a light and dark look, whichever's easier on their eyes — especially browsing at night.</p></label>
-<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Background music"><span class="cfg-item-name">Background music</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A quiet soundtrack that plays as people browse — a nice touch for some brands, not the right fit for every one.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Background music"><span class="cfg-item-name">Background music</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A quiet soundtrack with its own mute control, for brands that genuinely suit it — most don't, but a few really do.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Seasonal themes"><span class="cfg-item-name">Seasonal themes</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">Small festive touches that switch on automatically — a bit of Christmas in December, then back to normal in January.</p></label>
 </div>
 <div class="cfg-group">
 <div class="cfg-group-label">Let customers pay or book online</div>
-<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Take payments online"><span class="cfg-item-name">Take payments online</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Customers pay you by card straight through the site, instead of bank transfers or cash in hand — handled securely through Stripe.</p></label>
-<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="900" data-label="Online booking"><span class="cfg-item-name">Online booking</span><span class="cfg-item-price mono">+£900</span></div><p class="cfg-item-desc">People see your availability and book a slot themselves, instead of messaging back and forth to arrange a time.</p></label>
+<label class="cfg-item" id="cfgTakePaymentsItem"><div class="cfg-item-top"><input type="checkbox" id="cfgTakePayments" data-price="400" data-label="Take payments online"><span class="cfg-item-name">Take payments online</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Customers pay you by card straight through the site, instead of bank transfers or cash in hand — handled securely through Stripe. Skip this one if you're also adding Online booking below — it already includes secure payments.</p><p class="cfg-item-note" id="cfgTakePaymentsNote" style="display:none;">Included automatically with Online booking — no need to add this separately.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" id="cfgOnlineBooking" data-price="900" data-label="Online booking"><span class="cfg-item-name">Online booking</span><span class="cfg-item-price mono">+£900</span></div><p class="cfg-item-desc">People see your availability and book a slot themselves, instead of messaging back and forth to arrange a time — secure card payment and a confirmation email are built in, not a separate add-on.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="Deposits &amp; part-payments"><span class="cfg-item-name">Deposits &amp; part-payments</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">Let someone secure a booking with a deposit now, with the rest collected automatically closer to the date.</p></label>
 </div>
 <div class="cfg-group">
 <div class="cfg-group-label">Save yourself admin time</div>
-<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="A private admin area"><span class="cfg-item-name">A private admin area</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">Somewhere just for you to see bookings, enquiries and orders in one place, instead of digging through your inbox.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="A private admin area"><span class="cfg-item-name">A private admin area</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">A custom-built, password-protected space just for you — bookings, enquiries and orders in one place, instead of digging through your inbox. Built from scratch for your site, not a bundled page-builder feature.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="250" data-label="Automatic emails"><span class="cfg-item-name">Automatic emails</span><span class="cfg-item-price mono">+£250</span></div><p class="cfg-item-desc">Confirmations, reminders and thank-yous sent on their own, so you're not typing the same message every time.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Calendar sync"><span class="cfg-item-name">Calendar sync</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Bookings appear straight in your Google or Outlook calendar — nothing to copy over by hand.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Instant phone notifications"><span class="cfg-item-name">Instant phone notifications</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">A message to your phone the moment someone books or enquires, with a simple chatbot handling the basics for you.</p></label>
@@ -464,13 +467,14 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 <div class="cfg-group-label">Build trust fast</div>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Live Google reviews"><span class="cfg-item-name">Live Google reviews</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">Your real Google reviews pulled in and kept up to date automatically, instead of testimonials you've typed in by hand and have to update yourself.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="70" data-label="Trust badges &amp; certifications row"><span class="cfg-item-name">Trust badges &amp; certifications row</span><span class="cfg-item-price mono">+£70</span></div><p class="cfg-item-desc">Accreditations, press mentions, and payment-provider logos laid out in one clean row, so credibility signals aren't buried in the text.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Privacy Policy & Terms page"><span class="cfg-item-name">Privacy Policy &amp; Terms page</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A privacy policy and terms page written around your business and how you actually handle payments and data — not a generic copy-paste template. Doesn't count toward your page total.</p></label>
 </div>
 <div class="cfg-group">
 <div class="cfg-group-label">Make it easy to reach you</div>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="60" data-label="Click-to-WhatsApp button"><span class="cfg-item-name">Click-to-WhatsApp button</span><span class="cfg-item-price mono">+£60</span></div><p class="cfg-item-desc">One tap and a visitor's straight into a WhatsApp chat with you — often the preferred option for trade and local-service customers.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="120" data-label="FAQ accordion"><span class="cfg-item-name">FAQ accordion</span><span class="cfg-item-price mono">+£120</span></div><p class="cfg-item-desc">Click a question and the answer expands — a tidy way to answer the things people ask before they even enquire.</p></label>
 <label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="90" data-label="Embedded map with directions"><span class="cfg-item-name">Embedded map with directions</span><span class="cfg-item-price mono">+£90</span></div><p class="cfg-item-desc">An actual interactive map people can scroll and get directions from, not just an address printed on the page.</p></label>
-<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="280" data-label="Site search"><span class="cfg-item-name">Site search</span><span class="cfg-item-price mono">+£280</span></div><p class="cfg-item-desc">A proper search bar that finds the right page or post, worth having once a site grows past a handful of pages.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="280" data-label="Site search"><span class="cfg-item-name">Site search</span><span class="cfg-item-price mono">+£280</span></div><p class="cfg-item-desc">A proper search bar, built to index your own pages and posts — not a drag-and-drop widget, so it's worth having once a site grows past a handful of pages.</p></label>
 </div>
 <div class="cfg-group">
 <div class="cfg-group-label">Get found &amp; share information</div>
@@ -712,12 +716,33 @@ recurring cost, data-recurring="true" — nothing else needs wiring up. */
     });
   }
 
+  var onlineBookingCb = document.getElementById('cfgOnlineBooking');
+  var takePaymentsCb = document.getElementById('cfgTakePayments');
+  var takePaymentsItem = document.getElementById('cfgTakePaymentsItem');
+  var takePaymentsNote = document.getElementById('cfgTakePaymentsNote');
+
+  function syncPaymentsExclusion(){
+    if(!onlineBookingCb || !takePaymentsCb) return;
+    if(onlineBookingCb.checked){
+      takePaymentsCb.checked = false;
+      takePaymentsCb.disabled = true;
+      if(takePaymentsItem) takePaymentsItem.classList.add('is-disabled');
+      if(takePaymentsNote) takePaymentsNote.style.display = 'block';
+    } else {
+      takePaymentsCb.disabled = false;
+      if(takePaymentsItem) takePaymentsItem.classList.remove('is-disabled');
+      if(takePaymentsNote) takePaymentsNote.style.display = 'none';
+    }
+  }
+
   root.addEventListener('change', function(e){
     var t = e.target;
     if(t && t.tagName === 'INPUT' && t.type === 'checkbox'){
+      if(t === onlineBookingCb) syncPaymentsExclusion();
       recalc();
     }
   });
+  syncPaymentsExclusion();
 
   function applyCode(){
     if(!codeInput) return;
