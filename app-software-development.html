@@ -255,6 +255,50 @@ footer{padding:36px 0;}
 @media (max-width:640px){
 .process-grid{grid-template-columns:1fr;}
 }
+/* CONFIGURATOR */
+.cfg-layout{display:grid; grid-template-columns:1fr 340px; gap:28px; align-items:start;}
+.cfg-start{background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:12px; padding:20px 22px; margin-bottom:28px;}
+.cfg-start-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+.cfg-start-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem; margin-bottom:8px;}
+.cfg-start-desc{font-size:0.86rem; color:var(--muted); line-height:1.55; margin-bottom:14px; max-width:480px;}
+.cfg-start-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent);}
+.cfg-start-pages{margin-bottom:28px;}
+.cfg-stepper{display:flex; align-items:center; gap:14px;}
+.cfg-stepper-btn{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font-size:1.1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, color 0.2s;}
+.cfg-stepper-btn:hover{border-color:var(--accent); color:var(--accent);}
+.cfg-stepper-count{font-size:1.1rem; min-width:20px; text-align:center;}
+.cfg-stepper-price{margin-left:auto; color:var(--accent); font-size:1rem;}
+.cfg-group{margin-bottom:30px;}
+.cfg-group:last-child{margin-bottom:0;}
+.cfg-group-label{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+.cfg-item{display:flex; flex-direction:column; gap:7px; padding:14px 16px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; cursor:pointer; background:var(--bg-soft); transition:border-color 0.2s, background 0.2s;}
+.cfg-item:hover{border-color:var(--accent-line);}
+.cfg-item:has(input:checked){border-color:var(--accent); background:var(--accent-soft);}
+.cfg-item-top{display:flex; align-items:center; gap:14px;}
+.cfg-item-top input{width:16px; height:16px; accent-color:var(--accent); flex-shrink:0;}
+.cfg-item-name{font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem; font-weight:500; text-transform:none; letter-spacing:normal; color:var(--text); flex:1;}
+.cfg-item-price{font-size:0.8rem; color:var(--muted); white-space:nowrap;}
+.cfg-item:has(input:checked) .cfg-item-price{color:var(--accent);}
+.cfg-item-desc{font-family:'IBM Plex Sans',sans-serif; font-size:0.8rem; text-transform:none; letter-spacing:normal; color:var(--muted); line-height:1.55; padding-left:30px;}
+.cfg-summary{position:sticky; top:84px; background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:28px 26px; box-shadow:var(--shadow-sm);}
+.cfg-summary-label{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;}
+.cfg-summary-total{font-family:'Fraunces',serif; font-weight:600; font-size:2rem; color:var(--accent); margin-bottom:6px;}
+.cfg-summary-tier{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; color:var(--muted); margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+.cfg-summary-recurring{font-size:0.78rem; color:var(--muted); margin-bottom:18px;}
+.cfg-summary-list{list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:18px; max-height:220px; overflow-y:auto;}
+.cfg-summary-list li{font-size:0.78rem; color:var(--text); display:flex; justify-content:space-between; gap:10px;}
+.cfg-summary-list li.cfg-summary-empty{color:var(--muted);}
+.cfg-discount{display:flex; gap:8px; margin-bottom:8px;}
+.cfg-discount input{flex:1; min-height:38px; border-radius:var(--radius); border:1px solid var(--line); padding:8px 10px; background:var(--panel); color:var(--text); font-size:0.78rem;}
+.cfg-discount input:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
+.cfg-discount .btn{padding:8px 16px; font-size:0.64rem; flex-shrink:0;}
+.cfg-discount-msg{font-size:0.72rem; margin-bottom:14px; min-height:1em;}
+.cfg-discount-msg.is-success{color:#16a34a;}
+.cfg-discount-msg.is-error{color:#dc2626;}
+.cfg-summary-note{font-size:0.74rem; color:var(--muted); margin-bottom:18px; line-height:1.5;}
+.cfg-summary-btn{width:100%; justify-content:center;}
+@media (max-width:900px){ .cfg-layout{grid-template-columns:1fr;} .cfg-summary{position:static;} }
+@media (max-width:640px){ .cfg-item-desc{padding-left:0;} .cfg-summary{padding:22px 20px;} }
 </style>
 </head>
 <body>
@@ -356,6 +400,82 @@ footer{padding:36px 0;}
 </div>
 </section>
 
+<section id="configurator">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">For first-timers</div>
+<h2>What actually goes into an app?</h2>
+</div>
+<p class="sec-note">No jargon — tick the things that sound useful and see what they actually do, and what they'd roughly cost. Most apps start small and grow a feature at a time.</p>
+</div>
+<div class="cfg-layout">
+<div class="cfg-options">
+<div class="cfg-start">
+<div class="cfg-start-label">Everyone starts here</div>
+<div class="cfg-start-name">App planning &amp; setup, done for you</div>
+<p class="cfg-start-desc">Getting the project properly set up before any code is written — developer accounts, environment, and a clear shared plan for what's being built.</p>
+<div class="cfg-start-price mono">£250</div>
+</div>
+<div class="cfg-start cfg-start-pages">
+<div class="cfg-start-label">How many screens?</div>
+<div class="cfg-start-name">Screens — first 3 for £200, then £60 each</div>
+<p class="cfg-start-desc">Most simple apps start with three core screens — a home screen, a main feature, and a settings or profile screen. That's covered by one flat fee. Need more? Every screen after that is £60.</p>
+<div class="cfg-stepper">
+<button type="button" class="cfg-stepper-btn" id="cfgPageMinus" aria-label="Fewer screens">−</button>
+<span class="cfg-stepper-count mono" id="cfgPageCount">1</span>
+<button type="button" class="cfg-stepper-btn" id="cfgPagePlus" aria-label="More screens">+</button>
+<span class="cfg-stepper-price mono" id="cfgPagePrice">£200</span>
+</div>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Which platforms?</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="600" data-label="iOS app (App Store)"><span class="cfg-item-name">iOS app (App Store)</span><span class="cfg-item-price mono">+£600</span></div><p class="cfg-item-desc">A proper app built for iPhone and iPad, ready to publish on the App Store.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="600" data-label="Android app (Google Play)"><span class="cfg-item-name">Android app (Google Play)</span><span class="cfg-item-price mono">+£600</span></div><p class="cfg-item-desc">A proper app built for Android phones and tablets, ready to publish on Google Play.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="Progressive web app (works everywhere, no app store)"><span class="cfg-item-name">Progressive web app (works everywhere, no app store)</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">One build that works in any browser and can be "installed" to a home screen — no app store, no store fees, no waiting on review.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep people in the loop</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Push notifications"><span class="cfg-item-name">Push notifications</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Alerts that land on someone's phone even when the app's closed — booking reminders, updates, offers.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="450" data-label="Offline mode"><span class="cfg-item-name">Offline mode</span><span class="cfg-item-price mono">+£450</span></div><p class="cfg-item-desc">The core of the app still works with no signal — anything entered syncs automatically once it's back online.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="In-app messaging / chat"><span class="cfg-item-name">In-app messaging / chat</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">A built-in chat so people can message you — or each other — without leaving the app.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Behind the scenes</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="User accounts & login"><span class="cfg-item-name">User accounts &amp; login</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">People sign up, log in, and get their own private space inside the app — their bookings, their history, their settings.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="Admin dashboard"><span class="cfg-item-name">Admin dashboard</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">A private, password-protected area where you manage users, content and activity yourself, without touching any code.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="500" data-label="Backend & database"><span class="cfg-item-name">Backend &amp; database</span><span class="cfg-item-price mono">+£500</span></div><p class="cfg-item-desc">The server and database that actually store everything the app needs — built to grow with real use, not just a demo.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Third-party integrations"><span class="cfg-item-name">Third-party integrations</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Hooking the app up to the outside world — payments, calendars, maps, or any other service it needs to talk to.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Make money through the app</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="500" data-label="In-app purchases"><span class="cfg-item-name">In-app purchases</span><span class="cfg-item-price mono">+£500</span></div><p class="cfg-item-desc">One-off purchases inside the app — unlock a feature, buy a credit pack — handled through the App Store or Google Play.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="550" data-label="Subscriptions"><span class="cfg-item-name">Subscriptions</span><span class="cfg-item-price mono">+£550</span></div><p class="cfg-item-desc">Recurring billing built in, so people pay monthly or yearly for ongoing access, handled automatically.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="200" data-label="App store submission, handled for you"><span class="cfg-item-name">App store submission, handled for you</span><span class="cfg-item-price mono">+£200</span></div><p class="cfg-item-desc">I handle the submission paperwork and the back-and-forth with Apple and Google's review teams, so it's not on you.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep it running</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="35" data-recurring="true" data-label="Ongoing care"><span class="cfg-item-name">Ongoing care</span><span class="cfg-item-price mono">+£35/mo</span></div><p class="cfg-item-desc">Hosting, security updates, backups, and keeping the app working as iOS and Android roll out their own updates.</p></label>
+</div>
+</div>
+<div class="cfg-summary">
+<div class="cfg-summary-label">Estimated build</div>
+<div class="cfg-summary-total mono" id="cfgTotal">From £450</div>
+<div class="cfg-summary-tier" id="cfgTier">Simple utility app territory</div>
+<div class="cfg-summary-recurring mono" id="cfgRecurring" style="display:none;"></div>
+<ul class="cfg-summary-list" id="cfgList"></ul>
+<div class="cfg-discount">
+<input type="text" id="cfgCode" class="mono" placeholder="Discount code" autocomplete="off" />
+<button type="button" class="btn btn-ghost" id="cfgCodeApply">Apply</button>
+</div>
+<p class="cfg-discount-msg" id="cfgCodeMsg"></p>
+<p class="cfg-summary-note">Illustrative only, based on past builds — every project is scoped and quoted properly on a build call before anything starts.</p>
+<a href="index.html#contact" class="btn btn-primary cfg-summary-btn">Talk through this build →</a>
+</div>
+</div>
+</div>
+</section>
+
 <p class="sec-note" style="max-width:600px; margin:0 auto; padding:0 22px 40px; text-align:center;">In active use across PsyTectrics' assessment &amp; payment engine and Elegant Hires' booking &amp; supplier platform.</p>
 
 <section class="cta-band" id="contact-cta">
@@ -404,6 +524,166 @@ updateThemeUI();
 }
 });
 }
+</script>
+<script>
+/* Build-your-own configurator — recalculates the running total from the
+planning/setup foundation, the screen-count stepper, whichever add-on
+checkboxes are ticked, and any discount code applied. Add a new checkbox
+item by giving it a data-price (pounds), a data-label, and, for a
+recurring cost, data-recurring="true" — nothing else needs wiring up. */
+(function(){
+  var root = document.getElementById('configurator');
+  if(!root) return;
+  var totalEl = document.getElementById('cfgTotal');
+  var tierEl = document.getElementById('cfgTier');
+  var recurringEl = document.getElementById('cfgRecurring');
+  var listEl = document.getElementById('cfgList');
+  var pageCountEl = document.getElementById('cfgPageCount');
+  var pagePriceEl = document.getElementById('cfgPagePrice');
+  var pageMinusBtn = document.getElementById('cfgPageMinus');
+  var pagePlusBtn = document.getElementById('cfgPagePlus');
+  var codeInput = document.getElementById('cfgCode');
+  var codeApplyBtn = document.getElementById('cfgCodeApply');
+  var codeMsgEl = document.getElementById('cfgCodeMsg');
+  if(!totalEl || !listEl) return;
+
+  var FOUNDATION_PRICE = 250;
+  var FOUNDATION_LABEL = 'App planning & setup, done for you';
+  var SCREENS_INCLUDED = 3;
+  var SCREENS_INCLUDED_PRICE = 200;
+  var EXTRA_SCREEN_PRICE = 60;
+  var MIN_SCREENS = 1;
+  var MAX_SCREENS = 30;
+  var screenCount = MIN_SCREENS;
+
+  var DISCOUNT_CODES = { 'RLFAMFFS': 0.8, 'RLFRNFFS': 0.5, 'RLBEGFFS': 0.25 };
+  var activeDiscount = 0;
+  var activeCode = '';
+
+  function fmt(n){ return '£' + Math.round(n).toLocaleString('en-GB'); }
+
+  function screensCost(n){
+    return n <= SCREENS_INCLUDED ? SCREENS_INCLUDED_PRICE : SCREENS_INCLUDED_PRICE + (n - SCREENS_INCLUDED) * EXTRA_SCREEN_PRICE;
+  }
+
+  function screensLabel(n){
+    return n <= SCREENS_INCLUDED
+      ? n + (n === 1 ? ' screen (3 included)' : ' screens (3 included)')
+      : n + ' screens (3 included + ' + (n - SCREENS_INCLUDED) + ' extra @ £' + EXTRA_SCREEN_PRICE + ' each)';
+  }
+
+  function tierFor(total){
+    if(total < 800) return 'Simple utility app territory';
+    if(total < 2000) return 'Full-featured app territory';
+    return 'Platform-grade build territory';
+  }
+
+  function recalc(){
+    var screensPrice = screensCost(screenCount);
+    var oneOff = FOUNDATION_PRICE + screensPrice;
+    var items = [
+      { label: FOUNDATION_LABEL, text: fmt(FOUNDATION_PRICE) },
+      { label: screensLabel(screenCount), text: fmt(screensPrice) }
+    ];
+
+    var recurring = 0;
+    root.querySelectorAll('.cfg-item input[type="checkbox"]:checked').forEach(function(cb){
+      var price = parseInt(cb.getAttribute('data-price'), 10) || 0;
+      var label = cb.getAttribute('data-label') || '';
+      var isRecurring = cb.getAttribute('data-recurring') === 'true';
+      if(isRecurring){
+        recurring += price;
+        items.push({ label: label, text: '+' + fmt(price) + '/mo' });
+      } else {
+        oneOff += price;
+        items.push({ label: label, text: '+' + fmt(price) });
+      }
+    });
+
+    var discounted = oneOff;
+    if(activeDiscount > 0){
+      discounted = oneOff * (1 - activeDiscount);
+      items.push({ label: 'Code ' + activeCode + ' (−' + Math.round(activeDiscount * 100) + '% on the build)', text: '−' + fmt(oneOff - discounted) });
+    }
+
+    totalEl.textContent = 'From ' + fmt(discounted);
+    if(tierEl) tierEl.textContent = tierFor(oneOff);
+
+    if(recurring > 0){
+      recurringEl.style.display = 'block';
+      recurringEl.textContent = '+ ' + fmt(recurring) + '/month ongoing';
+    } else {
+      recurringEl.style.display = 'none';
+      recurringEl.textContent = '';
+    }
+
+    listEl.innerHTML = '';
+    items.forEach(function(it){
+      var li = document.createElement('li');
+      var name = document.createElement('span');
+      name.textContent = it.label;
+      var price = document.createElement('span');
+      price.className = 'mono';
+      price.textContent = it.text;
+      li.appendChild(name);
+      li.appendChild(price);
+      listEl.appendChild(li);
+    });
+  }
+
+  function updateScreenDisplay(){
+    if(pageCountEl) pageCountEl.textContent = screenCount;
+    if(pagePriceEl) pagePriceEl.textContent = fmt(screensCost(screenCount));
+  }
+
+  if(pageMinusBtn){
+    pageMinusBtn.addEventListener('click', function(){
+      if(screenCount > MIN_SCREENS){ screenCount -= 1; updateScreenDisplay(); recalc(); }
+    });
+  }
+  if(pagePlusBtn){
+    pagePlusBtn.addEventListener('click', function(){
+      if(screenCount < MAX_SCREENS){ screenCount += 1; updateScreenDisplay(); recalc(); }
+    });
+  }
+
+  root.addEventListener('change', function(e){
+    var t = e.target;
+    if(t && t.tagName === 'INPUT' && t.type === 'checkbox'){
+      recalc();
+    }
+  });
+
+  function applyCode(){
+    if(!codeInput) return;
+    var raw = codeInput.value.trim().toUpperCase();
+    if(!raw){
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = ''; codeMsgEl.className = 'cfg-discount-msg'; }
+      recalc();
+      return;
+    }
+    if(DISCOUNT_CODES.hasOwnProperty(raw)){
+      activeDiscount = DISCOUNT_CODES[raw];
+      activeCode = raw;
+      if(codeMsgEl){ codeMsgEl.textContent = 'Code applied — ' + Math.round(activeDiscount * 100) + '% off the build.'; codeMsgEl.className = 'cfg-discount-msg is-success'; }
+    } else {
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = 'That code isn’t recognised.'; codeMsgEl.className = 'cfg-discount-msg is-error'; }
+    }
+    recalc();
+  }
+
+  if(codeApplyBtn){ codeApplyBtn.addEventListener('click', applyCode); }
+  if(codeInput){
+    codeInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); applyCode(); }
+    });
+  }
+
+  updateScreenDisplay();
+  recalc();
+})();
 </script>
 </body>
 </html>

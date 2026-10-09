@@ -256,6 +256,50 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 @media (max-width:640px){
 .process-grid{grid-template-columns:1fr;}
 }
+/* CONFIGURATOR */
+.cfg-layout{display:grid; grid-template-columns:1fr 340px; gap:28px; align-items:start;}
+.cfg-start{background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:12px; padding:20px 22px; margin-bottom:28px;}
+.cfg-start-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+.cfg-start-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem; margin-bottom:8px;}
+.cfg-start-desc{font-size:0.86rem; color:var(--muted); line-height:1.55; margin-bottom:14px; max-width:480px;}
+.cfg-start-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent);}
+.cfg-start-pages{margin-bottom:28px;}
+.cfg-stepper{display:flex; align-items:center; gap:14px;}
+.cfg-stepper-btn{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font-size:1.1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, color 0.2s;}
+.cfg-stepper-btn:hover{border-color:var(--accent); color:var(--accent);}
+.cfg-stepper-count{font-size:1.1rem; min-width:20px; text-align:center;}
+.cfg-stepper-price{margin-left:auto; color:var(--accent); font-size:1rem;}
+.cfg-group{margin-bottom:30px;}
+.cfg-group:last-child{margin-bottom:0;}
+.cfg-group-label{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+.cfg-item{display:flex; flex-direction:column; gap:7px; padding:14px 16px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; cursor:pointer; background:var(--bg-soft); transition:border-color 0.2s, background 0.2s;}
+.cfg-item:hover{border-color:var(--accent-line);}
+.cfg-item:has(input:checked){border-color:var(--accent); background:var(--accent-soft);}
+.cfg-item-top{display:flex; align-items:center; gap:14px;}
+.cfg-item-top input{width:16px; height:16px; accent-color:var(--accent); flex-shrink:0;}
+.cfg-item-name{font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem; font-weight:500; text-transform:none; letter-spacing:normal; color:var(--text); flex:1;}
+.cfg-item-price{font-size:0.8rem; color:var(--muted); white-space:nowrap;}
+.cfg-item:has(input:checked) .cfg-item-price{color:var(--accent);}
+.cfg-item-desc{font-family:'IBM Plex Sans',sans-serif; font-size:0.8rem; text-transform:none; letter-spacing:normal; color:var(--muted); line-height:1.55; padding-left:30px;}
+.cfg-summary{position:sticky; top:84px; background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:28px 26px; box-shadow:var(--shadow-sm);}
+.cfg-summary-label{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;}
+.cfg-summary-total{font-family:'Fraunces',serif; font-weight:600; font-size:2rem; color:var(--accent); margin-bottom:6px;}
+.cfg-summary-tier{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; color:var(--muted); margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+.cfg-summary-recurring{font-size:0.78rem; color:var(--muted); margin-bottom:18px;}
+.cfg-summary-list{list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:18px; max-height:220px; overflow-y:auto;}
+.cfg-summary-list li{font-size:0.78rem; color:var(--text); display:flex; justify-content:space-between; gap:10px;}
+.cfg-summary-list li.cfg-summary-empty{color:var(--muted);}
+.cfg-discount{display:flex; gap:8px; margin-bottom:8px;}
+.cfg-discount input{flex:1; min-height:38px; border-radius:var(--radius); border:1px solid var(--line); padding:8px 10px; background:var(--panel); color:var(--text); font-size:0.78rem;}
+.cfg-discount input:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
+.cfg-discount .btn{padding:8px 16px; font-size:0.64rem; flex-shrink:0;}
+.cfg-discount-msg{font-size:0.72rem; margin-bottom:14px; min-height:1em;}
+.cfg-discount-msg.is-success{color:#16a34a;}
+.cfg-discount-msg.is-error{color:#dc2626;}
+.cfg-summary-note{font-size:0.74rem; color:var(--muted); margin-bottom:18px; line-height:1.5;}
+.cfg-summary-btn{width:100%; justify-content:center;}
+@media (max-width:900px){ .cfg-layout{grid-template-columns:1fr;} .cfg-summary{position:static;} }
+@media (max-width:640px){ .cfg-item-desc{padding-left:0;} .cfg-summary{padding:22px 20px;} }
 </style>
 </head>
 <body>
@@ -357,6 +401,82 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 </div>
 </section>
 
+<section id="configurator">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">For first-timers</div>
+<h2>What actually goes into a website?</h2>
+</div>
+<p class="sec-note">No jargon — tick the things that sound useful and see what they actually do, and what they'd roughly cost. Most projects start simple and grow into one of the packages as the business grows.</p>
+</div>
+<div class="cfg-layout">
+<div class="cfg-options">
+<div class="cfg-start">
+<div class="cfg-start-label">Everyone starts here</div>
+<div class="cfg-start-name">Domain &amp; hosting, set up for you</div>
+<p class="cfg-start-desc">Your own domain name and a proper place for the site to live online — sorted before anything else is built.</p>
+<div class="cfg-start-price mono">£150</div>
+</div>
+<div class="cfg-start cfg-start-pages">
+<div class="cfg-start-label">How many pages?</div>
+<div class="cfg-start-name">Pages — first 3 for £150, then £40 each</div>
+<p class="cfg-start-desc">Most small sites only need three pages — Home, About, Contact, or similar — and that's covered by one flat fee. Need more? Every page after that is £40.</p>
+<div class="cfg-stepper">
+<button type="button" class="cfg-stepper-btn" id="cfgPageMinus" aria-label="Fewer pages">−</button>
+<span class="cfg-stepper-count mono" id="cfgPageCount">1</span>
+<button type="button" class="cfg-stepper-btn" id="cfgPagePlus" aria-label="More pages">+</button>
+<span class="cfg-stepper-price mono" id="cfgPagePrice">£150</span>
+</div>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Look more established</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="A proper logo &amp; brand colours"><span class="cfg-item-name">A proper logo &amp; brand colours</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">A real logo plus a consistent set of colours and fonts, so your site — and everything else — looks like it belongs to one business.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Social media &amp; print graphics"><span class="cfg-item-name">Social media &amp; print graphics</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Matching graphics sized for Instagram and Facebook, plus a printable flyer, so the branding looks the same wherever people see it.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="120" data-label="Social media accounts, set up for you"><span class="cfg-item-name">Social media accounts, set up for you</span><span class="cfg-item-price mono">+£120</span></div><p class="cfg-item-desc">I create and properly set up your Instagram and Facebook business profiles, so you're not figuring out the business-account maze yourself.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Make it feel like yours</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="100" data-label="Light / dark mode toggle"><span class="cfg-item-name">Light / dark mode toggle</span><span class="cfg-item-price mono">+£100</span></div><p class="cfg-item-desc">Visitors can flip between a light and dark look, whichever's easier on their eyes — especially browsing at night.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Background music"><span class="cfg-item-name">Background music</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A quiet soundtrack that plays as people browse — a nice touch for some brands, not the right fit for every one.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Seasonal themes"><span class="cfg-item-name">Seasonal themes</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">Small festive touches that switch on automatically — a bit of Christmas in December, then back to normal in January.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Let customers pay or book online</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Take payments online"><span class="cfg-item-name">Take payments online</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Customers pay you by card straight through the site, instead of bank transfers or cash in hand — handled securely through Stripe.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="900" data-label="Online booking"><span class="cfg-item-name">Online booking</span><span class="cfg-item-price mono">+£900</span></div><p class="cfg-item-desc">People see your availability and book a slot themselves, instead of messaging back and forth to arrange a time.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="Deposits &amp; part-payments"><span class="cfg-item-name">Deposits &amp; part-payments</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">Let someone secure a booking with a deposit now, with the rest collected automatically closer to the date.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Save yourself admin time</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="A private admin area"><span class="cfg-item-name">A private admin area</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">Somewhere just for you to see bookings, enquiries and orders in one place, instead of digging through your inbox.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="250" data-label="Automatic emails"><span class="cfg-item-name">Automatic emails</span><span class="cfg-item-price mono">+£250</span></div><p class="cfg-item-desc">Confirmations, reminders and thank-yous sent on their own, so you're not typing the same message every time.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Calendar sync"><span class="cfg-item-name">Calendar sync</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Bookings appear straight in your Google or Outlook calendar — nothing to copy over by hand.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Instant phone notifications"><span class="cfg-item-name">Instant phone notifications</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">A message to your phone the moment someone books or enquires, with a simple chatbot handling the basics for you.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep it running</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="25" data-recurring="true" data-label="Ongoing care"><span class="cfg-item-name">Ongoing care</span><span class="cfg-item-price mono">+£25/mo</span></div><p class="cfg-item-desc">Hosting, security updates and backups taken care of, plus a few small edits each month, so the site doesn't just go stale.</p></label>
+</div>
+</div>
+<div class="cfg-summary">
+<div class="cfg-summary-label">Estimated build</div>
+<div class="cfg-summary-total mono" id="cfgTotal">From £300</div>
+<div class="cfg-summary-tier" id="cfgTier">Just the basics — Launch package starts at £750</div>
+<div class="cfg-summary-recurring mono" id="cfgRecurring" style="display:none;"></div>
+<ul class="cfg-summary-list" id="cfgList"></ul>
+<div class="cfg-discount">
+<input type="text" id="cfgCode" class="mono" placeholder="Discount code" autocomplete="off" />
+<button type="button" class="btn btn-ghost" id="cfgCodeApply">Apply</button>
+</div>
+<p class="cfg-discount-msg" id="cfgCodeMsg"></p>
+<p class="cfg-summary-note">Illustrative only, based on past builds — every project is scoped and quoted properly on a build call before anything starts.</p>
+<a href="index.html#contact" class="btn btn-primary cfg-summary-btn">Talk through this build →</a>
+</div>
+</div>
+</div>
+</section>
+
 <p class="sec-note" style="max-width:600px; margin:0 auto; padding:0 22px 40px; text-align:center;">The public-facing front end behind PsyTectrics, Elegant Hires, UMNi Systems, and Rev-Restore.</p>
 
 <section id="starting-points">
@@ -440,6 +560,167 @@ updateThemeUI();
 }
 });
 }
+</script>
+<script>
+/* Build-your-own configurator — recalculates the running total from the
+domain/hosting foundation, the page-count stepper, whichever add-on
+checkboxes are ticked, and any discount code applied. Add a new checkbox
+item by giving it a data-price (pounds), a data-label, and, for a
+recurring cost, data-recurring="true" — nothing else needs wiring up. */
+(function(){
+  var root = document.getElementById('configurator');
+  if(!root) return;
+  var totalEl = document.getElementById('cfgTotal');
+  var tierEl = document.getElementById('cfgTier');
+  var recurringEl = document.getElementById('cfgRecurring');
+  var listEl = document.getElementById('cfgList');
+  var pageCountEl = document.getElementById('cfgPageCount');
+  var pagePriceEl = document.getElementById('cfgPagePrice');
+  var pageMinusBtn = document.getElementById('cfgPageMinus');
+  var pagePlusBtn = document.getElementById('cfgPagePlus');
+  var codeInput = document.getElementById('cfgCode');
+  var codeApplyBtn = document.getElementById('cfgCodeApply');
+  var codeMsgEl = document.getElementById('cfgCodeMsg');
+  if(!totalEl || !listEl) return;
+
+  var FOUNDATION_PRICE = 150;
+  var FOUNDATION_LABEL = 'Domain & hosting, set up for you';
+  var PAGES_INCLUDED = 3;
+  var PAGES_INCLUDED_PRICE = 150;
+  var EXTRA_PAGE_PRICE = 40;
+  var MIN_PAGES = 1;
+  var MAX_PAGES = 20;
+  var pageCount = MIN_PAGES;
+
+  var DISCOUNT_CODES = { 'RLFAMFFS': 0.8, 'RLFRNFFS': 0.5, 'RLBEGFFS': 0.25 };
+  var activeDiscount = 0;
+  var activeCode = '';
+
+  function fmt(n){ return '£' + Math.round(n).toLocaleString('en-GB'); }
+
+  function pagesCost(n){
+    return n <= PAGES_INCLUDED ? PAGES_INCLUDED_PRICE : PAGES_INCLUDED_PRICE + (n - PAGES_INCLUDED) * EXTRA_PAGE_PRICE;
+  }
+
+  function pagesLabel(n){
+    return n <= PAGES_INCLUDED
+      ? n + (n === 1 ? ' page (3 included)' : ' pages (3 included)')
+      : n + ' pages (3 included + ' + (n - PAGES_INCLUDED) + ' extra @ £' + EXTRA_PAGE_PRICE + ' each)';
+  }
+
+  function tierFor(total){
+    if(total < 750) return 'Just the basics — Launch package starts at £750';
+    if(total < 1500) return 'Launch package territory — from £750';
+    if(total < 2500) return 'Brand package territory — from £1,500';
+    return 'Build package territory — from £2,500';
+  }
+
+  function recalc(){
+    var pagesPrice = pagesCost(pageCount);
+    var oneOff = FOUNDATION_PRICE + pagesPrice;
+    var items = [
+      { label: FOUNDATION_LABEL, text: fmt(FOUNDATION_PRICE) },
+      { label: pagesLabel(pageCount), text: fmt(pagesPrice) }
+    ];
+
+    var recurring = 0;
+    root.querySelectorAll('.cfg-item input[type="checkbox"]:checked').forEach(function(cb){
+      var price = parseInt(cb.getAttribute('data-price'), 10) || 0;
+      var label = cb.getAttribute('data-label') || '';
+      var isRecurring = cb.getAttribute('data-recurring') === 'true';
+      if(isRecurring){
+        recurring += price;
+        items.push({ label: label, text: '+' + fmt(price) + '/mo' });
+      } else {
+        oneOff += price;
+        items.push({ label: label, text: '+' + fmt(price) });
+      }
+    });
+
+    var discounted = oneOff;
+    if(activeDiscount > 0){
+      discounted = oneOff * (1 - activeDiscount);
+      items.push({ label: 'Code ' + activeCode + ' (−' + Math.round(activeDiscount * 100) + '% on the build)', text: '−' + fmt(oneOff - discounted) });
+    }
+
+    totalEl.textContent = 'From ' + fmt(discounted);
+    if(tierEl) tierEl.textContent = tierFor(oneOff);
+
+    if(recurring > 0){
+      recurringEl.style.display = 'block';
+      recurringEl.textContent = '+ ' + fmt(recurring) + '/month ongoing';
+    } else {
+      recurringEl.style.display = 'none';
+      recurringEl.textContent = '';
+    }
+
+    listEl.innerHTML = '';
+    items.forEach(function(it){
+      var li = document.createElement('li');
+      var name = document.createElement('span');
+      name.textContent = it.label;
+      var price = document.createElement('span');
+      price.className = 'mono';
+      price.textContent = it.text;
+      li.appendChild(name);
+      li.appendChild(price);
+      listEl.appendChild(li);
+    });
+  }
+
+  function updatePageDisplay(){
+    if(pageCountEl) pageCountEl.textContent = pageCount;
+    if(pagePriceEl) pagePriceEl.textContent = fmt(pagesCost(pageCount));
+  }
+
+  if(pageMinusBtn){
+    pageMinusBtn.addEventListener('click', function(){
+      if(pageCount > MIN_PAGES){ pageCount -= 1; updatePageDisplay(); recalc(); }
+    });
+  }
+  if(pagePlusBtn){
+    pagePlusBtn.addEventListener('click', function(){
+      if(pageCount < MAX_PAGES){ pageCount += 1; updatePageDisplay(); recalc(); }
+    });
+  }
+
+  root.addEventListener('change', function(e){
+    var t = e.target;
+    if(t && t.tagName === 'INPUT' && t.type === 'checkbox'){
+      recalc();
+    }
+  });
+
+  function applyCode(){
+    if(!codeInput) return;
+    var raw = codeInput.value.trim().toUpperCase();
+    if(!raw){
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = ''; codeMsgEl.className = 'cfg-discount-msg'; }
+      recalc();
+      return;
+    }
+    if(DISCOUNT_CODES.hasOwnProperty(raw)){
+      activeDiscount = DISCOUNT_CODES[raw];
+      activeCode = raw;
+      if(codeMsgEl){ codeMsgEl.textContent = 'Code applied — ' + Math.round(activeDiscount * 100) + '% off the build.'; codeMsgEl.className = 'cfg-discount-msg is-success'; }
+    } else {
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = 'That code isn’t recognised.'; codeMsgEl.className = 'cfg-discount-msg is-error'; }
+    }
+    recalc();
+  }
+
+  if(codeApplyBtn){ codeApplyBtn.addEventListener('click', applyCode); }
+  if(codeInput){
+    codeInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); applyCode(); }
+    });
+  }
+
+  updatePageDisplay();
+  recalc();
+})();
 </script>
 </body>
 </html>
