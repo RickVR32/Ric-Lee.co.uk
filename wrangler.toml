@@ -2,12 +2,5 @@ name = "ric-lee-basket-relay"
 main = "worker.js"
 compatibility_date = "2026-09-01"
 
-# TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID and HUB_SECRET are set as secrets
-# (never in this file) — see SETUP.md for the exact commands.
-
-# Pending-quotes queue: every basket submission is held here until the Ric
-# Lee Hub pulls it in (GET /pending) and acks it (POST /ack). Create the KV
-# namespace first (see SETUP.md), then paste its id below.
-[[kv_namespaces]]
-binding = "PENDING_QUEUE"
-id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
+# TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set as secrets (never in this
+# file) — see SETUP.md for the exact commands.
