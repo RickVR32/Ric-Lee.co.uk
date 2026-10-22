@@ -130,6 +130,14 @@ footer{padding:36px 0;}
 .foot-links{display:flex; gap:20px; list-style:none;}
 .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
 .foot-links a:hover{color:var(--accent);}
+.payments-accepted{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.payments-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+.payment-marks{display:flex; flex-wrap:wrap; gap:8px;}
+.pay-mark{display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border-radius:var(--radius); border:1px solid var(--line); background:var(--panel); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.04em; color:var(--muted);}
+.pay-mc-dots{display:inline-flex; margin-right:2px;}
+.pay-mc-dots span{width:8px; height:8px; border-radius:50%; display:inline-block;}
+.pay-mc-dots span:first-child{background:#eb001b; margin-right:-3px;}
+.pay-mc-dots span:last-child{background:#f79e1b; opacity:0.88;}
 
 .breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;}
 .breadcrumb a{color:var(--muted); text-decoration:none;}
@@ -264,13 +272,25 @@ footer{padding:36px 0;}
 </main>
 
 <footer>
-<div class="container foot-inner">
+<div class="container">
+<div class="foot-inner">
 <span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
 <ul class="foot-links">
 <li><a href="index.html#capabilities">Capabilities</a></li>
 <li><a href="index.html#work">Work</a></li>
 <li><a href="privacy.html">Privacy &amp; Terms</a></li>
 </ul>
+</div>
+<div class="payments-accepted">
+<span class="payments-label">Payments secured by Stripe</span>
+<div class="payment-marks" aria-hidden="true">
+<span class="pay-mark">VISA</span>
+<span class="pay-mark"><span class="pay-mc-dots"><span></span><span></span></span>MASTERCARD</span>
+<span class="pay-mark">AMEX</span>
+<span class="pay-mark">APPLE PAY</span>
+<span class="pay-mark">GOOGLE PAY</span>
+</div>
+</div>
 </div>
 </footer>
 

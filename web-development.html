@@ -212,6 +212,14 @@ footer{padding:36px 0;}
 .foot-links{display:flex; gap:20px; list-style:none;}
 .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
 .foot-links a:hover{color:var(--accent);}
+.payments-accepted{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.payments-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+.payment-marks{display:flex; flex-wrap:wrap; gap:8px;}
+.pay-mark{display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border-radius:var(--radius); border:1px solid var(--line); background:var(--panel); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.04em; color:var(--muted);}
+.pay-mc-dots{display:inline-flex; margin-right:2px;}
+.pay-mc-dots span{width:8px; height:8px; border-radius:50%; display:inline-block;}
+.pay-mc-dots span:first-child{background:#eb001b; margin-right:-3px;}
+.pay-mc-dots span:last-child{background:#f79e1b; opacity:0.88;}
 
 @media (max-width:900px){
 .cap-grid{grid-template-columns:1fr 1fr;}
@@ -301,6 +309,17 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 .cfg-item.is-disabled .cfg-item-top{cursor:not-allowed;}
 .cfg-summary-note{font-size:0.74rem; color:var(--muted); margin-bottom:18px; line-height:1.5;}
 .cfg-summary-btn{width:100%; justify-content:center;}
+.cfg-checkout-form{display:flex; flex-direction:column; gap:12px; margin-top:2px;}
+.cfg-checkout-form textarea{min-height:68px;}
+.cfg-checkout-row{display:flex; gap:10px; align-items:center;}
+.cfg-checkout-row .btn{flex:1; justify-content:center;}
+.cfg-checkout-row .btn-ghost{flex:0 0 auto; border:1px solid var(--line);}
+.cfg-checkout-status{font-size:0.76rem; min-height:1em; margin:0; color:var(--muted);}
+.cfg-checkout-status.is-error{color:#dc2626;}
+.cfg-checkout-status a{color:var(--accent);}
+.cfg-checkout-success{font-size:0.88rem; line-height:1.5; padding:6px 0 2px;}
+.cfg-hp{position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;}
+#cfgCheckoutForm[hidden],#cfgCheckoutOpen[hidden]{display:none;}
 @media (max-width:900px){ .cfg-layout{grid-template-columns:1fr;} .cfg-summary{position:static;} }
 @media (max-width:640px){ .cfg-item-desc{padding-left:0;} .cfg-summary{padding:22px 20px;} }
 </style>
@@ -503,7 +522,29 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 </div>
 <p class="cfg-discount-msg" id="cfgCodeMsg"></p>
 <p class="cfg-summary-note">Illustrative only, based on past builds — every project is scoped and quoted properly on a build call before anything starts.</p>
-<a href="index.html#contact" class="btn btn-primary cfg-summary-btn">Talk through this build →</a>
+<div class="cfg-checkout" id="cfgCheckout">
+<button type="button" class="btn btn-primary cfg-summary-btn" id="cfgCheckoutOpen">Request this quote →</button>
+<form class="cfg-checkout-form" id="cfgCheckoutForm" hidden>
+<div class="field">
+<label for="cfgName">Name</label>
+<input id="cfgName" name="name" type="text" required />
+</div>
+<div class="field">
+<label for="cfgContact">Email or phone</label>
+<input id="cfgContact" name="contact" type="text" required />
+</div>
+<div class="field">
+<label for="cfgNotes">Anything else? (optional)</label>
+<textarea id="cfgNotes" name="notes" placeholder="Timeline, extra detail, questions…"></textarea>
+</div>
+<input type="text" name="company" id="cfgHoneypot" class="cfg-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+<div class="cfg-checkout-row">
+<button type="submit" class="btn btn-primary" id="cfgCheckoutSubmit">Send my basket</button>
+<button type="button" class="btn btn-ghost" id="cfgCheckoutCancel">Cancel</button>
+</div>
+<p class="cfg-checkout-status" id="cfgCheckoutStatus" role="status"></p>
+</form>
+</div>
 </div>
 </div>
 </div>
@@ -557,7 +598,8 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 </main>
 
 <footer>
-<div class="container foot-inner">
+<div class="container">
+<div class="foot-inner">
 <span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved</span>
 <ul class="foot-links">
 <li><a href="index.html#packages">Packages</a></li>
@@ -565,6 +607,17 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 <li><a href="index.html#contact">Contact</a></li>
 <li><a href="privacy.html">Privacy &amp; Terms</a></li>
 </ul>
+</div>
+<div class="payments-accepted">
+<span class="payments-label">Payments secured by Stripe</span>
+<div class="payment-marks" aria-hidden="true">
+<span class="pay-mark">VISA</span>
+<span class="pay-mark"><span class="pay-mc-dots"><span></span><span></span></span>MASTERCARD</span>
+<span class="pay-mark">AMEX</span>
+<span class="pay-mark">APPLE PAY</span>
+<span class="pay-mark">GOOGLE PAY</span>
+</div>
+</div>
 </div>
 </footer>
 
@@ -627,6 +680,12 @@ recurring cost, data-recurring="true" — nothing else needs wiring up. */
   var DISCOUNT_CODES = { 'RLFAMFFS': 0.8, 'RLFRNFFS': 0.5, 'RLBEGFFS': 0.25 };
   var activeDiscount = 0;
   var activeCode = '';
+
+  // Swap this for the real Cloudflare Worker URL once it's deployed — see
+  // /basket/SETUP.md. Until then the checkout form will show a friendly
+  // "couldn't send that" error rather than fail silently.
+  var BASKET_ENDPOINT = 'https://REPLACE-ME.workers.dev';
+  var lastSummary = { items: [], oneOff: 0, discounted: 0, recurring: 0, tier: '', discountCode: '' };
 
   function fmt(n){ return '£' + Math.round(n).toLocaleString('en-GB'); }
 
@@ -698,6 +757,15 @@ recurring cost, data-recurring="true" — nothing else needs wiring up. */
       li.appendChild(price);
       listEl.appendChild(li);
     });
+
+    lastSummary = {
+      items: items,
+      oneOff: oneOff,
+      discounted: discounted,
+      recurring: recurring,
+      tier: tierEl ? tierEl.textContent : '',
+      discountCode: activeCode
+    };
   }
 
   function updatePageDisplay(){
@@ -768,6 +836,81 @@ recurring cost, data-recurring="true" — nothing else needs wiring up. */
   if(codeInput){
     codeInput.addEventListener('keydown', function(e){
       if(e.key === 'Enter'){ e.preventDefault(); applyCode(); }
+    });
+  }
+
+  // Basket checkout — collects contact details and sends the current
+  // configurator selection to the Telegram relay worker (see /basket).
+  var checkoutOpenBtn = document.getElementById('cfgCheckoutOpen');
+  var checkoutForm = document.getElementById('cfgCheckoutForm');
+  var checkoutCancelBtn = document.getElementById('cfgCheckoutCancel');
+  var checkoutStatusEl = document.getElementById('cfgCheckoutStatus');
+  var checkoutSubmitBtn = document.getElementById('cfgCheckoutSubmit');
+  var checkoutNameInput = document.getElementById('cfgName');
+  var checkoutContactInput = document.getElementById('cfgContact');
+  var checkoutNotesInput = document.getElementById('cfgNotes');
+  var checkoutHoneypot = document.getElementById('cfgHoneypot');
+
+  if(checkoutOpenBtn && checkoutForm){
+    checkoutOpenBtn.addEventListener('click', function(){
+      checkoutForm.hidden = false;
+      checkoutOpenBtn.hidden = true;
+      if(checkoutNameInput) checkoutNameInput.focus();
+    });
+  }
+
+  if(checkoutCancelBtn){
+    checkoutCancelBtn.addEventListener('click', function(){
+      checkoutForm.hidden = true;
+      checkoutOpenBtn.hidden = false;
+      if(checkoutStatusEl){ checkoutStatusEl.textContent = ''; checkoutStatusEl.className = 'cfg-checkout-status'; }
+    });
+  }
+
+  if(checkoutForm){
+    checkoutForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(checkoutHoneypot && checkoutHoneypot.value) return;
+
+      var name = checkoutNameInput ? checkoutNameInput.value.trim() : '';
+      var contact = checkoutContactInput ? checkoutContactInput.value.trim() : '';
+      var notes = checkoutNotesInput ? checkoutNotesInput.value.trim() : '';
+      if(!name || !contact) return;
+
+      var payload = {
+        source: 'web-development',
+        name: name,
+        contact: contact,
+        notes: notes,
+        items: lastSummary.items.map(function(it){ return { label: it.label, text: it.text }; }),
+        oneOff: lastSummary.oneOff,
+        discounted: lastSummary.discounted,
+        recurring: lastSummary.recurring,
+        tier: lastSummary.tier,
+        discountCode: lastSummary.discountCode,
+        page: location.href,
+        submittedAt: new Date().toISOString()
+      };
+
+      if(checkoutSubmitBtn) checkoutSubmitBtn.disabled = true;
+      if(checkoutStatusEl){ checkoutStatusEl.textContent = 'Sending…'; checkoutStatusEl.className = 'cfg-checkout-status'; }
+
+      fetch(BASKET_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(res){
+        if(!res.ok) throw new Error('bad status');
+        return res.json();
+      }).then(function(){
+        checkoutForm.innerHTML = '<p class="cfg-checkout-success">Got it — I’ll come back to you personally, usually within a few hours.</p>';
+      }).catch(function(){
+        if(checkoutSubmitBtn) checkoutSubmitBtn.disabled = false;
+        if(checkoutStatusEl){
+          checkoutStatusEl.innerHTML = 'Couldn’t send that — try again, or use the <a href="index.html#contact">contact form</a> instead.';
+          checkoutStatusEl.className = 'cfg-checkout-status is-error';
+        }
+      });
     });
   }
 
