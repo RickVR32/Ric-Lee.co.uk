@@ -1,0 +1,622 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Configurator — Ric Lee</title> <meta name="description" content="Build your own website or app quote with Ric Lee — tick the features you need and see a real-time estimate, then send it straight across." /> <link rel="icon" href="favicon.ico" sizes="any"> <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32"> <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16"> <link rel="apple-touch-icon" href="apple-touch-icon.png"> <link rel="manifest" href="site.webmanifest"> <meta name="theme-color" content="#2c3a5e"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"> <script> (function(){ var stored = localStorage.getItem('rl-theme'); var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); if (dark) document.documentElement.classList.add('dark'); })(); </script> <style> :root{ --bg:#f7f4ee; --bg-soft:#ffffff; --panel:rgba(0,0,0,0.03); --text:#17160f; --muted:#6b6a60; --accent:#2c3a5e; --accent-soft:rgba(44,58,94,0.07); --accent-line:rgba(44,58,94,0.28); --line:rgba(0,0,0,0.1); --radius:3px; --accent-2:#4d6aa8; --shadow-sm:0 2px 10px rgba(23,22,15,0.05); --shadow-md:0 16px 40px rgba(23,22,15,0.09); --accent-glow:rgba(44,58,94,0.22); --accent-glow-strong:rgba(44,58,94,0.28); color-scheme: light; } html.dark{ --bg:#141310; --bg-soft:#1c1b17; --panel:rgba(255,255,255,0.04); --text:#f2efe6; --muted:#9a978c; --accent:#7f9bd6; --accent-soft:rgba(127,155,214,0.1); --accent-line:rgba(127,155,214,0.32); --line:rgba(255,255,255,0.1); --accent-2:#a9c0e8; --shadow-sm:0 2px 12px rgba(0,0,0,0.3); --shadow-md:0 18px 44px rgba(0,0,0,0.4); --accent-glow:rgba(127,155,214,0.3); --accent-glow-strong:rgba(127,155,214,0.4); color-scheme: dark; } *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;} html{scroll-behavior:smooth; scrollbar-gutter:stable;} body{ font-family:'IBM Plex Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.65; min-height:100vh; transition:background 0.3s, color 0.3s; } .container{width:min(1140px, calc(100% - 44px)); margin:0 auto;} a{color:inherit;} .mono{font-family:'IBM Plex Mono',monospace;}  /* NAV */ header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;} .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;} .wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;} .wordmark img{height:46px; width:auto; display:block;} .wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;} .logo-dark{display:block !important;} .logo-light{display:none !important;} html.dark .logo-dark{display:none !important;} html.dark .logo-light{display:block !important;} .nav-links{display:flex; gap:28px; list-style:none;} .nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;} .nav-links a:hover{color:var(--accent);} .nav-right{display:flex; align-items:center; gap:18px;} .theme-toggle{width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; flex-shrink:0;} .theme-toggle:hover{color:var(--text); border-color:var(--accent);} .theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;} .theme-icon-sun{display:none;} .theme-icon-moon{display:block;} html.dark .theme-icon-sun{display:block;} html.dark .theme-icon-moon{display:none;}  /* HERO */ .hero{padding:100px 0 84px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;} .hero::before{content:''; position:absolute; top:-140px; right:-160px; width:460px; height:460px; background:radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); pointer-events:none; z-index:0;} .hero .container{position:relative; z-index:1;} .hero-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px;} .hero-eyebrow::before{content:''; width:22px; height:1px; background:var(--accent);} h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2.1rem, 5vw, 3.5rem); line-height:1.12; letter-spacing:-0.01em; max-width:760px; margin-bottom:26px;} h1 em{font-style:italic; color:var(--accent);} .hero-desc{color:var(--muted); font-size:1rem; max-width:520px; margin-bottom:38px;} .hero-cta{display:flex; gap:14px; flex-wrap:wrap;} .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;} .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border-color:var(--accent); box-shadow:0 6px 18px var(--accent-glow);} .btn-primary:hover{opacity:0.92; transform:translateY(-1px); box-shadow:0 10px 24px var(--accent-glow-strong);} .btn-ghost{color:var(--text); background:transparent;} .btn-ghost:hover{border-color:var(--accent); color:var(--accent);} .copy-specs-btn{display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:2px 0; font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); cursor:pointer; opacity:0.6; transition:opacity 0.2s, color 0.2s;} .copy-specs-btn:hover{opacity:1; color:var(--accent);} .work-spec-bar{position:relative; display:flow-root;} .copy-one-btn{position:absolute; top:22px; right:0; height:17px; padding:0; opacity:0.75;} .copy-one-btn:focus-visible{opacity:1; outline:1px solid var(--accent-line); outline-offset:3px;} .copy-specs-btn svg{width:12px; height:12px; flex-shrink:0;}  /* SCALE STRIP */ .scale-strip{border-bottom:1px solid var(--line); background:var(--bg-soft);} .scale-grid{display:grid; grid-template-columns:repeat(4,1fr); } .scale-item{padding:34px 26px; border-left:1px solid var(--line);} .scale-item:first-child{border-left:none;} .scale-num{font-family:'Fraunces',serif; font-weight:600; font-size:2.1rem; letter-spacing:-0.01em; color:var(--accent); line-height:1;} .scale-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:10px;} @media (max-width:900px){ .scale-grid{grid-template-columns:1fr 1fr;} .scale-item:nth-child(3){border-left:none;} } @media (max-width:640px){ .scale-grid{grid-template-columns:1fr 1fr;} }  /* PACKAGES */ .pkg-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;} .pkg-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; position:relative; box-shadow:var(--shadow-sm); transition:transform 0.25s ease, box-shadow 0.25s ease;} .pkg-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md);} .pkg-card.featured{border-color:var(--accent-line); box-shadow:var(--shadow-md);} .pkg-card.featured::before{content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:16px 16px 0 0; background:linear-gradient(90deg, var(--accent), var(--accent-2));} .pkg-featured-tag{position:absolute; top:-12px; left:28px; background:var(--accent); color:var(--bg-soft); font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:999px;} .pkg-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; margin-bottom:6px;} .pkg-for{font-size:0.8rem; color:var(--muted); margin-bottom:18px; min-height:40px;} .pkg-price{font-family:'IBM Plex Mono',monospace; font-size:1.5rem; color:var(--accent); margin-bottom:6px;} .pkg-price-note{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;} .pkg-list{list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex:1;} .pkg-list li{font-size:0.85rem; color:var(--text); display:flex; gap:10px; align-items:flex-start;} .pkg-list li::before{content:'—'; color:var(--accent); flex-shrink:0;} .pkg-btn{align-self:flex-start;} .care-strip{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; box-shadow:var(--shadow-sm);} .care-strip-text h4{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:6px;} .care-strip-text p{font-size:0.82rem; color:var(--muted); max-width:460px;} .care-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent); white-space:nowrap;} .care-price span{display:block; font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;} @media (max-width:900px){ .pkg-grid{grid-template-columns:1fr;} } /* SECTION SHELL */ section{padding:76px 0; border-bottom:1px solid var(--line);} .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;} .sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;} h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:-0.005em;} .sec-note{color:var(--muted); font-size:0.85rem; max-width:340px; font-family:'IBM Plex Mono',monospace; line-height:1.7;}  /* CAPABILITY INDEX */ .cap-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);} .cap-card{background:var(--bg); display:flex; flex-direction:column; position:relative; transition:background 0.2s, transform 0.25s ease, box-shadow 0.25s ease;} .cap-card:hover{background:var(--bg-soft); transform:translateY(-3px); box-shadow:var(--shadow-md); z-index:1;} .cap-tile{width:100%; height:170px; position:relative; overflow:hidden; background:linear-gradient(135deg, var(--accent-soft), transparent 65%); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center;} .cap-tile::before{content:attr(data-code); position:absolute; right:-6px; bottom:-38px; font-family:'Fraunces',serif; font-weight:600; font-size:7.5rem; line-height:1; color:var(--accent); opacity:0.09; pointer-events:none; transition:opacity 0.3s ease;} .cap-card:hover .cap-tile::before{opacity:0.16;} .cap-tile-icon{width:46px; height:46px; color:var(--accent); position:relative; z-index:1;} .cap-tile-icon svg{width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;} .cap-body{padding:26px 26px 28px;} .cap-code{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:14px; display:block;} .cap-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:10px;} .cap-card p{font-size:0.83rem; color:var(--muted); line-height:1.7;}  /* WORK */ .work-grid{display:flex; flex-direction:column;} .work-group-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); padding:22px 0 6px; margin-top:4px;} .work-group-label:first-child{padding-top:0; margin-top:0;} .work-row{padding:26px 22px; margin:0 -22px; border-top:1px solid var(--line); border-radius:10px; transition:background 0.2s;} .work-row:hover{background:var(--panel);} .work-row:last-child{border-bottom:1px solid var(--line);} .work-thumb-frame{padding:6px; border-radius:14px; background:var(--panel); border:1px solid var(--line); box-shadow:var(--shadow-md); display:block;} html.dark .work-thumb-frame{background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.16); box-shadow:0 20px 50px rgba(0,0,0,0.55);} .work-thumb{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; border-radius:9px;} .work-row-main{display:grid; grid-template-columns:1fr 2fr auto; gap:24px; align-items:center;} .work-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem;} .work-role{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; display:block;} .work-desc{font-size:0.85rem; color:var(--muted); max-width:440px;} .work-link{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--accent-line); padding-bottom:3px; white-space:nowrap; transition:color 0.2s;} .work-link:hover{color:var(--accent);} .work-details{margin-top:16px;} .work-details summary{cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); user-select:none;} .work-details summary::-webkit-details-marker{display:none;} .work-details summary::before{content:'+'; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border:1px solid var(--accent-line); border-radius:4px; font-size:0.8rem; line-height:1; transition:transform 0.28s cubic-bezier(.2,.8,.2,1);} .work-details[open] summary::before{content:'+'; transform:rotate(135deg);} .work-details.is-closing summary::before{transform:rotate(0deg);} .work-details{overflow:hidden;} .work-spec-reveal{margin-top:16px; display:grid; grid-template-columns:1fr minmax(220px,320px); gap:28px; align-items:start;} .work-spec-panel{order:1;} .work-thumb-frame{order:2;} @media (max-width:760px){ .work-spec-reveal{grid-template-columns:1fr;} .work-thumb-frame{order:1;} .work-spec-panel{order:2;} } .work-details[open] .work-thumb-frame{animation:specRevealFade 0.3s ease both; animation-delay:0.12s;} .work-details[open] .work-spec-panel{animation:specRevealFade 0.3s ease both; animation-delay:0.16s;} @keyframes specRevealFade{from{opacity:0;} to{opacity:1;}} @media (prefers-reduced-motion:reduce){ .work-details[open] .work-thumb, .work-details[open] .work-spec-panel{animation:none;} .work-details summary::before{transition:none;} } .work-spec-panel{padding:20px 22px; background:var(--panel); border-radius:10px;} .work-spec-stack{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;} .work-spec-list{list-style:none; display:flex; flex-direction:column; gap:9px;} .work-spec-list li{font-size:0.82rem; color:var(--text); padding-left:16px; position:relative; line-height:1.6;} .work-spec-list li::before{content:'—'; position:absolute; left:0; color:var(--accent);} .work-spec-value{margin-top:16px; padding-top:16px; border-top:1px solid var(--line); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted); display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;} .work-spec-value strong{color:var(--accent); font-size:0.92rem;}  /* ABOUT */ .about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:start;} .about-mark{width:100%; max-width:280px; opacity:0.12; display:block;} html.dark .about-mark{opacity:0.15;} .about-body p{font-size:0.94rem; color:var(--text); margin-bottom:16px; max-width:520px;} .about-body p.muted{color:var(--muted);} .about-facts{list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:8px;} .about-facts li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);} .about-facts strong{color:var(--text); font-weight:500;}  /* CONTACT */ .contact-layout{display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start;} .contact-info p{color:var(--muted); font-size:0.88rem; margin-bottom:22px; max-width:340px;} .contact-list{list-style:none; display:flex; flex-direction:column; gap:9px;} .contact-list li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);} .contact-list a{color:var(--accent); text-decoration:none;} .form-card{background:var(--bg-soft); border:1px solid var(--line); padding:34px; border-radius:16px; box-shadow:var(--shadow-sm);} .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;} .field-full{grid-column:1/-1;} .field{display:flex; flex-direction:column; gap:6px;} label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--muted);} input,select,textarea{width:100%; min-height:46px; border-radius:var(--radius); border:1px solid var(--line); padding:11px 13px; background:var(--panel); color:var(--text); font-family:'IBM Plex Sans',sans-serif; font-size:0.86rem; transition:border-color 0.2s;} input:focus,select:focus,textarea:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);} textarea{min-height:120px; resize:vertical;} .submit-row{grid-column:1/-1; display:flex; gap:14px; align-items:center; margin-top:4px;} .submit-note{font-size:0.66rem; color:var(--muted); font-family:'IBM Plex Mono',monospace;} .form-status{grid-column:1/-1; display:none; padding:12px 16px; border-radius:var(--radius); font-size:0.8rem;} .form-status.is-visible{display:block;} .form-status.is-success{background:rgba(34,197,94,0.12); color:#16a34a;} .form-status.is-error{background:rgba(239,68,68,0.12); color:#dc2626;} button{font-family:inherit; cursor:pointer;}  /* FOOTER */ footer{padding:36px 0;} .foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;} .foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;} .foot-links{display:flex; gap:20px; list-style:none;} .foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;} .foot-links a:hover{color:var(--accent);} .payments-accepted{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:12px;} .payments-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap;} .payment-marks{display:flex; flex-wrap:wrap; align-items:center; gap:8px;} .pay-mark{display:inline-flex; align-items:center; justify-content:center; width:44px; height:28px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 1px var(--line); background:#fff; flex-shrink:0;} .pay-mark svg{display:block; width:100%; height:100%;}  /* NEW SECTIONS */ .lead-block{display:flex; flex-direction:column; gap:14px; max-width:700px;} .lead-block p{font-size:0.95rem; color:var(--muted); line-height:1.75;} .lead-block p:first-child{color:var(--text);} .process-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line);} .process-step{background:var(--bg); padding:26px 22px;} .process-num{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--accent); letter-spacing:0.08em; margin-bottom:12px; display:block;} .process-step h4{font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; margin-bottom:8px;} .process-step p{font-size:0.8rem; color:var(--muted); line-height:1.6;} .tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px 40px;} .tech-cat{border-top:1px solid var(--line); padding-top:16px;} .tech-cat-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;} .tech-cat-items{font-size:0.88rem; color:var(--text); line-height:1.8;} .work-group-desc{font-size:0.85rem; color:var(--muted); max-width:520px; margin-top:-2px; margin-bottom:8px;} .foot-top{margin-bottom:20px;} .foot-tagline{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text); margin-bottom:6px;} .foot-tagline-sub{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted);}  @media (max-width:900px){ .cap-grid{grid-template-columns:1fr 1fr;} .about-layout, .contact-layout{grid-template-columns:1fr;} .work-row-main{grid-template-columns:1fr; gap:8px;} .process-grid{grid-template-columns:1fr 1fr 1fr;} .tech-grid{grid-template-columns:1fr 1fr;} } @media (max-width:640px){ .nav-links{display:none;} .cap-grid{grid-template-columns:1fr;} .form-grid{grid-template-columns:1fr;} .field-full{grid-column:1;} .wordmark img{height:36px;} .process-grid{grid-template-columns:1fr;} .tech-grid{grid-template-columns:1fr;} } .cfg-layout{display:grid; grid-template-columns:1fr 340px; gap:28px; align-items:start;}
+.cfg-start{background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:12px; padding:20px 22px; margin-bottom:28px;}
+.cfg-start-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+.cfg-start-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.1rem; margin-bottom:8px;}
+.cfg-start-desc{font-size:0.86rem; color:var(--muted); line-height:1.55; margin-bottom:14px; max-width:480px;}
+.cfg-start-price{font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--accent);}
+.cfg-start-pages{margin-bottom:28px;}
+.cfg-stepper{display:flex; align-items:center; gap:14px;}
+.cfg-stepper-btn{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font-size:1.1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, color 0.2s;}
+.cfg-stepper-btn:hover{border-color:var(--accent); color:var(--accent);}
+.cfg-stepper-count{font-size:1.1rem; min-width:20px; text-align:center;}
+.cfg-stepper-price{margin-left:auto; color:var(--accent); font-size:1rem;}
+.cfg-group{margin-bottom:30px;}
+.cfg-group:last-child{margin-bottom:0;}
+.cfg-group-label{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+.cfg-item{display:flex; flex-direction:column; gap:7px; padding:14px 16px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; cursor:pointer; background:var(--bg-soft); transition:border-color 0.2s, background 0.2s;}
+.cfg-item:hover{border-color:var(--accent-line);}
+.cfg-item:has(input:checked){border-color:var(--accent); background:var(--accent-soft);}
+.cfg-item-top{display:flex; align-items:center; gap:14px;}
+.cfg-item-top input{width:16px; height:16px; accent-color:var(--accent); flex-shrink:0;}
+.cfg-item-name{font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem; font-weight:500; text-transform:none; letter-spacing:normal; color:var(--text); flex:1;}
+.cfg-item-price{font-size:0.8rem; color:var(--muted); white-space:nowrap;}
+.cfg-item:has(input:checked) .cfg-item-price{color:var(--accent);}
+.cfg-item-desc{font-family:'IBM Plex Sans',sans-serif; font-size:0.8rem; text-transform:none; letter-spacing:normal; color:var(--muted); line-height:1.55; padding-left:30px;}
+.cfg-summary{position:sticky; top:84px; background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:28px 26px; box-shadow:var(--shadow-sm);}
+.cfg-summary-label{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;}
+.cfg-summary-total{font-family:'Fraunces',serif; font-weight:600; font-size:2rem; color:var(--accent); margin-bottom:6px;}
+.cfg-summary-tier{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; color:var(--muted); margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+.cfg-summary-recurring{font-size:0.78rem; color:var(--muted); margin-bottom:18px;}
+.cfg-summary-list{list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:18px; max-height:220px; overflow-y:auto;}
+.cfg-summary-list li{font-size:0.78rem; color:var(--text); display:flex; justify-content:space-between; gap:10px;}
+.cfg-summary-list li.cfg-summary-empty{color:var(--muted);}
+.cfg-discount{display:flex; gap:8px; margin-bottom:8px;}
+.cfg-discount input{flex:1; min-height:38px; border-radius:var(--radius); border:1px solid var(--line); padding:8px 10px; background:var(--panel); color:var(--text); font-size:0.78rem;}
+.cfg-discount input:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);}
+.cfg-discount .btn{padding:8px 16px; font-size:0.64rem; flex-shrink:0;}
+.cfg-discount-msg{font-size:0.72rem; margin-bottom:14px; min-height:1em;}
+.cfg-discount-msg.is-success{color:#16a34a;}
+.cfg-discount-msg.is-error{color:#dc2626;}
+.cfg-item-note{font-size:0.76rem; color:var(--accent); font-style:italic; margin-top:2px; padding-left:30px;}
+.cfg-item.is-disabled{opacity:0.5;}
+.cfg-item.is-disabled .cfg-item-top{cursor:not-allowed;}
+.cfg-summary-note{font-size:0.74rem; color:var(--muted); margin-bottom:18px; line-height:1.5;}
+.cfg-summary-btn{width:100%; justify-content:center;}
+.cfg-checkout-form{display:flex; flex-direction:column; gap:12px; margin-top:2px;}
+.cfg-checkout-form textarea{min-height:68px;}
+.cfg-checkout-row{display:flex; gap:10px; align-items:center;}
+.cfg-checkout-row .btn{flex:1; justify-content:center;}
+.cfg-checkout-row .btn-ghost{flex:0 0 auto; border:1px solid var(--line);}
+.cfg-checkout-status{font-size:0.76rem; min-height:1em; margin:0; color:var(--muted);}
+.cfg-checkout-status.is-error{color:#dc2626;}
+.cfg-checkout-status a{color:var(--accent);}
+.cfg-checkout-success{font-size:0.88rem; line-height:1.5; padding:6px 0 2px;}
+.cfg-hp{position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;}
+#cfgCheckoutForm[hidden],#cfgCheckoutOpen[hidden]{display:none;}
+@media (max-width:900px){ .cfg-layout{grid-template-columns:1fr;} .cfg-summary{position:static;} }
+@media (max-width:640px){ .cfg-item-desc{padding-left:0;} .cfg-summary{padding:22px 20px;} }
+.cfg-intro{padding:52px 0 8px;}
+.cfg-intro .sec-tag{margin-bottom:10px;}
+.cfg-intro h1{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(2rem,4.5vw,2.8rem); letter-spacing:-0.01em; max-width:720px; margin-bottom:14px;}
+.cfg-intro p{font-size:0.98rem; color:var(--muted); max-width:620px; line-height:1.7;}
+.cfg-type-switch{display:flex; gap:0; margin:28px 0 36px; border:1px solid var(--line); border-radius:12px; overflow:hidden; max-width:460px; background:var(--bg-soft); box-shadow:var(--shadow-sm);}
+.cfg-type-btn{flex:1; padding:14px 18px; background:transparent; border:none; border-right:1px solid var(--line); font-family:'IBM Plex Mono',monospace; font-size:0.74rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:background 0.15s, color 0.15s;}
+.cfg-type-btn:last-child{border-right:none;}
+.cfg-type-btn.is-active{background:var(--accent); color:#fff;}
+.cfg-type-btn:hover:not(.is-active){background:var(--panel); color:var(--text);}
+.cfg-type-panel[hidden]{display:none;}
+@media (max-width:480px){ .cfg-type-switch{max-width:100%;} .cfg-type-btn{font-size:0.66rem; padding:12px 10px;} }
+</style>
+ <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE-WITH-YOUR-CF-BEACON-TOKEN"}'></script> </head> <body> 
+
+<body>
+<header> <div class="container nav"> <a href="index.html" class="wordmark"> <img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" /> <img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" /> <span class="wordmark-sub">Web &amp; Software Development</span> </a> <nav> <ul class="nav-links"> <li><a href="index.html#packages">Packages</a></li> <li><a href="index.html#capabilities">Capabilities</a></li> <li><a href="work.html">Work</a></li> <li><a href="configurator.html" aria-current="page">Get a quote</a></li> <li><a href="index.html#about">About</a></li> </ul> </nav> <div class="nav-right"> <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode"> <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg> <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> </button> </div> </div> </header>
+<section class="cfg-intro">
+<div class="container">
+<div class="sec-tag">Build your own</div>
+<h1>What's this going to take?</h1>
+<p>Pick a track, tick the things that sound useful, and watch the estimate move — same honest numbers either way. Takes about two minutes, and nothing's booked until you send it across.</p>
+</div>
+</section>
+
+<section id="configurator">
+<div class="container">
+<div class="sec-head">
+<div>
+<div class="sec-tag">For first-timers</div>
+<h2 id="cfgHeading">What actually goes into a website?</h2>
+</div>
+<p class="sec-note" id="cfgSecNote">No jargon — tick the things that sound useful and see what they actually do, and what they'd roughly cost. Most projects start simple and grow into one of the packages as the business grows.</p>
+</div>
+
+<div class="cfg-type-switch" role="tablist" aria-label="Project type">
+<button type="button" class="cfg-type-btn is-active" id="cfgTypeWebBtn" role="tab" aria-selected="true">Website</button>
+<button type="button" class="cfg-type-btn" id="cfgTypeAppBtn" role="tab" aria-selected="false">App &amp; software</button>
+</div>
+
+<div class="cfg-layout">
+<div class="cfg-options">
+
+<div class="cfg-type-panel" data-type="web">
+<div class="cfg-start">
+<div class="cfg-start-label">Everyone starts here</div>
+<div class="cfg-start-name">Domain &amp; hosting, set up for you</div>
+<p class="cfg-start-desc">Your own domain name and a proper place for the site to live online, including the first year of both — sorted before anything else is built. Renews annually after that, or it's covered automatically if you're on a Care Plan.</p>
+<div class="cfg-start-price mono">£150</div>
+</div>
+<div class="cfg-start cfg-start-pages">
+<div class="cfg-start-label">How many pages?</div>
+<div class="cfg-start-name">Pages — first 3 for £150, then £40 each</div>
+<p class="cfg-start-desc">Most small sites only need three pages — Home, About, Contact, or similar — and that's covered by one flat fee. Need more? Every page after that is £40.</p>
+<div class="cfg-stepper">
+<button type="button" class="cfg-stepper-btn" id="cfgWebPageMinus" aria-label="Fewer pages">−</button>
+<span class="cfg-stepper-count mono" id="cfgWebPageCount">1</span>
+<button type="button" class="cfg-stepper-btn" id="cfgWebPagePlus" aria-label="More pages">+</button>
+<span class="cfg-stepper-price mono" id="cfgWebPagePrice">£150</span>
+</div>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Look more established</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="A proper logo &amp; brand colours"><span class="cfg-item-name">A proper logo &amp; brand colours</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">A real logo plus a consistent set of colours and fonts, so your site — and everything else — looks like it belongs to one business.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Social media &amp; print graphics"><span class="cfg-item-name">Social media &amp; print graphics</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Matching graphics sized for Instagram and Facebook, plus a printable flyer, so the branding looks the same wherever people see it.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="120" data-label="Social media accounts, set up for you"><span class="cfg-item-name">Social media accounts, set up for you</span><span class="cfg-item-price mono">+£120</span></div><p class="cfg-item-desc">I create and properly set up your Instagram and Facebook business profiles, so you're not figuring out the business-account maze yourself.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Make it feel like yours</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="100" data-label="Light / dark mode toggle"><span class="cfg-item-name">Light / dark mode toggle</span><span class="cfg-item-price mono">+£100</span></div><p class="cfg-item-desc">Visitors can flip between a light and dark look, whichever's easier on their eyes — especially browsing at night.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Background music"><span class="cfg-item-name">Background music</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A quiet soundtrack with its own mute control, for brands that genuinely suit it — most don't, but a few really do.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Seasonal themes"><span class="cfg-item-name">Seasonal themes</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">Small festive touches that switch on automatically — a bit of Christmas in December, then back to normal in January.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Let customers pay or book online</div>
+<label class="cfg-item" id="cfgTakePaymentsItem"><div class="cfg-item-top"><input type="checkbox" id="cfgTakePayments" data-price="400" data-label="Take payments online"><span class="cfg-item-name">Take payments online</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Customers pay you by card straight through the site, instead of bank transfers or cash in hand — handled securely through Stripe. Skip this one if you're also adding Online booking below — it already includes secure payments.</p><p class="cfg-item-note" id="cfgTakePaymentsNote" style="display:none;">Included automatically with Online booking — no need to add this separately.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" id="cfgOnlineBooking" data-price="900" data-label="Online booking"><span class="cfg-item-name">Online booking</span><span class="cfg-item-price mono">+£900</span></div><p class="cfg-item-desc">People see your availability and book a slot themselves, instead of messaging back and forth to arrange a time — secure card payment and a confirmation email are built in, not a separate add-on.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="Deposits &amp; part-payments"><span class="cfg-item-name">Deposits &amp; part-payments</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">Let someone secure a booking with a deposit now, with the rest collected automatically closer to the date.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Save yourself admin time</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="A private admin area"><span class="cfg-item-name">A private admin area</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">A custom-built, password-protected space just for you — bookings, enquiries and orders in one place, instead of digging through your inbox. Built from scratch for your site, not a bundled page-builder feature.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="250" data-label="Automatic emails"><span class="cfg-item-name">Automatic emails</span><span class="cfg-item-price mono">+£250</span></div><p class="cfg-item-desc">Confirmations, reminders and thank-yous sent on their own, so you're not typing the same message every time.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Calendar sync"><span class="cfg-item-name">Calendar sync</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Bookings appear straight in your Google or Outlook calendar — nothing to copy over by hand.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Instant phone notifications"><span class="cfg-item-name">Instant phone notifications</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">A message to your phone the moment someone books or enquires, with a simple chatbot handling the basics for you.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Show it off</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="180" data-label="Before-and-after slider"><span class="cfg-item-name">Before-and-after slider</span><span class="cfg-item-price mono">+£180</span></div><p class="cfg-item-desc">Drag a slider across a photo to reveal the before and after — built for trade and restoration work where the transformation is the whole story.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="220" data-label="Image gallery with lightbox"><span class="cfg-item-name">Image gallery with lightbox</span><span class="cfg-item-price mono">+£220</span></div><p class="cfg-item-desc">Click any thumbnail and it opens full-size with next/prev arrows, instead of a flat grid of small images.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="90" data-label="Animated stat counters"><span class="cfg-item-name">Animated stat counters</span><span class="cfg-item-price mono">+£90</span></div><p class="cfg-item-desc">Numbers count up as visitors scroll past them — years in business, jobs completed, that kind of thing — a small touch that makes stats feel alive.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Build trust fast</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Live Google reviews"><span class="cfg-item-name">Live Google reviews</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">Your real Google reviews pulled in and kept up to date automatically, instead of testimonials you've typed in by hand and have to update yourself.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="70" data-label="Trust badges &amp; certifications row"><span class="cfg-item-name">Trust badges &amp; certifications row</span><span class="cfg-item-price mono">+£70</span></div><p class="cfg-item-desc">Accreditations, press mentions, and payment-provider logos laid out in one clean row, so credibility signals aren't buried in the text.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="80" data-label="Privacy Policy & Terms page"><span class="cfg-item-name">Privacy Policy &amp; Terms page</span><span class="cfg-item-price mono">+£80</span></div><p class="cfg-item-desc">A privacy policy and terms page written around your business and how you actually handle payments and data — not a generic copy-paste template. Doesn't count toward your page total.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Make it easy to reach you</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="60" data-label="Click-to-WhatsApp button"><span class="cfg-item-name">Click-to-WhatsApp button</span><span class="cfg-item-price mono">+£60</span></div><p class="cfg-item-desc">One tap and a visitor's straight into a WhatsApp chat with you — often the preferred option for trade and local-service customers.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="120" data-label="FAQ accordion"><span class="cfg-item-name">FAQ accordion</span><span class="cfg-item-price mono">+£120</span></div><p class="cfg-item-desc">Click a question and the answer expands — a tidy way to answer the things people ask before they even enquire.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="90" data-label="Embedded map with directions"><span class="cfg-item-name">Embedded map with directions</span><span class="cfg-item-price mono">+£90</span></div><p class="cfg-item-desc">An actual interactive map people can scroll and get directions from, not just an address printed on the page.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="280" data-label="Site search"><span class="cfg-item-name">Site search</span><span class="cfg-item-price mono">+£280</span></div><p class="cfg-item-desc">A proper search bar, built to index your own pages and posts — not a drag-and-drop widget, so it's worth having once a site grows past a handful of pages.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Get found &amp; share information</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="450" data-label="Blog / news section"><span class="cfg-item-name">Blog / news section</span><span class="cfg-item-price mono">+£450</span></div><p class="cfg-item-desc">A proper place to publish updates and articles — genuinely one of the best things for local search rankings over time.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="100" data-label="PDF downloads"><span class="cfg-item-name">PDF downloads</span><span class="cfg-item-price mono">+£100</span></div><p class="cfg-item-desc">Price lists, brochures or menus available to download straight from the site, kept current rather than a stale upload from months ago.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Nice touches</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="60" data-label="QR code generator"><span class="cfg-item-name">QR code generator</span><span class="cfg-item-price mono">+£60</span></div><p class="cfg-item-desc">A QR code that links straight to your site, ready to drop on business cards, flyers or packaging.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="150" data-label="Accessibility toggle"><span class="cfg-item-name">Accessibility toggle</span><span class="cfg-item-price mono">+£150</span></div><p class="cfg-item-desc">A font-size and high-contrast switch for visitors who need it — a thoughtful touch, and a good one for anyone selling to a compliance-minded client.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep it running</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="25" data-recurring="true" data-label="Ongoing care"><span class="cfg-item-name">Ongoing care</span><span class="cfg-item-price mono">+£25/mo</span></div><p class="cfg-item-desc">Hosting, security updates and backups taken care of, plus a few small edits each month, so the site doesn't just go stale.</p></label>
+</div>
+</div>
+
+<div class="cfg-type-panel" data-type="app" hidden>
+<div class="cfg-start">
+<div class="cfg-start-label">Everyone starts here</div>
+<div class="cfg-start-name">App planning &amp; setup, done for you</div>
+<p class="cfg-start-desc">Getting the project properly set up before any code is written — developer accounts, environment, and a clear shared plan for what's being built.</p>
+<div class="cfg-start-price mono">£250</div>
+</div>
+<div class="cfg-start cfg-start-pages">
+<div class="cfg-start-label">How many screens?</div>
+<div class="cfg-start-name">Screens — first 3 for £200, then £60 each</div>
+<p class="cfg-start-desc">Most simple apps start with three core screens — a home screen, a main feature, and a settings or profile screen. That's covered by one flat fee. Need more? Every screen after that is £60.</p>
+<div class="cfg-stepper">
+<button type="button" class="cfg-stepper-btn" id="cfgAppScreenMinus" aria-label="Fewer screens">−</button>
+<span class="cfg-stepper-count mono" id="cfgAppScreenCount">1</span>
+<button type="button" class="cfg-stepper-btn" id="cfgAppScreenPlus" aria-label="More screens">+</button>
+<span class="cfg-stepper-price mono" id="cfgAppScreenPrice">£200</span>
+</div>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Which platforms?</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="600" data-label="iOS app (App Store)"><span class="cfg-item-name">iOS app (App Store)</span><span class="cfg-item-price mono">+£600</span></div><p class="cfg-item-desc">A proper app built for iPhone and iPad, ready to publish on the App Store.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="600" data-label="Android app (Google Play)"><span class="cfg-item-name">Android app (Google Play)</span><span class="cfg-item-price mono">+£600</span></div><p class="cfg-item-desc">A proper app built for Android phones and tablets, ready to publish on Google Play.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="Progressive web app (works everywhere, no app store)"><span class="cfg-item-name">Progressive web app (works everywhere, no app store)</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">One build that works in any browser and can be "installed" to a home screen — no app store, no store fees, no waiting on review.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep people in the loop</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="300" data-label="Push notifications"><span class="cfg-item-name">Push notifications</span><span class="cfg-item-price mono">+£300</span></div><p class="cfg-item-desc">Alerts that land on someone's phone even when the app's closed — booking reminders, updates, offers.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="450" data-label="Offline mode"><span class="cfg-item-name">Offline mode</span><span class="cfg-item-price mono">+£450</span></div><p class="cfg-item-desc">The core of the app still works with no signal — anything entered syncs automatically once it's back online.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="In-app messaging / chat"><span class="cfg-item-name">In-app messaging / chat</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">A built-in chat so people can message you — or each other — without leaving the app.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Behind the scenes</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="350" data-label="User accounts & login"><span class="cfg-item-name">User accounts &amp; login</span><span class="cfg-item-price mono">+£350</span></div><p class="cfg-item-desc">People sign up, log in, and get their own private space inside the app — their bookings, their history, their settings.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="650" data-label="Admin dashboard"><span class="cfg-item-name">Admin dashboard</span><span class="cfg-item-price mono">+£650</span></div><p class="cfg-item-desc">A private, password-protected area where you manage users, content and activity yourself, without touching any code.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="500" data-label="Backend & database"><span class="cfg-item-name">Backend &amp; database</span><span class="cfg-item-price mono">+£500</span></div><p class="cfg-item-desc">The server and database that actually store everything the app needs — built to grow with real use, not just a demo.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="400" data-label="Third-party integrations"><span class="cfg-item-name">Third-party integrations</span><span class="cfg-item-price mono">+£400</span></div><p class="cfg-item-desc">Hooking the app up to the outside world — payments, calendars, maps, or any other service it needs to talk to.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Make money through the app</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="500" data-label="In-app purchases"><span class="cfg-item-name">In-app purchases</span><span class="cfg-item-price mono">+£500</span></div><p class="cfg-item-desc">One-off purchases inside the app — unlock a feature, buy a credit pack — handled through the App Store or Google Play.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="550" data-label="Subscriptions"><span class="cfg-item-name">Subscriptions</span><span class="cfg-item-price mono">+£550</span></div><p class="cfg-item-desc">Recurring billing built in, so people pay monthly or yearly for ongoing access, handled automatically.</p></label>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="200" data-label="App store submission, handled for you"><span class="cfg-item-name">App store submission, handled for you</span><span class="cfg-item-price mono">+£200</span></div><p class="cfg-item-desc">I handle the submission paperwork and the back-and-forth with Apple and Google's review teams, so it's not on you.</p></label>
+</div>
+<div class="cfg-group">
+<div class="cfg-group-label">Keep it running</div>
+<label class="cfg-item"><div class="cfg-item-top"><input type="checkbox" data-price="35" data-recurring="true" data-label="Ongoing care"><span class="cfg-item-name">Ongoing care</span><span class="cfg-item-price mono">+£35/mo</span></div><p class="cfg-item-desc">Hosting, security updates, backups, and keeping the app working as iOS and Android roll out their own updates.</p></label>
+</div>
+</div>
+
+</div>
+<div class="cfg-summary">
+<div class="cfg-summary-label">Estimated build</div>
+<div class="cfg-summary-total mono" id="cfgTotal">From £300</div>
+<div class="cfg-summary-tier" id="cfgTier">Just the basics — Launch package starts at £750</div>
+<div class="cfg-summary-recurring mono" id="cfgRecurring" style="display:none;"></div>
+<ul class="cfg-summary-list" id="cfgList"></ul>
+<div class="cfg-discount">
+<input type="text" id="cfgCode" class="mono" placeholder="Discount code" autocomplete="off" />
+<button type="button" class="btn btn-ghost" id="cfgCodeApply">Apply</button>
+</div>
+<p class="cfg-discount-msg" id="cfgCodeMsg"></p>
+<p class="cfg-summary-note">Illustrative only, based on past builds — every project is scoped and quoted properly on a build call before anything starts.</p>
+<div class="cfg-checkout" id="cfgCheckout">
+<button type="button" class="btn btn-primary cfg-summary-btn" id="cfgCheckoutOpen">Request this quote →</button>
+<form class="cfg-checkout-form" id="cfgCheckoutForm" hidden>
+<div class="field">
+<label for="cfgName">Name</label>
+<input id="cfgName" name="name" type="text" required />
+</div>
+<div class="field">
+<label for="cfgContact">Email or phone</label>
+<input id="cfgContact" name="contact" type="text" required />
+</div>
+<div class="field">
+<label for="cfgNotes">Anything else? (optional)</label>
+<textarea id="cfgNotes" name="notes" placeholder="Timeline, extra detail, questions…"></textarea>
+</div>
+<input type="text" name="company" id="cfgHoneypot" class="cfg-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+<div class="cfg-checkout-row">
+<button type="submit" class="btn btn-primary" id="cfgCheckoutSubmit">Send my basket</button>
+<button type="button" class="btn btn-ghost" id="cfgCheckoutCancel">Cancel</button>
+</div>
+<p class="cfg-checkout-status" id="cfgCheckoutStatus" role="status"></p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<p class="sec-note" style="max-width:600px; margin:0 auto; padding:0 22px 48px; text-align:center;">Not sure which track? Send what you're picturing through the <a href="index.html#contact" style="color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-line);">contact form</a> and I'll scope it properly.</p>
+<footer> <div class="container"> <div class="foot-top"> <div class="foot-tagline">Digital &amp; Technical Developer</div> <div class="foot-tagline-sub">Web · Software · Automation · Infrastructure</div> </div> <div class="foot-inner"> <span class="foot-copy">© 2026 Ric Lee — Ric-Lee Digital · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span> <ul class="foot-links"> <li><a href="index.html#capabilities">Capabilities</a></li> <li><a href="work.html">Work</a></li> <li><a href="index.html#contact">Contact</a></li> <li><a href="privacy.html">Privacy &amp; Terms</a></li> </ul> </div> <div class="payments-accepted"> <span class="payments-label">Payments secured by Stripe</span> <div class="payment-marks" aria-hidden="true"><span class="pay-mark" title="Visa"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-style="italic" font-size="13" letter-spacing="-0.5" fill="#1A1F71">VISA</text></svg></span> <span class="pay-mark" title="Mastercard"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="15" r="9" fill="#EB001B"/><circle cx="28" cy="15" r="9" fill="#F79E1B" fill-opacity="0.85"/></svg></span> <span class="pay-mark" title="American Express"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="46" height="28" rx="3" fill="#006FCF"/><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="9.5" letter-spacing="0.5" fill="#fff">AMEX</text></svg></span> <span class="pay-mark" title="Apple Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#000"><path d="M16.1 10.9c.6-.7 1-1.7.9-2.7-.9.1-2 .6-2.6 1.4-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.3Z"/><path d="M19 12.2c-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.2 2.6 2.2 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.9-1 2.6-2.1.8-1.2 1.1-2.4 1.1-2.4-2.3-.9-2.6-3.3-2.6-3.4 0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6l-.3-.3Z"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="600" font-style="italic" font-size="9.5" fill="#000">Pay</text></svg></span> <span class="pay-mark" title="Google Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(13,15)" fill="none" stroke-width="3"><circle r="7" stroke="#4285F4" stroke-dasharray="11 33" stroke-dashoffset="0"/><circle r="7" stroke="#EA4335" stroke-dasharray="11 33" stroke-dashoffset="-11"/><circle r="7" stroke="#FBBC05" stroke-dasharray="11 33" stroke-dashoffset="-22"/><circle r="7" stroke="#34A853" stroke-dasharray="11 33" stroke-dashoffset="-33"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="500" font-size="9.5" fill="#5f6368">Pay</text></svg></span></div> </div> </div> </footer>
+<script>
+const html = document.documentElement; const btn = document.getElementById('themeToggle'); function updateThemeUI(){ btn.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode'); } btn.addEventListener('click', function(){ html.classList.toggle('dark'); localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light'); updateThemeUI(); }); updateThemeUI(); if (window.matchMedia){ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){ if (!localStorage.getItem('rl-theme')){ html.classList.toggle('dark', e.matches); updateThemeUI(); } }); }
+</script>
+<script>
+/* Unified configurator — one basket, two tracks (Website / App & Software).
+   Each track keeps its own foundation price, unit (pages/screens) stepper
+   and checkbox groups; switching tracks swaps which panel is visible and
+   which track's numbers feed the shared summary + checkout. Selections in
+   the hidden track aren't lost, just not counted until you switch back. */
+(function(){
+  var root = document.getElementById('configurator');
+  if(!root) return;
+
+  var totalEl = document.getElementById('cfgTotal');
+  var tierEl = document.getElementById('cfgTier');
+  var recurringEl = document.getElementById('cfgRecurring');
+  var listEl = document.getElementById('cfgList');
+  var headingEl = document.getElementById('cfgHeading');
+  var noteEl = document.getElementById('cfgSecNote');
+  var codeInput = document.getElementById('cfgCode');
+  var codeApplyBtn = document.getElementById('cfgCodeApply');
+  var codeMsgEl = document.getElementById('cfgCodeMsg');
+  if(!totalEl || !listEl) return;
+
+  function fmt(n){ return '£' + Math.round(n).toLocaleString('en-GB'); }
+
+  var TYPES = {
+    web: {
+      label: 'web',
+      source: 'web-development',
+      foundationPrice: 150,
+      foundationLabel: 'Domain & hosting, set up for you',
+      unitIncluded: 3,
+      unitIncludedPrice: 150,
+      extraUnitPrice: 40,
+      minUnits: 1,
+      maxUnits: 20,
+      count: 1,
+      countEl: 'cfgWebPageCount',
+      priceEl: 'cfgWebPagePrice',
+      minusBtn: 'cfgWebPageMinus',
+      plusBtn: 'cfgWebPagePlus',
+      panelSelector: '.cfg-type-panel[data-type="web"]',
+      heading: 'What actually goes into a website?',
+      note: 'No jargon — tick the things that sound useful and see what they actually do, and what they’d roughly cost. Most projects start simple and grow into one of the packages as the business grows.',
+      unitLabel: function(n){
+        return n <= this.unitIncluded
+          ? n + (n === 1 ? ' page (3 included)' : ' pages (3 included)')
+          : n + ' pages (3 included + ' + (n - this.unitIncluded) + ' extra @ £' + this.extraUnitPrice + ' each)';
+      },
+      tierFor: function(total){
+        if(total < 750) return 'Just the basics — Launch package starts at £750';
+        if(total < 1500) return 'Launch package territory — from £750';
+        if(total < 2500) return 'Brand package territory — from £1,500';
+        return 'Build package territory — from £2,500';
+      }
+    },
+    app: {
+      label: 'app',
+      source: 'app-software-development',
+      foundationPrice: 250,
+      foundationLabel: 'App planning & setup, done for you',
+      unitIncluded: 3,
+      unitIncludedPrice: 200,
+      extraUnitPrice: 60,
+      minUnits: 1,
+      maxUnits: 30,
+      count: 1,
+      countEl: 'cfgAppScreenCount',
+      priceEl: 'cfgAppScreenPrice',
+      minusBtn: 'cfgAppScreenMinus',
+      plusBtn: 'cfgAppScreenPlus',
+      panelSelector: '.cfg-type-panel[data-type="app"]',
+      heading: 'What actually goes into an app?',
+      note: 'No jargon — tick the things that sound useful and see what they actually do, and what they’d roughly cost. Most apps start small and grow a feature at a time.',
+      unitLabel: function(n){
+        return n <= this.unitIncluded
+          ? n + (n === 1 ? ' screen (3 included)' : ' screens (3 included)')
+          : n + ' screens (3 included + ' + (n - this.unitIncluded) + ' extra @ £' + this.extraUnitPrice + ' each)';
+      },
+      tierFor: function(total){
+        if(total < 800) return 'Simple utility app territory';
+        if(total < 2000) return 'Full-featured app territory';
+        return 'Platform-grade build territory';
+      }
+    }
+  };
+
+  var currentType = 'web';
+  var DISCOUNT_CODES = { 'RLFAMFFS': 0.8, 'RLFRNFFS': 0.5, 'RLBEGFFS': 0.25 };
+  var activeDiscount = 0;
+  var activeCode = '';
+
+  // Swap this for the real Cloudflare Worker URL once it's deployed — see
+  // /basket/SETUP.md. Until then the checkout form will show a friendly
+  // "couldn't send that" error rather than fail silently.
+  var BASKET_ENDPOINT = 'https://REPLACE-ME.workers.dev';
+  var lastSummary = { items: [], oneOff: 0, discounted: 0, recurring: 0, tier: '', discountCode: '', source: 'web-development' };
+
+  function unitCost(cfg, n){
+    return n <= cfg.unitIncluded ? cfg.unitIncludedPrice : cfg.unitIncludedPrice + (n - cfg.unitIncluded) * cfg.extraUnitPrice;
+  }
+
+  function updateUnitDisplay(cfg){
+    var countEl = document.getElementById(cfg.countEl);
+    var priceEl = document.getElementById(cfg.priceEl);
+    if(countEl) countEl.textContent = cfg.count;
+    if(priceEl) priceEl.textContent = fmt(unitCost(cfg, cfg.count));
+  }
+
+  function recalc(){
+    var cfg = TYPES[currentType];
+    var panel = root.querySelector(cfg.panelSelector);
+    if(!panel) return;
+
+    var unitPrice = unitCost(cfg, cfg.count);
+    var oneOff = cfg.foundationPrice + unitPrice;
+    var items = [
+      { label: cfg.foundationLabel, text: fmt(cfg.foundationPrice) },
+      { label: cfg.unitLabel(cfg.count), text: fmt(unitPrice) }
+    ];
+
+    var recurring = 0;
+    panel.querySelectorAll('.cfg-item input[type="checkbox"]:checked').forEach(function(cb){
+      var price = parseInt(cb.getAttribute('data-price'), 10) || 0;
+      var label = cb.getAttribute('data-label') || '';
+      var isRecurring = cb.getAttribute('data-recurring') === 'true';
+      if(isRecurring){
+        recurring += price;
+        items.push({ label: label, text: '+' + fmt(price) + '/mo' });
+      } else {
+        oneOff += price;
+        items.push({ label: label, text: '+' + fmt(price) });
+      }
+    });
+
+    var discounted = oneOff;
+    if(activeDiscount > 0){
+      discounted = oneOff * (1 - activeDiscount);
+      items.push({ label: 'Code ' + activeCode + ' (−' + Math.round(activeDiscount * 100) + '% on the build)', text: '−' + fmt(oneOff - discounted) });
+    }
+
+    totalEl.textContent = 'From ' + fmt(discounted);
+    if(tierEl) tierEl.textContent = cfg.tierFor(oneOff);
+
+    if(recurring > 0){
+      recurringEl.style.display = 'block';
+      recurringEl.textContent = '+ ' + fmt(recurring) + '/month ongoing';
+    } else {
+      recurringEl.style.display = 'none';
+      recurringEl.textContent = '';
+    }
+
+    listEl.innerHTML = '';
+    items.forEach(function(it){
+      var li = document.createElement('li');
+      var name = document.createElement('span');
+      name.textContent = it.label;
+      var price = document.createElement('span');
+      price.className = 'mono';
+      price.textContent = it.text;
+      li.appendChild(name);
+      li.appendChild(price);
+      listEl.appendChild(li);
+    });
+
+    lastSummary = {
+      items: items,
+      oneOff: oneOff,
+      discounted: discounted,
+      recurring: recurring,
+      tier: tierEl ? tierEl.textContent : '',
+      discountCode: activeCode,
+      source: cfg.source
+    };
+  }
+
+  // --- unit steppers (one pair per track) ---
+  Object.keys(TYPES).forEach(function(key){
+    var cfg = TYPES[key];
+    var minusBtn = document.getElementById(cfg.minusBtn);
+    var plusBtn = document.getElementById(cfg.plusBtn);
+    if(minusBtn){
+      minusBtn.addEventListener('click', function(){
+        if(cfg.count > cfg.minUnits){ cfg.count -= 1; updateUnitDisplay(cfg); recalc(); }
+      });
+    }
+    if(plusBtn){
+      plusBtn.addEventListener('click', function(){
+        if(cfg.count < cfg.maxUnits){ cfg.count += 1; updateUnitDisplay(cfg); recalc(); }
+      });
+    }
+    updateUnitDisplay(cfg);
+  });
+
+  // --- Online booking / Take payments mutual exclusion (web track only) ---
+  var onlineBookingCb = document.getElementById('cfgOnlineBooking');
+  var takePaymentsCb = document.getElementById('cfgTakePayments');
+  var takePaymentsItem = document.getElementById('cfgTakePaymentsItem');
+  var takePaymentsNote = document.getElementById('cfgTakePaymentsNote');
+
+  function syncPaymentsExclusion(){
+    if(!onlineBookingCb || !takePaymentsCb) return;
+    if(onlineBookingCb.checked){
+      takePaymentsCb.checked = false;
+      takePaymentsCb.disabled = true;
+      if(takePaymentsItem) takePaymentsItem.classList.add('is-disabled');
+      if(takePaymentsNote) takePaymentsNote.style.display = 'block';
+    } else {
+      takePaymentsCb.disabled = false;
+      if(takePaymentsItem) takePaymentsItem.classList.remove('is-disabled');
+      if(takePaymentsNote) takePaymentsNote.style.display = 'none';
+    }
+  }
+  syncPaymentsExclusion();
+
+  root.addEventListener('change', function(e){
+    var t = e.target;
+    if(t && t.tagName === 'INPUT' && t.type === 'checkbox'){
+      if(t === onlineBookingCb) syncPaymentsExclusion();
+      recalc();
+    }
+  });
+
+  // --- track switcher ---
+  var webBtn = document.getElementById('cfgTypeWebBtn');
+  var appBtn = document.getElementById('cfgTypeAppBtn');
+  var webPanel = root.querySelector('.cfg-type-panel[data-type="web"]');
+  var appPanel = root.querySelector('.cfg-type-panel[data-type="app"]');
+
+  function setType(type){
+    currentType = type;
+    var cfg = TYPES[type];
+    if(webBtn){ webBtn.classList.toggle('is-active', type === 'web'); webBtn.setAttribute('aria-selected', type === 'web'); }
+    if(appBtn){ appBtn.classList.toggle('is-active', type === 'app'); appBtn.setAttribute('aria-selected', type === 'app'); }
+    if(webPanel) webPanel.hidden = type !== 'web';
+    if(appPanel) appPanel.hidden = type !== 'app';
+    if(headingEl) headingEl.textContent = cfg.heading;
+    if(noteEl) noteEl.textContent = cfg.note;
+    recalc();
+  }
+
+  if(webBtn) webBtn.addEventListener('click', function(){ setType('web'); });
+  if(appBtn) appBtn.addEventListener('click', function(){ setType('app'); });
+
+  if(location.hash === '#app') setType('app');
+
+  // --- discount code (shared across both tracks) ---
+  function applyCode(){
+    if(!codeInput) return;
+    var raw = codeInput.value.trim().toUpperCase();
+    if(!raw){
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = ''; codeMsgEl.className = 'cfg-discount-msg'; }
+      recalc();
+      return;
+    }
+    if(DISCOUNT_CODES.hasOwnProperty(raw)){
+      activeDiscount = DISCOUNT_CODES[raw];
+      activeCode = raw;
+      if(codeMsgEl){ codeMsgEl.textContent = 'Code applied — ' + Math.round(activeDiscount * 100) + '% off the build.'; codeMsgEl.className = 'cfg-discount-msg is-success'; }
+    } else {
+      activeDiscount = 0; activeCode = '';
+      if(codeMsgEl){ codeMsgEl.textContent = 'That code isn’t recognised.'; codeMsgEl.className = 'cfg-discount-msg is-error'; }
+    }
+    recalc();
+  }
+  if(codeApplyBtn){ codeApplyBtn.addEventListener('click', applyCode); }
+  if(codeInput){
+    codeInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); applyCode(); }
+    });
+  }
+
+  // --- basket checkout — sends the current selection to the Telegram relay worker (see /basket) ---
+  var checkoutOpenBtn = document.getElementById('cfgCheckoutOpen');
+  var checkoutForm = document.getElementById('cfgCheckoutForm');
+  var checkoutCancelBtn = document.getElementById('cfgCheckoutCancel');
+  var checkoutStatusEl = document.getElementById('cfgCheckoutStatus');
+  var checkoutSubmitBtn = document.getElementById('cfgCheckoutSubmit');
+  var checkoutNameInput = document.getElementById('cfgName');
+  var checkoutContactInput = document.getElementById('cfgContact');
+  var checkoutNotesInput = document.getElementById('cfgNotes');
+  var checkoutHoneypot = document.getElementById('cfgHoneypot');
+
+  if(checkoutOpenBtn && checkoutForm){
+    checkoutOpenBtn.addEventListener('click', function(){
+      checkoutForm.hidden = false;
+      checkoutOpenBtn.hidden = true;
+      if(checkoutNameInput) checkoutNameInput.focus();
+    });
+  }
+
+  if(checkoutCancelBtn){
+    checkoutCancelBtn.addEventListener('click', function(){
+      checkoutForm.hidden = true;
+      checkoutOpenBtn.hidden = false;
+      if(checkoutStatusEl){ checkoutStatusEl.textContent = ''; checkoutStatusEl.className = 'cfg-checkout-status'; }
+    });
+  }
+
+  if(checkoutForm){
+    checkoutForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(checkoutHoneypot && checkoutHoneypot.value) return;
+
+      var name = checkoutNameInput ? checkoutNameInput.value.trim() : '';
+      var contact = checkoutContactInput ? checkoutContactInput.value.trim() : '';
+      var notes = checkoutNotesInput ? checkoutNotesInput.value.trim() : '';
+      if(!name || !contact) return;
+
+      var payload = {
+        source: lastSummary.source,
+        name: name,
+        contact: contact,
+        notes: notes,
+        items: lastSummary.items.map(function(it){ return { label: it.label, text: it.text }; }),
+        oneOff: lastSummary.oneOff,
+        discounted: lastSummary.discounted,
+        recurring: lastSummary.recurring,
+        tier: lastSummary.tier,
+        discountCode: lastSummary.discountCode,
+        page: location.href,
+        submittedAt: new Date().toISOString()
+      };
+
+      if(checkoutSubmitBtn) checkoutSubmitBtn.disabled = true;
+      if(checkoutStatusEl){ checkoutStatusEl.textContent = 'Sending…'; checkoutStatusEl.className = 'cfg-checkout-status'; }
+
+      fetch(BASKET_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(res){
+        if(!res.ok) throw new Error('bad status');
+        return res.json();
+      }).then(function(){
+        checkoutForm.innerHTML = '<p class="cfg-checkout-success">Got it — I’ll come back to you personally, usually within a few hours.</p>';
+      }).catch(function(){
+        if(checkoutSubmitBtn) checkoutSubmitBtn.disabled = false;
+        if(checkoutStatusEl){
+          checkoutStatusEl.innerHTML = 'Couldn’t send that — try again, or use the <a href="index.html#contact">contact form</a> instead.';
+          checkoutStatusEl.className = 'cfg-checkout-status is-error';
+        }
+      });
+    });
+  }
+
+  recalc();
+})();
+</script>
+
+</body>
+</html>
