@@ -362,7 +362,7 @@ const html = document.documentElement; const btn = document.getElementById('them
   // Swap this for the real Cloudflare Worker URL once it's deployed — see
   // /basket/SETUP.md. Until then the checkout form will show a friendly
   // "couldn't send that" error rather than fail silently.
-  var BASKET_ENDPOINT = 'https://REPLACE-ME.workers.dev';
+  var BASKET_ENDPOINT = 'https://ric-lee-basket-relay.mrrickielee.workers.dev';
   var lastSummary = { items: [], oneOff: 0, discounted: 0, recurring: 0, tier: '', discountCode: '', source: 'web-development' };
 
   function unitCost(cfg, n){
