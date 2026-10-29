@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Ric-Lee Digital Developments</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#2c3a5e">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+try {
+  var stored = localStorage.getItem('rl-theme');
+  var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (dark) document.documentElement.classList.add('dark');
+} catch (e) {}
+})();
+</script>
+<style>
+:root{
+  --bg:#f7f4ee; --bg-soft:#ffffff; --panel:rgba(0,0,0,0.03); --text:#17160f; --muted:#6b6a60;
+  --accent:#2c3a5e; --accent-soft:rgba(44,58,94,0.07); --accent-line:rgba(44,58,94,0.28);
+  --line:rgba(0,0,0,0.1); --grid:rgba(0,0,0,0.07); --radius:3px;
+  --shadow-sm:0 2px 10px rgba(23,22,15,0.05);
+  /* chart series (validated categorical slots 1 + 2) and status colours */
+  --s1:#2a78d6; --s2:#eb6834;
+  --good:#0ca30c; --good-text:#006300; --warn:#fab219; --warn-text:#8a5a00; --crit:#d03b3b; --crit-text:#b02a2a;
+  color-scheme: light;
+}
+html.dark{
+  --bg:#141310; --bg-soft:#1c1b17; --panel:rgba(255,255,255,0.04); --text:#f2efe6; --muted:#9a978c;
+  --accent:#7f9bd6; --accent-soft:rgba(127,155,214,0.1); --accent-line:rgba(127,155,214,0.32);
+  --line:rgba(255,255,255,0.1); --grid:rgba(255,255,255,0.08);
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+  --s1:#3987e5; --s2:#d95926;
+  --good-text:#0ca30c; --warn-text:#fab219; --crit-text:#e66767;
+  color-scheme: dark;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{font-family:'IBM Plex Sans',sans-serif; font-size:15px; line-height:1.55; background:var(--bg); color:var(--text); min-height:100vh;}
+a{color:var(--accent);}
+button,select,input{font:inherit; color:inherit;}
+.container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
+header{border-bottom:1px solid var(--line); background:var(--bg);}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; flex-wrap:wrap;}
+.wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.wordmark img{height:34px; width:auto; display:block;}
+.logo-dark{display:block !important;} .logo-light{display:none !important;} html.dark .logo-dark{display:none !important;} html.dark .logo-light{display:block !important;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4;}
+.nav-right{display:flex; align-items:center; gap:10px;}
+.btn{border:1px solid var(--line); background:transparent; border-radius:var(--radius); padding:7px 14px; cursor:pointer; font-size:0.82rem; color:var(--muted); transition:all .15s;}
+.btn:hover{color:var(--text); border-color:var(--accent);}
+.btn.primary{background:var(--accent); color:#fff; border-color:var(--accent);} html.dark .btn.primary{color:#141310;}
+.btn.primary:hover{opacity:.9; color:#fff;} html.dark .btn.primary:hover{color:#141310;}
+.theme-toggle{width:38px; height:38px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer;}
+.theme-toggle:hover{color:var(--text); border-color:var(--accent);}
+.theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.theme-icon-sun{display:none;} html.dark .theme-icon-sun{display:block;} html.dark .theme-icon-moon{display:none;}
+
+h1{font-family:'Fraunces',serif; font-weight:500; font-size:1.7rem; line-height:1.2; text-wrap:balance;}
+h2{font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.98rem;}
+.tag{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);}
+.muted{color:var(--muted);}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* login */
+.login{max-width:420px; margin:12vh auto 0; background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; padding:30px; box-shadow:var(--shadow-sm);}
+.login h1{font-size:1.4rem; margin:6px 0 8px;}
+.login p{font-size:0.88rem; color:var(--muted); margin-bottom:18px;}
+.login input[type=password]{width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--bg); margin-bottom:12px;}
+.login input:focus, select:focus, .btn:focus-visible, .tab:focus-visible, .pill:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.login label.rem{display:flex; gap:8px; align-items:center; font-size:0.84rem; color:var(--muted); margin-bottom:16px;}
+.err{color:var(--crit-text); font-size:0.86rem; margin-top:12px; min-height:1.2em;}
+
+/* page chrome */
+.top{padding:28px 0 8px; display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;}
+.tabs{display:flex; gap:4px; border-bottom:1px solid var(--line); margin-top:14px; overflow-x:auto;}
+.tab{background:none; border:0; border-bottom:2px solid transparent; padding:10px 16px; cursor:pointer; color:var(--muted); font-size:0.9rem; white-space:nowrap;}
+.tab[aria-selected=true]{color:var(--text); border-bottom-color:var(--accent); font-weight:500;}
+.filters{display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding:18px 0 4px;}
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+.seg button{border:0; background:transparent; padding:7px 14px; cursor:pointer; font-size:0.82rem; color:var(--muted); border-right:1px solid var(--line);}
+.seg button:last-child{border-right:0;}
+.seg button[aria-pressed=true]{background:var(--accent-soft); color:var(--text); font-weight:500;}
+.stamp{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted); margin-left:auto;}
+main{padding-bottom:70px;}
+.frame{transition:opacity .2s;} .frame.busy{opacity:.55;}
+.grid{display:grid; gap:16px; margin-top:16px;}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:900px){.g4{grid-template-columns:repeat(2,minmax(0,1fr));} .g3,.g2{grid-template-columns:minmax(0,1fr);}}
+@media (max-width:480px){.g4{grid-template-columns:minmax(0,1fr);} .stamp{margin-left:0;}}
+.card{background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; padding:18px 20px; box-shadow:var(--shadow-sm); min-width:0;}
+.card-h{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px; flex-wrap:wrap;}
+.card-h .sub{font-size:0.8rem; color:var(--muted); margin-top:2px;}
+.sec-title{margin:30px 0 0; display:flex; align-items:baseline; gap:12px;}
+
+/* stat tile */
+.stat .label{font-size:0.8rem; color:var(--muted);}
+.stat .value{font-size:2rem; font-weight:600; line-height:1.15; margin:4px 0 2px; letter-spacing:-0.01em;}
+.stat .delta{font-size:0.78rem; color:var(--muted); display:flex; gap:6px; align-items:center; flex-wrap:wrap;}
+.delta .up{color:var(--good-text); font-weight:500;} .delta .down{color:var(--crit-text); font-weight:500;}
+.stat .spark{margin-top:8px; height:30px;}
+.chip{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--warn); color:var(--warn-text); border-radius:999px; padding:1px 8px;}
+
+/* charts */
+.chart{position:relative; width:100%;}
+.chart svg{display:block; width:100%; overflow:visible;}
+.chart .grid-l{stroke:var(--grid); stroke-width:1;}
+.chart text{fill:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:10.5px;}
+.chart .l1{stroke:var(--s1); fill:none; stroke-width:2; stroke-linejoin:round; stroke-linecap:round;}
+.chart .l2{stroke:var(--s2); fill:none; stroke-width:2; stroke-linejoin:round; stroke-linecap:round;}
+.chart .a1{fill:var(--s1); opacity:.1;}
+.chart .bar{fill:var(--s1);} .chart .bar:hover,.chart .bar.on{opacity:.78;}
+.chart .xh{stroke:var(--muted); stroke-width:1; opacity:.55;}
+.chart .dot1{fill:var(--s1); stroke:var(--bg-soft); stroke-width:2;}
+.chart .dot2{fill:var(--s2); stroke:var(--bg-soft); stroke-width:2;}
+.tip{position:absolute; pointer-events:none; z-index:5; min-width:150px; background:var(--bg-soft); border:1px solid var(--line); border-radius:6px; padding:9px 11px; font-size:0.78rem; box-shadow:0 8px 24px rgba(0,0,0,0.18); display:none;}
+.tip .t-h{color:var(--muted); font-size:0.72rem; margin-bottom:4px; font-family:'IBM Plex Mono',monospace;}
+.tip .t-r{display:flex; align-items:center; gap:8px; line-height:1.6;}
+.tip .t-r b{font-weight:600; font-size:0.9rem; margin-left:auto; padding-left:12px;}
+.key{width:14px; height:0; border-top:2px solid var(--s1); flex-shrink:0;} .key.k2{border-top-color:var(--s2);} .key.kb{height:8px; width:8px; background:var(--s1); border:0; border-radius:2px;}
+.legend{display:flex; gap:16px; font-size:0.78rem; color:var(--muted);} .legend span{display:inline-flex; align-items:center; gap:7px;}
+.tbl-wrap{overflow:auto; max-height:300px; border:1px solid var(--line); border-radius:6px;}
+table{border-collapse:collapse; width:100%; font-size:0.84rem;}
+th,td{text-align:left; padding:8px 12px; border-bottom:1px solid var(--line); white-space:nowrap;}
+th{font-weight:500; color:var(--muted); font-size:0.74rem; position:sticky; top:0; background:var(--bg-soft);}
+td.n,th.n{text-align:right; font-variant-numeric:tabular-nums;}
+tr:last-child td{border-bottom:0;}
+.link-btn{background:none; border:0; color:var(--accent); cursor:pointer; font-size:0.78rem; text-decoration:underline; text-underline-offset:3px;}
+
+/* bar lists */
+.blist{display:flex; flex-direction:column; gap:7px;}
+.brow{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; font-size:0.84rem; cursor:default;}
+.brow .nm{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.brow .nv{font-variant-numeric:tabular-nums; font-weight:500;}
+.brow .track{grid-column:1 / -1; height:6px; border-radius:3px; background:var(--accent-soft); overflow:hidden;}
+.brow .fill{height:100%; background:var(--s1); border-radius:0 4px 4px 0;}
+.brow:hover .fill{opacity:.75;}
+.empty{color:var(--muted); font-size:0.86rem; padding:8px 0;}
+
+/* pills (site switcher) */
+.pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.pill{border:1px solid var(--line); background:var(--bg-soft); border-radius:999px; padding:6px 14px; font-size:0.82rem; cursor:pointer; color:var(--muted); display:inline-flex; gap:8px; align-items:center;}
+.pill[aria-pressed=true]{border-color:var(--accent); color:var(--text); background:var(--accent-soft);}
+.dotst{width:8px; height:8px; border-radius:50%; background:var(--line);} .dotst.on{background:var(--good);}
+.notice{border:1px dashed var(--accent-line); border-radius:8px; padding:16px 18px; color:var(--muted); font-size:0.9rem; background:var(--accent-soft);}
+.notice.bad{border-color:var(--crit); color:var(--text);}
+
+/* funnel + health + feed */
+.funnel{display:flex; flex-direction:column; gap:10px;}
+.frow{display:grid; grid-template-columns:170px minmax(0,1fr) 112px; gap:12px; align-items:center; font-size:0.84rem;}
+.frow .bar{height:10px; border-radius:0 4px 4px 0; background:var(--s1); min-width:2px;}
+.frow .num{font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap;} .frow .num b{font-weight:600;} .frow .num span{color:var(--muted); font-size:0.76rem;}
+@media (max-width:560px){.frow{grid-template-columns:104px minmax(0,1fr) 92px;}}
+.hrow{display:grid; grid-template-columns:auto 190px minmax(0,1fr); gap:14px; align-items:start; padding:12px 0; border-bottom:1px solid var(--line); font-size:0.88rem;}
+.hrow:last-child{border-bottom:0;}
+.hrow .hd{color:var(--muted);}
+.badge{display:inline-flex; align-items:center; gap:6px; font-size:0.76rem; font-weight:500; min-width:78px;}
+.badge svg{width:16px; height:16px; flex-shrink:0;}
+.b-ok{color:var(--good-text);} .b-warn{color:var(--warn-text);} .b-down{color:var(--crit-text);} .b-unknown{color:var(--muted);}
+@media (max-width:640px){.hrow{grid-template-columns:auto minmax(0,1fr);} .hrow .hd{grid-column:1 / -1;}}
+.feed{display:flex; flex-direction:column;}
+.frow2{align-items:baseline; display:grid; grid-template-columns:96px 130px minmax(0,1fr); gap:12px; padding:8px 0; border-bottom:1px solid var(--line); font-size:0.84rem;}
+.frow2:last-child{border-bottom:0;} .frow2 .when{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted); padding-top:2px;}
+.frow2 .what{font-weight:500;} .frow2 .what.err{color:var(--crit-text);}
+@media (max-width:640px){.frow2{grid-template-columns:80px minmax(0,1fr);} .frow2 .det{grid-column:2;}}
+.foot-note{font-size:0.78rem; color:var(--muted); margin-top:34px; max-width:760px;}
+[hidden]{display:none !important;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="wordmark" aria-label="Back to the site">
+      <img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
+      <img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
+      <span class="wordmark-sub">Admin</span>
+    </a>
+    <div class="nav-right">
+      <button class="btn" id="signOut" type="button" hidden>Sign out</button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+        <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg>
+        <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Sign in -->
+  <section class="login" id="login" hidden>
+    <div class="tag">Private</div>
+    <h1>Admin sign-in</h1>
+    <p>Enter your access key to see traffic and business figures.</p>
+    <form id="loginForm" autocomplete="off">
+      <input type="password" id="keyInput" placeholder="Access key" aria-label="Access key" autocomplete="current-password" required />
+      <label class="rem"><input type="checkbox" id="remember" /> Remember me on this device</label>
+      <button class="btn primary" type="submit" style="width:100%; padding:11px;">Sign in</button>
+      <div class="err" id="loginErr" role="alert"></div>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <main id="app" hidden>
+    <div class="top">
+      <div>
+        <div class="tag" id="roleTag">Admin</div>
+        <h1 id="pageTitle">Business &amp; traffic</h1>
+      </div>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="filters">
+      <div class="seg" id="rangeSeg" role="group" aria-label="Date range">
+        <button type="button" data-r="7" aria-pressed="false">7 days</button>
+        <button type="button" data-r="30" aria-pressed="true">30 days</button>
+        <button type="button" data-r="90" aria-pressed="false">90 days</button>
+      </div>
+      <button class="btn" id="refresh" type="button">Refresh</button>
+      <span class="stamp" id="stamp"></span>
+    </div>
+    <div id="status" class="notice bad" hidden role="alert"></div>
+    <div class="frame" id="frame"></div>
+    <p class="foot-note" id="footNote"></p>
+  </main>
+</div>
+
+<script>
+(function () {
+'use strict';
+var API = 'https://ric-lee-basket-relay.mrrickielee.workers.dev/admin/data';
+
+/* ---------- tiny helpers ---------- */
+function $(id){ return document.getElementById(id); }
+function h(tag, attrs, kids){
+  var e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){
+    if (k === 'class') e.className = attrs[k];
+    else if (k === 'text') e.textContent = attrs[k];
+    else if (k.indexOf('on') === 0) e.addEventListener(k.slice(2), attrs[k]);
+    else if (attrs[k] !== false && attrs[k] != null) e.setAttribute(k, attrs[k]);
+  });
+  (kids || []).forEach(function(c){ if (c != null) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return e;
+}
+var NS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, parent){
+  var e = document.createElementNS(NS, tag);
+  Object.keys(attrs || {}).forEach(function(k){ e.setAttribute(k, attrs[k]); });
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function safe(fn){ try { return fn(); } catch (e) { return null; } }
+var nf = new Intl.NumberFormat('en-GB');
+function num(n){
+  n = n || 0;
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e4) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return nf.format(Math.round(n));
+}
+function gbp(p){
+  var v = (p || 0) / 100;
+  return '£' + v.toLocaleString('en-GB', { minimumFractionDigits: (p % 100) ? 2 : 0, maximumFractionDigits: 2 });
+}
+function gbpShort(p){ var v = (p || 0) / 100; return v >= 10000 ? '£' + (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : gbp(p); }
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dlabel(iso){ var p = iso.split('-'); return Number(p[2]) + ' ' + MON[Number(p[1]) - 1]; }
+function dfull(iso){ var d = new Date(iso + 'T00:00:00Z'); return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getUTCDay()] + ' ' + dlabel(iso); }
+function when(ms){
+  var s = Math.max(0, Math.round((Date.now() - ms) / 1000));
+  if (s < 90) return 'just now';
+  if (s < 5400) return Math.round(s / 60) + ' min ago';
+  if (s < 129600) return Math.round(s / 3600) + ' h ago';
+  return Math.round(s / 86400) + ' d ago';
+}
+function sum(a, f){ return a.reduce(function(x, v){ return x + (f ? f(v) : v); }, 0); }
+function niceMax(v){
+  if (v <= 0) return 4;
+  var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p;
+  var n = f <= 1 ? 1 : f <= 2 ? 2 : f <= 4 ? 4 : f <= 5 ? 5 : 10;
+  if (n === 4) n = 4; return n * p;
+}
+function deltaEl(cur, prev, goodUp, label){
+  var box = h('div', { class: 'delta' });
+  if (!prev && !cur) { box.appendChild(h('span', { text: 'No data yet' })); return box; }
+  if (!prev) { box.appendChild(h('span', { text: 'New this period' })); return box; }
+  var pct = Math.round((cur - prev) / prev * 100);
+  var cls = pct === 0 || goodUp === null ? '' : ((pct > 0) === goodUp ? 'up' : 'down');
+  box.appendChild(h('span', { class: cls, text: (pct > 0 ? '▲ ' : pct < 0 ? '▼ ' : '– ') + Math.abs(pct) + '%' }));
+  if (label !== '') box.appendChild(h('span', { text: label || 'vs previous period' }));
+  return box;
+}
+
+/* ---------- storage / auth ---------- */
+function getKey(){ return safe(function(){ return sessionStorage.getItem('rl-admin') || localStorage.getItem('rl-admin') || ''; }) || ''; }
+function setKey(k, remember){
+  safe(function(){ sessionStorage.removeItem('rl-admin'); localStorage.removeItem('rl-admin'); (remember ? localStorage : sessionStorage).setItem('rl-admin', k); });
+}
+function clearKey(){ safe(function(){ sessionStorage.removeItem('rl-admin'); localStorage.removeItem('rl-admin'); }); }
+
+var state = { data: null, range: 30, tab: 'overview', site: null, busy: false };
+var TABS_ADMIN = [['overview','Overview'],['traffic','Traffic'],['business','Business'],['health','Health']];
+
+/* ---------- theme ---------- */
+$('themeToggle').addEventListener('click', function(){
+  var d = document.documentElement.classList.toggle('dark');
+  safe(function(){ localStorage.setItem('rl-theme', d ? 'dark' : 'light'); });
+});
+
+/* ---------- sign-in / out ---------- */
+function showLogin(msg){
+  $('app').hidden = true; $('login').hidden = false; $('signOut').hidden = true;
+  $('loginErr').textContent = msg || '';
+  $('keyInput').value = ''; $('keyInput').focus();
+}
+$('loginForm').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var k = $('keyInput').value.trim(); if (!k) return;
+  $('loginErr').textContent = 'Checking…';
+  load(k, true, $('remember').checked);
+});
+$('signOut').addEventListener('click', function(){ clearKey(); state.data = null; showLogin(''); });
+$('refresh').addEventListener('click', function(){ load(getKey()); });
+$('rangeSeg').addEventListener('click', function(ev){
+  var b = ev.target.closest('button'); if (!b) return;
+  state.range = Number(b.getAttribute('data-r'));
+  Array.prototype.forEach.call($('rangeSeg').children, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+  load(getKey());
+});
+
+/* ---------- data ---------- */
+function load(key, fromLogin, remember){
+  if (!key) { showLogin(''); return; }
+  state.busy = true; $('frame').classList.add('busy'); $('status').hidden = true;
+  fetch(API + '?range=' + state.range, { headers: { 'Authorization': 'Bearer ' + key } })
+    .then(function(r){
+      if (r.status === 401) { var e = new Error('auth'); e.auth = true; throw e; }
+      return r.json().then(function(j){ if (!r.ok || !j.ok) throw new Error((j && j.error) || ('HTTP ' + r.status)); return j; });
+    })
+    .then(function(j){
+      if (fromLogin) setKey(key, remember);
+      state.data = j; state.busy = false;
+      $('login').hidden = true; $('app').hidden = false; $('signOut').hidden = false;
+      var tabs = j.role === 'admin' ? TABS_ADMIN : [['traffic','Traffic']];
+      if (!tabs.some(function(t){ return t[0] === state.tab; })) state.tab = tabs[0][0];
+      if (!state.site || !(j.sites || []).some(function(s){ return s.id === state.site; })) {
+        var first = (j.sites || []).filter(function(s){ return s.connected; })[0] || (j.sites || [])[0];
+        state.site = first ? first.id : null;
+      }
+      $('roleTag').textContent = j.role === 'admin' ? 'Admin' : 'Client view';
+      $('pageTitle').textContent = j.role === 'admin' ? 'Business & traffic' : 'Your site traffic';
+      render();
+    })
+    .catch(function(e){
+      state.busy = false; $('frame').classList.remove('busy');
+      if (e && e.auth) { clearKey(); showLogin("That key didn't work."); return; }
+      var msg = 'Couldn’t load the data (' + (e && e.message ? e.message : 'network error') + '). ' +
+        (state.data ? 'Showing the last good copy.' : 'Check the worker is deployed and try Refresh.');
+      if (!state.data) { showLogin(''); $('loginErr').textContent = msg; return; }
+      $('status').textContent = msg; $('status').hidden = false;
+    });
+}
+
+/* ---------- charts ---------- */
+function tipEl(host){
+  var t = host.querySelector('.tip');
+  if (!t) { t = h('div', { class: 'tip', role: 'status' }); host.appendChild(t); }
+  return t;
+}
+function placeTip(host, tip, x, y){
+  tip.style.display = 'block';
+  var w = tip.offsetWidth, hw = host.clientWidth;
+  var left = x + 14; if (left + w > hw) left = x - w - 14; if (left < 0) left = 0;
+  tip.style.left = left + 'px'; tip.style.top = Math.max(0, y - 10) + 'px';
+}
+
+function lineChart(host, o){
+  host.textContent = '';
+  var W = Math.max(280, host.clientWidth || 600), H = 250, ml = 42, mr = 10, mt = 10, mb = 26;
+  var iw = W - ml - mr, ih = H - mt - mb, n = o.labels.length;
+  var max = niceMax(Math.max.apply(null, [1].concat.apply([], o.series.map(function(s){ return s.vals; }))));
+  var svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', tabindex: '0', 'aria-label': o.aria }, null);
+  var X = function(i){ return ml + (n > 1 ? i * iw / (n - 1) : iw / 2); };
+  var Y = function(v){ return mt + ih - v / max * ih; };
+  for (var t = 0; t <= 4; t++) {
+    var v = max * t / 4, y = Y(v);
+    sv('line', { x1: ml, x2: W - mr, y1: y, y2: y, class: 'grid-l' }, svg);
+    sv('text', { x: ml - 8, y: y + 3.5, 'text-anchor': 'end' }, svg).textContent = o.fmtY(v);
+  }
+  var step = Math.max(1, Math.round((n - 1) / 5));
+  for (var i = 0; i < n; i += step) sv('text', { x: X(i), y: H - 7, 'text-anchor': i === 0 ? 'start' : 'middle' }, svg).textContent = dlabel(o.labels[i]);
+  o.series.forEach(function(s, si){
+    var pts = s.vals.map(function(v, i){ return X(i) + ',' + Y(v); });
+    if (si === 0 && n > 1) sv('polygon', { class: 'a1', points: X(0) + ',' + Y(0) + ' ' + pts.join(' ') + ' ' + X(n - 1) + ',' + Y(0) }, svg);
+    sv('polyline', { class: 'l' + (si + 1), points: pts.join(' ') }, svg);
+  });
+  var xh = sv('line', { class: 'xh', y1: mt, y2: mt + ih, style: 'display:none' }, svg);
+  var dots = o.series.map(function(s, si){ return sv('circle', { class: 'dot' + (si + 1), r: 4.5, style: 'display:none' }, svg); });
+  var hit = sv('rect', { x: ml, y: mt, width: iw, height: ih, fill: 'transparent' }, svg);
+  host.appendChild(svg);
+  var tip = tipEl(host);
+  function show(i){
+    i = Math.max(0, Math.min(n - 1, i));
+    xh.setAttribute('x1', X(i)); xh.setAttribute('x2', X(i)); xh.style.display = '';
+    tip.textContent = '';
+    tip.appendChild(h('div', { class: 't-h', text: dfull(o.labels[i]) }));
+    o.series.forEach(function(s, si){
+      dots[si].setAttribute('cx', X(i)); dots[si].setAttribute('cy', Y(s.vals[i])); dots[si].style.display = '';
+      tip.appendChild(h('div', { class: 't-r' }, [h('span', { class: 'key' + (si ? ' k2' : '') }), h('span', { text: s.name }), h('b', { text: o.fmtV(s.vals[i]) })]));
+    });
+    var sc = host.clientWidth / W;
+    placeTip(host, tip, X(i) * sc, Y(Math.max.apply(null, o.series.map(function(s){ return s.vals[i]; }))) * (host.clientWidth / W));
+    svg._i = i;
+  }
+  function hide(){ xh.style.display = 'none'; dots.forEach(function(d){ d.style.display = 'none'; }); tip.style.display = 'none'; }
+  hit.addEventListener('pointermove', function(ev){
+    var r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * (W / r.width);
+    show(Math.round((px - ml) / iw * (n - 1)));
+  });
+  hit.addEventListener('pointerleave', hide);
+  svg.addEventListener('keydown', function(ev){
+    if (ev.key === 'ArrowLeft') { show((svg._i == null ? n - 1 : svg._i) - 1); ev.preventDefault(); }
+    else if (ev.key === 'ArrowRight') { show((svg._i == null ? -1 : svg._i) + 1); ev.preventDefault(); }
+    else if (ev.key === 'Escape') hide();
+  });
+  svg.addEventListener('blur', hide);
+}
+
+function colChart(host, o){
+  host.textContent = '';
+  var W = Math.max(280, host.clientWidth || 600), H = o.h || 220, ml = 44, mr = 8, mt = 10, mb = 26;
+  var iw = W - ml - mr, ih = H - mt - mb, n = o.labels.length;
+  var max = niceMax(Math.max.apply(null, [o.minMax || 1].concat(o.vals)));
+  var svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': o.aria }, null);
+  var Y = function(v){ return mt + ih - v / max * ih; };
+  for (var t = 0; t <= 4; t++) {
+    var y = Y(max * t / 4);
+    sv('line', { x1: ml, x2: W - mr, y1: y, y2: y, class: 'grid-l' }, svg);
+    sv('text', { x: ml - 8, y: y + 3.5, 'text-anchor': 'end' }, svg).textContent = o.fmtY(max * t / 4);
+  }
+  var slot = iw / n, bw = Math.max(1.5, Math.min(24, slot - 2));
+  var step = Math.max(1, Math.round((n - 1) / 5));
+  for (var i = 0; i < n; i += step) sv('text', { x: ml + slot * i + slot / 2, y: H - 7, 'text-anchor': i === 0 ? 'start' : 'middle' }, svg).textContent = dlabel(o.labels[i]);
+  host.appendChild(svg);
+  var tip = tipEl(host);
+  o.vals.forEach(function(v, i){
+    var x = ml + slot * i + (slot - bw) / 2, hh = Math.max(v > 0 ? 2 : 0, v / max * ih), r = Math.min(4, bw / 2, hh);
+    if (v > 0) {
+      // square at the baseline, 4px rounded data-end
+      var d = 'M' + x + ',' + (mt + ih) + 'V' + (mt + ih - hh + r) + 'Q' + x + ',' + (mt + ih - hh) + ' ' + (x + r) + ',' + (mt + ih - hh) +
+        'H' + (x + bw - r) + 'Q' + (x + bw) + ',' + (mt + ih - hh) + ' ' + (x + bw) + ',' + (mt + ih - hh + r) + 'V' + (mt + ih) + 'Z';
+      sv('path', { class: 'bar', d: d }, svg);
+    }
+    var hit = sv('rect', { x: ml + slot * i, y: mt, width: slot, height: ih, fill: 'transparent' }, svg);
+    var on = function(){
+      tip.textContent = '';
+      tip.appendChild(h('div', { class: 't-h', text: dfull(o.labels[i]) }));
+      tip.appendChild(h('div', { class: 't-r' }, [h('span', { class: 'key kb' }), h('span', { text: o.name }), h('b', { text: o.fmtV(v) })]));
+      placeTip(host, tip, (ml + slot * i + slot / 2) * host.clientWidth / W, Y(v) * host.clientWidth / W);
+    };
+    hit.addEventListener('pointermove', on); hit.addEventListener('pointerleave', function(){ tip.style.display = 'none'; });
+  });
+}
+
+function spark(vals){
+  var W = 120, H = 30, n = vals.length, max = Math.max.apply(null, [1].concat(vals));
+  var svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, width: '100%', height: H, preserveAspectRatio: 'none', 'aria-hidden': 'true' }, null);
+  var pts = vals.map(function(v, i){ return (n > 1 ? 4 + i * (W - 8) / (n - 1) : W / 2) + ',' + (H - 4 - v / max * (H - 10)); });
+  sv('polyline', { points: pts.join(' '), fill: 'none', style: 'stroke:var(--s1)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'vector-effect': 'non-scaling-stroke' }, svg);
+  return svg;
+}
+function bucket(vals, k){
+  var out = [], size = vals.length / k;
+  for (var i = 0; i < k; i++) out.push(sum(vals.slice(Math.floor(i * size), Math.floor((i + 1) * size)) || [0]));
+  return out;
+}
+
+/* chart card with legend + table toggle */
+function chartCard(title, sub, o, legend, tableCols, tableRows){
+  var host = h('div', { class: 'chart' });
+  var tbl = h('div', { class: 'tbl-wrap', hidden: '' }, [tableEl(tableCols, tableRows)]);
+  var showTbl = false;
+  var toggle = h('button', { class: 'link-btn', type: 'button', text: 'View as table' });
+  var card = h('div', { class: 'card' }, [
+    h('div', { class: 'card-h' }, [
+      h('div', {}, [h('h2', { text: title }), sub ? h('div', { class: 'sub', text: sub }) : null]),
+      h('div', { style: 'display:flex; gap:16px; align-items:center; flex-wrap:wrap;' }, [legend, toggle])
+    ]), host, tbl
+  ]);
+  toggle.addEventListener('click', function(){
+    showTbl = !showTbl; host.hidden = showTbl; tbl.hidden = !showTbl; toggle.textContent = showTbl ? 'View as chart' : 'View as table';
+    if (!showTbl) o.draw(host);
+  });
+  card._draw = function(){ if (!showTbl) o.draw(host); };
+  return card;
+}
+function tableEl(cols, rows, numFrom){
+  var nf0 = numFrom == null ? 1 : numFrom;   // columns from this index on are right-aligned numbers
+  var t = h('table', {}, [
+    h('thead', {}, [h('tr', {}, cols.map(function(c, i){ return h('th', { class: i >= nf0 ? 'n' : '', text: c }); }))]),
+    h('tbody', {}, rows.map(function(r){ return h('tr', {}, r.map(function(c, i){ return h('td', { class: i >= nf0 ? 'n' : '', text: String(c) }); })); }))
+  ]);
+  return t;
+}
+function legend2(a, b){
+  return h('div', { class: 'legend' }, [h('span', {}, [h('i', { class: 'key' }), a]), b ? h('span', {}, [h('i', { class: 'key k2' }), b]) : null]);
+}
+
+/* ---------- components ---------- */
+function stat(label, value, deltaNode, sparkVals, extra){
+  return h('div', { class: 'card stat' }, [
+    h('div', { class: 'label' }, [label, extra ? ' ' : null, extra || null]),
+    h('div', { class: 'value', text: value }),
+    deltaNode || null,
+    sparkVals ? h('div', { class: 'spark' }, [spark(sparkVals)]) : null
+  ]);
+}
+function barList(items, fmt){
+  if (!items || !items.length) return h('div', { class: 'empty', text: 'Nothing recorded in this period.' });
+  var max = Math.max.apply(null, items.map(function(i){ return i.n; })) || 1;
+  return h('div', { class: 'blist' }, items.map(function(i){
+    return h('div', { class: 'brow', title: i.k + ' — ' + (fmt ? fmt(i.n) : nf.format(i.n)) }, [
+      h('span', { class: 'nm', text: i.k }), h('span', { class: 'nv', text: fmt ? fmt(i.n) : nf.format(i.n) }),
+      h('div', { class: 'track' }, [h('div', { class: 'fill', style: 'width:' + Math.max(1.5, i.n / max * 100) + '%' })])
+    ]);
+  }));
+}
+function listCard(title, sub, node){ return h('div', { class: 'card' }, [h('div', { class: 'card-h' }, [h('div', {}, [h('h2', { text: title }), sub ? h('div', { class: 'sub', text: sub }) : null])]), node]); }
+function badge(s){
+  var map = { ok: ['OK', 'M4 8.5l2.7 2.7L12 5.5'], warn: ['Check', 'M8 4v5M8 11.2v.6'], down: ['Down', 'M5 5l6 6M11 5l-6 6'], unknown: ['No data', 'M6.2 6.2a1.9 1.9 0 1 1 2.6 1.8c-.5.3-.8.6-.8 1.2M8 11.4v.4'] };
+  var m = map[s] || map.unknown;
+  var svg = sv('svg', { viewBox: '0 0 16 16', fill: 'none', 'aria-hidden': 'true' }, null);
+  if (s === 'warn') sv('path', { d: 'M8 1.8L14.6 13.4H1.4z', stroke: 'currentColor', 'stroke-width': 1.4, 'stroke-linejoin': 'round' }, svg);
+  else if (s === 'ok') sv('circle', { cx: 8, cy: 8, r: 6.5, stroke: 'currentColor', 'stroke-width': 1.4 }, svg);
+  else if (s === 'down') sv('rect', { x: 1.5, y: 1.5, width: 13, height: 13, rx: 3, stroke: 'currentColor', 'stroke-width': 1.4 }, svg);
+  else sv('circle', { cx: 8, cy: 8, r: 6.5, stroke: 'currentColor', 'stroke-width': 1.4, 'stroke-dasharray': '2 2.4' }, svg);
+  sv('path', { d: m[1], stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+  return h('span', { class: 'badge b-' + (map[s] ? s : 'unknown') }, [svg, m[0]]);
+}
+
+/* ---------- views ---------- */
+var redraws = [];
+function totals(d){
+  var cs = (d.sites || []).filter(function(s){ return s.connected; });
+  return { visits: sum(cs, function(s){ return s.totals.visits; }), prevVisits: sum(cs, function(s){ return s.totals.prevVisits; }),
+           views: sum(cs, function(s){ return s.totals.views; }), prevViews: sum(cs, function(s){ return s.totals.prevViews; }),
+           n: cs.length, series: cs.length ? cs[0].series.map(function(x, i){ return sum(cs, function(s){ return s.series[i] ? s.series[i].visits : 0; }); }) : [] };
+}
+
+function viewOverview(d){
+  var f = h('div', {}), T = totals(d), m = d.money || {}, l = d.leads || {};
+  var lbl = 'vs previous ' + d.range + ' days';
+  var tiles = h('div', { class: 'grid g4' }, [
+    stat('Visits · all sites', num(T.visits), deltaEl(T.visits, T.prevVisits, true, lbl), T.series.length ? bucket(T.series, 12) : null),
+    m.connected ? stat('Revenue', gbpShort(m.revenue), deltaEl(m.revenue, m.prevRevenue, true, lbl), bucket(m.series.map(function(x){ return x.pence; }), 12),
+      m.mode === 'test' ? h('span', { class: 'chip', text: 'Test mode' }) : null) : stat('Revenue', '—', h('div', { class: 'delta', text: 'Stripe not connected' })),
+    l.enabled ? stat('Quote requests', nf.format(l.quotes), deltaEl(l.quotes, l.prevQuotes, true, lbl), bucket(l.series.map(function(x){ return x.n; }), 12))
+      : stat('Quote requests', '—', h('div', { class: 'delta', text: 'Event log not connected' })),
+    m.connected ? stat('Outstanding invoices', gbpShort(m.outstanding.pence), h('div', { class: 'delta' }, [h('span', { class: m.outstanding.overdue ? 'down' : '', text: m.outstanding.count + ' open' + (m.outstanding.overdue ? ' · ' + m.outstanding.overdue + ' overdue' : '') })]))
+      : stat('Outstanding invoices', '—', h('div', { class: 'delta', text: 'Stripe not connected' }))
+  ]);
+  f.appendChild(tiles);
+
+  // sites table
+  var rows = (d.sites || []).map(function(s){
+    if (!s.connected) return h('tr', {}, [h('td', { text: s.name }), h('td', { class: 'n', text: '—' }), h('td', { class: 'n', text: '—' }), h('td', {}), h('td', { class: 'n' }, [s.error ? badge('down') : badge('unknown')]),
+      h('td', { class: 'muted', style: 'white-space:normal; min-width:200px;', text: s.error || s.note || '' })]);
+    var dd = deltaEl(s.totals.visits, s.totals.prevVisits, true, '');
+    return h('tr', { style: 'cursor:pointer;', onclick: function(){ state.site = s.id; setTab('traffic'); } }, [
+      h('td', { text: s.name }), h('td', { class: 'n', text: nf.format(s.totals.visits) }), h('td', { class: 'n', text: nf.format(s.totals.views) }),
+      h('td', { style: 'min-width:110px;' }, [h('div', { style: 'width:110px;height:30px;' }, [spark(bucket(s.series.map(function(x){ return x.visits; }), 14))])]),
+      h('td', { class: 'n' }, [dd]), h('td', {}, [badge('ok')])]);
+  });
+  f.appendChild(h('div', { class: 'sec-title' }, [h('h2', { text: 'Traffic by site' }), h('span', { class: 'muted', style: 'font-size:.8rem', text: 'Click a row for detail' })]));
+  f.appendChild(h('div', { class: 'card', style: 'margin-top:12px; padding:6px 8px;' }, [h('div', { class: 'tbl-wrap', style: 'border:0; max-height:none;' }, [
+    h('table', {}, [h('thead', {}, [h('tr', {}, [h('th', { text: 'Site' }), h('th', { class: 'n', text: 'Visits' }), h('th', { class: 'n', text: 'Page views' }), h('th', { text: 'Trend' }), h('th', { class: 'n', text: 'Change' }), h('th', { text: 'Status' })])]), h('tbody', {}, rows)])])]));
+
+  // funnel + health strip
+  var two = h('div', { class: 'grid g2' });
+  var fr = d.funnel || [];
+  var fnode = fr.length ? h('div', { class: 'funnel' }, fr.map(function(r, i){
+    var max = fr[0].n || 1, prev = i ? fr[i - 1].n : null;
+    return h('div', { class: 'frow' }, [h('span', { text: r.k }), h('div', {}, [h('div', { class: 'bar', style: 'width:' + Math.max(0.5, r.n / Math.max(1, fr.reduce(function(a, x){ return Math.max(a, x.n); }, 1)) * 100) + '%' })]),
+      h('span', { class: 'num' }, [h('b', { text: nf.format(r.n) }), prev ? h('span', { text: ' · ' + (Math.round(r.n / prev * 1000) / 10) + '%' }) : null])]);
+  })) : h('div', { class: 'empty', text: 'Connect analytics, the event log and Stripe to see the funnel.' });
+  two.appendChild(listCard('Visit to payment', 'ric-lee.co.uk, ' + d.range + ' days. The % is the share of the step above. Stages mix page views and counts, so it’s a rough guide.', fnode));
+  var hs = d.health || [], bad = hs.filter(function(x){ return x.s === 'warn' || x.s === 'down'; });
+  two.appendChild(listCard('System health', bad.length ? bad.length + ' thing' + (bad.length > 1 ? 's' : '') + ' to look at' : 'Everything reporting is fine', h('div', {}, hs.slice(0, 7).map(function(x){
+    return h('div', { class: 'hrow', style: 'grid-template-columns:auto minmax(0,1fr); padding:8px 0;' }, [badge(x.s), h('span', { text: x.k })]); }))));
+  f.appendChild(two);
+  return f;
+}
+
+function viewTraffic(d){
+  var f = h('div', {}), sites = d.sites || [];
+  if (!sites.length) { f.appendChild(h('div', { class: 'notice', style: 'margin-top:16px', text: 'No sites to show.' })); return f; }
+  if (sites.length > 1) {
+    var pills = h('div', { class: 'pills' }, sites.map(function(s){
+      return h('button', { class: 'pill', type: 'button', 'aria-pressed': s.id === state.site ? 'true' : 'false', onclick: function(){ state.site = s.id; render(); } },
+        [h('i', { class: 'dotst' + (s.connected ? ' on' : '') }), s.name]);
+    }));
+    f.appendChild(pills);
+  }
+  var s = sites.filter(function(x){ return x.id === state.site; })[0] || sites[0];
+  if (!s.connected) {
+    f.appendChild(h('div', { class: 'notice' + (s.error ? ' bad' : ''), style: 'margin-top:16px' }, [h('b', { text: s.name + ': ' }), s.error || s.note || 'Not connected yet.']));
+    return f;
+  }
+  var lbl = 'vs previous ' + d.range + ' days';
+  f.appendChild(h('div', { class: 'grid g3' }, [
+    stat('Visits', nf.format(s.totals.visits), deltaEl(s.totals.visits, s.totals.prevVisits, true, lbl)),
+    stat('Page views', nf.format(s.totals.views), deltaEl(s.totals.views, s.totals.prevViews, true, lbl)),
+    stat('Pages per visit', s.totals.visits ? (s.totals.views / s.totals.visits).toFixed(1) : '—', h('div', { class: 'delta', text: 'Average this period' }))
+  ]));
+  var labels = s.series.map(function(x){ return x.d; });
+  var cc = chartCard('Visits and page views', s.name + ', daily', {
+    draw: function(host){ lineChart(host, { labels: labels, aria: 'Daily visits and page views for ' + s.name,
+      series: [{ name: 'Visits', vals: s.series.map(function(x){ return x.visits; }) }, { name: 'Page views', vals: s.series.map(function(x){ return x.views; }) }],
+      fmtY: function(v){ return num(v); }, fmtV: function(v){ return nf.format(v); } }); }
+  }, legend2('Visits', 'Page views'), ['Date', 'Visits', 'Page views'], s.series.slice().reverse().map(function(x){ return [dfull(x.d), x.visits, x.views]; }));
+  var cw = h('div', { style: 'margin-top:16px;' }, [cc]); f.appendChild(cw); redraws.push(cc._draw);
+  f.appendChild(h('div', { class: 'grid g2' }, [
+    listCard('Top pages', 'Page views', barList(s.pages.slice(0, 8))),
+    listCard('Where visitors come from', 'Page views by referrer', barList(s.referrers.slice(0, 8))),
+    listCard('Countries', 'Page views', barList(s.countries.slice(0, 8))),
+    listCard('Devices and browsers', 'Page views', h('div', {}, [barList(s.devices), h('div', { style: 'height:14px' }), barList(s.browsers.slice(0, 5))]))
+  ]));
+  return f;
+}
+
+var EV_LABEL = { quote: 'Quote request', accept: 'Accepted', decline: 'Declined', checkout: 'Package checkout', pay_link: 'Payment link sent', invoice: 'Invoice sent', error: 'Error' };
+function evDetail(e){
+  var p = [];
+  if (e.y === 'quote') { if (e.s) p.push(e.s); if (e.v) p.push('£' + nf.format(e.v)); if (!e.e) p.push('no email on file'); }
+  else if (e.y === 'accept' || e.y === 'decline') p.push(e.e ? 'client emailed' : 'no email, nothing sent');
+  else if (e.y === 'checkout') p.push(e.p || '');
+  else if (e.y === 'pay_link' || e.y === 'invoice') p.push(gbp(e.a || 0));
+  else if (e.y === 'error') p.push((e.w || '') + (e.m ? ': ' + e.m : ''));
+  return p.filter(Boolean).join(' · ');
+}
+
+function viewBusiness(d){
+  var f = h('div', {}), m = d.money || {}, l = d.leads || {}, lbl = 'vs previous ' + d.range + ' days';
+  f.appendChild(h('div', { class: 'sec-title' }, [h('h2', { text: 'Money' }), m.mode === 'test' ? h('span', { class: 'chip', text: 'Stripe test mode: figures are test payments' }) : null]));
+  if (!m.connected) f.appendChild(h('div', { class: 'notice' + (m.error ? ' bad' : ''), style: 'margin-top:12px', text: m.error || m.note || 'Stripe is not connected.' }));
+  else {
+    f.appendChild(h('div', { class: 'grid g4' }, [
+      stat('Revenue', gbp(m.revenue), deltaEl(m.revenue, m.prevRevenue, true, lbl)),
+      stat('Payments', nf.format(m.count), deltaEl(m.count, m.prevCount, true, lbl)),
+      stat('Average payment', m.count ? gbp(Math.round(m.revenue / m.count)) : '—', h('div', { class: 'delta', text: 'This period' })),
+      stat('Outstanding', gbp(m.outstanding.pence), h('div', { class: 'delta' }, [h('span', { class: m.outstanding.overdue ? 'down' : '', text: m.outstanding.count + ' open invoice' + (m.outstanding.count === 1 ? '' : 's') + (m.outstanding.overdue ? ' · ' + m.outstanding.overdue + ' overdue' : '') })]))
+    ]));
+    var labels = m.series.map(function(x){ return x.d; }), vals = m.series.map(function(x){ return x.pence / 100; });
+    var rc = chartCard('Revenue by day', 'Payments received, GBP', { draw: function(host){ colChart(host, { labels: labels, vals: vals, name: 'Revenue', aria: 'Daily revenue',
+      fmtY: function(v){ return '£' + num(v); }, fmtV: function(v){ return '£' + v.toLocaleString('en-GB', { maximumFractionDigits: 2 }); } }); } },
+      h('div', { class: 'legend' }, [h('span', {}, [h('i', { class: 'key kb' }), 'Revenue'])]), ['Date', 'Revenue'], m.series.slice().reverse().map(function(x){ return [dfull(x.d), gbp(x.pence)]; }));
+    f.appendChild(h('div', { style: 'margin-top:16px;' }, [rc])); redraws.push(rc._draw);
+    var inv = m.outstanding.list.length ? tableEl(['Invoice', 'Client', 'Due', 'Amount'], m.outstanding.list.map(function(i){
+      return [i.no, i.who, (i.due ? new Date(i.due).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '—') + (i.overdue ? ' (overdue)' : ''), gbp(i.a)]; }), 3) : h('div', { class: 'empty', text: 'No open invoices.' });
+    var rec = m.recent.length ? tableEl(['When', 'From', 'Amount'], m.recent.map(function(p){ return [when(p.t), p.n || '—', gbp(p.a)]; }), 2) : h('div', { class: 'empty', text: 'No payments in this period.' });
+    f.appendChild(h('div', { class: 'grid g2' }, [listCard('Open invoices', 'Waiting to be paid', h('div', { class: 'tbl-wrap', style: 'border:0; max-height:none;' }, [inv])),
+      listCard('Recent payments', 'Latest first', h('div', { class: 'tbl-wrap', style: 'border:0; max-height:none;' }, [rec]))]));
+  }
+  f.appendChild(h('div', { class: 'sec-title' }, [h('h2', { text: 'Leads' })]));
+  if (!l.enabled) f.appendChild(h('div', { class: 'notice', style: 'margin-top:12px', text: 'The event log isn’t connected yet, so leads, accept rates and activity are empty. Finish the KV step in SETUP.md to turn this on.' }));
+  else {
+    f.appendChild(h('div', { class: 'grid g4' }, [
+      stat('Quote requests', nf.format(l.quotes), deltaEl(l.quotes, l.prevQuotes, true, lbl)),
+      stat('Quoted value', '£' + nf.format(l.quoteValue), h('div', { class: 'delta', text: 'Sum of quotes sent in' })),
+      stat('Accept rate', l.acceptRate == null ? '—' : Math.round(l.acceptRate * 100) + '%', h('div', { class: 'delta', text: l.accepted + ' accepted · ' + l.declined + ' declined' })),
+      stat('Payment asks', nf.format(l.checkouts + l.payLinks + l.invoices), h('div', { class: 'delta', text: l.checkouts + ' checkouts · ' + l.payLinks + ' links · ' + l.invoices + ' invoices' }))
+    ]));
+    var lc = chartCard('Quote requests by day', 'From the configurator', { draw: function(host){ colChart(host, { labels: l.series.map(function(x){ return x.d; }), vals: l.series.map(function(x){ return x.n; }),
+      name: 'Quote requests', aria: 'Quote requests per day', h: 170, minMax: 4, fmtY: function(v){ return String(Math.round(v)); }, fmtV: function(v){ return String(v); } }); } },
+      h('div', { class: 'legend' }, [h('span', {}, [h('i', { class: 'key kb' }), 'Quote requests'])]), ['Date', 'Quote requests'], l.series.slice().reverse().map(function(x){ return [dfull(x.d), x.n]; }));
+    f.appendChild(h('div', { style: 'margin-top:16px;' }, [lc])); redraws.push(lc._draw);
+    var evs = (d.events || []).filter(function(e){ return e.y !== 'stripe_hook'; }).slice(0, 15);
+    var feed = evs.length ? h('div', { class: 'feed' }, evs.map(function(e){
+      return h('div', { class: 'frow2' }, [h('span', { class: 'when', text: when(e.t) }), h('span', { class: 'what' + (e.y === 'error' ? ' err' : ''), text: EV_LABEL[e.y] || e.y }), h('span', { class: 'det muted', text: evDetail(e) })]);
+    })) : h('div', { class: 'empty', text: 'No activity logged yet. New quotes, accepts and payment asks will appear here.' });
+    f.appendChild(h('div', { class: 'grid g2' }, [listCard('Where quotes come from', 'By page', barList(l.sources)), listCard('Recent activity', 'Latest first', feed)]));
+  }
+  return f;
+}
+
+function viewHealth(d){
+  var hs = d.health || [];
+  return h('div', { class: 'card', style: 'margin-top:16px;' }, [h('div', { class: 'card-h' }, [h('div', {}, [h('h2', { text: 'System health' }), h('div', { class: 'sub', text: 'Checked each time this page loads' })])]),
+    h('div', {}, hs.map(function(x){ return h('div', { class: 'hrow' }, [badge(x.s), h('span', { text: x.k }), h('span', { class: 'hd', text: x.d })]); }))]);
+}
+
+/* ---------- render ---------- */
+function setTab(t){ state.tab = t; render(); try { history.replaceState(null, '', '#' + t); } catch (e) {} }
+function render(){
+  var d = state.data; if (!d) return;
+  redraws = [];
+  var tabs = d.role === 'admin' ? TABS_ADMIN : [['traffic', 'Traffic']];
+  var tb = $('tabs'); tb.textContent = '';
+  tabs.forEach(function(t){
+    tb.appendChild(h('button', { class: 'tab', role: 'tab', type: 'button', 'aria-selected': state.tab === t[0] ? 'true' : 'false', onclick: function(){ setTab(t[0]); } }, [t[1]]));
+  });
+  tb.style.display = tabs.length > 1 ? '' : 'none';
+  var frame = $('frame'); frame.textContent = '';
+  var v = state.tab === 'traffic' ? viewTraffic(d) : state.tab === 'business' ? viewBusiness(d) : state.tab === 'health' ? viewHealth(d) : viewOverview(d);
+  frame.appendChild(v); frame.classList.remove('busy');
+  redraws.forEach(function(fn){ fn(); });
+  $('stamp').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  $('footNote').textContent = d.role === 'admin'
+    ? 'Traffic comes from Cloudflare Web Analytics (privacy-friendly, sampled, so treat it as a close estimate; people who block analytics aren’t counted). Money comes live from Stripe. Leads and health come from the worker’s own event log, which only counts things from the day it was switched on.'
+    : 'Traffic comes from Cloudflare Web Analytics. It is privacy-friendly and sampled, so treat the numbers as a close estimate. Visitors who block analytics aren’t counted.';
+}
+var rz; window.addEventListener('resize', function(){ clearTimeout(rz); rz = setTimeout(function(){ redraws.forEach(function(fn){ fn(); }); }, 120); });
+
+/* ---------- boot ---------- */
+var hash = (location.hash || '').replace('#', '');
+if (['overview', 'traffic', 'business', 'health'].indexOf(hash) !== -1) state.tab = hash;
+var k = getKey();
+if (k) load(k); else showLogin('');
+})();
+</script>
+</body>
+</html>
