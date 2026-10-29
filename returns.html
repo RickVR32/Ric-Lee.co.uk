@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Returns &amp; Refunds — Ric Lee</title>
+<meta name="description" content="Cancellation, refund and returns policy for Ric-Lee Digital Developments packages, deposits, care plans and design work." />
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2c3a5e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+var stored = localStorage.getItem('rl-theme');
+var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (dark) document.documentElement.classList.add('dark');
+})();
+</script>
+<style>
+:root{
+--bg:#f7f4ee;
+--bg-soft:#ffffff;
+--panel:rgba(0,0,0,0.03);
+--text:#17160f;
+--muted:#6b6a60;
+--accent:#2c3a5e;
+--accent-soft:rgba(44,58,94,0.07);
+--accent-line:rgba(44,58,94,0.28);
+--line:rgba(0,0,0,0.1);
+--radius:3px;
+--accent-2:#4d6aa8;
+--shadow-sm:0 2px 10px rgba(23,22,15,0.05);
+--shadow-md:0 16px 40px rgba(23,22,15,0.09);
+--accent-glow:rgba(44,58,94,0.22);
+--accent-glow-strong:rgba(44,58,94,0.28);
+color-scheme: light;
+}
+html.dark{
+--bg:#141310;
+--bg-soft:#1c1b17;
+--panel:rgba(255,255,255,0.04);
+--text:#f2efe6;
+--muted:#9a978c;
+--accent:#7f9bd6;
+--accent-soft:rgba(127,155,214,0.1);
+--accent-line:rgba(127,155,214,0.32);
+--line:rgba(255,255,255,0.1);
+--accent-2:#a9c0e8;
+--shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+--shadow-md:0 18px 44px rgba(0,0,0,0.4);
+--accent-glow:rgba(127,155,214,0.3);
+--accent-glow-strong:rgba(127,155,214,0.4);
+color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth; scrollbar-gutter:stable;}
+body{
+font-family:'IBM Plex Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.65;
+min-height:100vh;
+transition:background 0.3s, color 0.3s;
+}
+.container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
+a{color:inherit;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* NAV */
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.wordmark img{height:46px; width:auto; display:block;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
+.logo-dark{display:block !important;}
+.logo-light{display:none !important;}
+html.dark .logo-dark{display:none !important;}
+html.dark .logo-light{display:block !important;}
+.nav-links{display:flex; gap:28px; list-style:none;}
+.nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex; align-items:center; gap:18px;}
+.theme-toggle{width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; flex-shrink:0;}
+.theme-toggle:hover{color:var(--text); border-color:var(--accent);}
+.theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.theme-icon-sun{display:none;}
+.theme-icon-moon{display:block;}
+html.dark .theme-icon-sun{display:block;}
+html.dark .theme-icon-moon{display:none;}
+
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
+.btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border-color:var(--accent); box-shadow:0 6px 18px var(--accent-glow);}
+.btn-primary:hover{opacity:0.92; transform:translateY(-1px); box-shadow:0 10px 24px var(--accent-glow-strong);}
+
+/* SECTION SHELL */
+section{padding:56px 0; border-bottom:1px solid var(--line);}
+.sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2rem, 4.4vw, 3rem); line-height:1.14; letter-spacing:-0.01em; max-width:760px; margin-bottom:18px;}
+h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.2rem,2.2vw,1.5rem); letter-spacing:-0.005em; margin-bottom:18px;}
+h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; margin:26px 0 10px;}
+
+/* LEGAL PROSE */
+.legal-intro{padding:70px 0 48px;}
+.legal-intro p{color:var(--muted); font-size:0.98rem; max-width:640px;}
+.legal-meta{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-top:22px;}
+.legal-jump{display:flex; gap:22px; margin-top:26px; flex-wrap:wrap;}
+.legal-jump a{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; color:var(--accent); border-bottom:1px solid var(--accent-line); padding-bottom:3px;}
+.legal-body{max-width:720px;}
+.legal-body p{font-size:0.92rem; color:var(--text); margin-bottom:14px;}
+.legal-body p.muted{color:var(--muted);}
+.legal-body ul{list-style:none; display:flex; flex-direction:column; gap:10px; margin:14px 0 22px;}
+.legal-body ul li{font-size:0.9rem; color:var(--text); display:flex; gap:12px; align-items:flex-start; padding-left:0;}
+.legal-body ul li::before{content:'—'; color:var(--accent); flex-shrink:0;}
+.legal-body a{color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-line);}
+.legal-table{width:100%; border-collapse:collapse; margin:14px 0 24px; font-size:0.86rem;}
+.legal-table th,.legal-table td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+.legal-table th{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); font-weight:500;}
+.cta-band{padding:64px 0; text-align:center; border-bottom:none;}
+.cta-band p{color:var(--muted); font-size:0.9rem; max-width:440px; margin:0 auto 28px;}
+
+/* FOOTER */
+footer{padding:36px 0;}
+.foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+.foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;}
+.foot-links{display:flex; gap:20px; list-style:none;}
+.foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
+.foot-links a:hover{color:var(--accent);}
+.payments-accepted{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.payments-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+.payment-marks{display:flex; flex-wrap:wrap; align-items:center; gap:8px;} .pay-mark{display:inline-flex; align-items:center; justify-content:center; width:44px; height:28px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 1px var(--line); background:#fff; flex-shrink:0;} .pay-mark svg{display:block; width:100%; height:100%;}
+
+.breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;}
+.breadcrumb a{color:var(--muted); text-decoration:none;}
+.breadcrumb a:hover{color:var(--accent);}
+
+@media (max-width:640px){
+.nav-links{display:none;}
+.wordmark img{height:36px;}
+.legal-table{font-size:0.8rem;}
+.legal-table th,.legal-table td{padding:10px 8px;}
+}
+
+/* mobile burger menu */
+.burger{display:none; width:40px; height:40px; padding:0; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--text); cursor:pointer; flex-shrink:0; transition:border-color .2s, background .2s;}
+.burger:hover,.burger.open{border-color:var(--accent); background:var(--accent-soft);}
+.burger svg{width:20px; height:20px; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; fill:none;}
+.burger .b-top,.burger .b-mid,.burger .b-bot{transition:transform .25s ease, opacity .2s ease; transform-origin:12px 12px;}
+.burger.open .b-top{transform:translateY(6px) rotate(45deg);}
+.burger.open .b-mid{opacity:0;}
+.burger.open .b-bot{transform:translateY(-6px) rotate(-45deg);}
+.mobile-menu{position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); box-shadow:0 18px 30px rgba(0,0,0,0.22); padding:6px 22px 22px; animation:mmIn .2s ease;}
+.mobile-menu[hidden]{display:none;}
+@keyframes mmIn{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:none;}}
+.mm-links{list-style:none; margin:0; padding:0;}
+.mm-links li{border-bottom:1px solid var(--line);}
+.mm-links a{display:block; padding:16px 2px; font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; color:var(--text);}
+.mm-links a[aria-current="page"]{color:var(--accent);}
+.mm-links a:hover{color:var(--accent);}
+.mm-quote{display:flex; justify-content:center; margin-top:18px; padding:14px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.76rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border:1px solid var(--accent);}
+.mm-theme{display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; padding:14px 2px 0; background:none; border:0; border-top:1px solid var(--line); cursor:pointer; color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase;}
+.mm-switch{position:relative; width:46px; height:26px; border-radius:999px; background:var(--panel); border:1px solid var(--line); flex-shrink:0; transition:background .2s, border-color .2s;}
+.mm-switch i{position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:var(--muted); transition:transform .2s, background .2s;}
+.mm-theme[aria-checked="true"] .mm-switch{background:var(--accent-soft); border-color:var(--accent);}
+.mm-theme[aria-checked="true"] .mm-switch i{transform:translateX(20px); background:var(--accent);}
+@media (max-width:640px){
+  .theme-toggle{display:none !important;}
+  .burger{display:flex;}
+  .foot-links{flex-wrap:wrap; gap:8px 22px;}
+  .foot-hide-m{display:none !important;}
+}
+@media (min-width:641px){ .burger,.mobile-menu{display:none !important;} }
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3942dbb502444b50aea363d97c482829"}'></script> </head>
+<body>
+
+<header>
+<div class="container nav">
+<a href="index.html" class="wordmark">
+<img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
+<img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
+<span class="wordmark-sub">Web &amp; Software Development</span>
+</a>
+<nav>
+<ul class="nav-links">
+<li><a href="packages.html">Packages</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="work.html">Work</a></li>
+<li><a href="configurator.html">Get a quote</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</nav>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+<svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button> <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="b-top" d="M4 6h16"/><path class="b-mid" d="M4 12h16"/><path class="b-bot" d="M4 18h16"/></svg></button>
+</div>
+</div> <div class="mobile-menu" id="mobileMenu" hidden><ul class="mm-links"><li><a href="packages.html">Packages</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="mm-quote" href="configurator.html">Get a quote</a><button type="button" class="mm-theme" role="switch" aria-checked="false"><span>Dark mode</span><span class="mm-switch"><i></i></span></button></div>
+</header>
+
+<main>
+
+<section class="legal-intro">
+<div class="container">
+<div class="breadcrumb"><a href="index.html">Home</a> / Returns &amp; Refunds</div>
+<div class="sec-tag">Legal</div>
+<h1>Returns &amp; Refunds Policy</h1>
+<p>Plain-language version: you can cancel before work starts and get your money back. Once I've started, you pay for the work already done and no more. If something I deliver is faulty or isn't what we agreed, I fix it, and if I can't, you get a refund.</p>
+<div class="legal-meta">Last updated — October 2026</div>
+<div class="legal-jump">
+<a href="#cancel">Cancelling</a>
+<a href="#packages">By package</a>
+<a href="#faults">Faulty work</a>
+<a href="#refunds">How refunds work</a>
+</div>
+</div>
+</section>
+
+<section id="cancel">
+<div class="container">
+<div class="legal-body">
+<h2>Cancelling</h2>
+
+<h3>Who this covers</h3>
+<p>This policy applies to anything bought from Ric-Lee Digital Developments (Ric Lee, sole trader, London): the Launch, Brand and Build packages, deposits, invoices, the Care Plan, and design work. If you've agreed a written quote for a specific project, that quote takes priority over anything here where the two differ.</p>
+
+<h3>Your 14-day right to cancel (individuals)</h3>
+<p>If you're buying as an individual, not for a business, you have 14 days from booking to cancel a service without giving a reason, under the Consumer Contracts Regulations 2013. I won't start work in that period unless you ask me to, and I'll ask you to confirm that by email. If you ask me to start early and then cancel within the 14 days, you pay for the work done up to the point you told me, in proportion to the full price, and I refund the rest. Once a service has been fully delivered, the right to cancel ends, but only if you asked me to start within the 14 days and I've told you this in advance.</p>
+
+<h3>Business customers</h3>
+<p>If you're buying for a business, the statutory 14-day right doesn't apply, but I follow the same approach: cancel before work starts and you get a full refund, and cancel part-way and you pay only for the work done.</p>
+
+<h3>How to cancel</h3>
+<p>Send a message through the <a href="index.html#contact">contact form</a> or email <a href="mailto:hello@ric-lee.co.uk">hello@ric-lee.co.uk</a> saying what you're cancelling. A clear statement is enough; there is no form to fill in. I'll confirm by reply and tell you what, if anything, is owed either way.</p>
+</div>
+</div>
+</section>
+
+<section id="packages">
+<div class="container">
+<div class="legal-body">
+<h2>By package</h2>
+
+<h3>Launch (£750, paid in full)</h3>
+<p>Cancel before I start work: full refund. Cancel after I've started: you get back the price less the work already done, worked out as a fair share of the package against what has been completed (logo, site build, domain and policy documents). I'll send the breakdown before refunding anything.</p>
+
+<h3>Brand (£1,500, £450 deposit to book)</h3>
+<p>The £450 deposit is refunded in full if you cancel before I start work. Once work has begun, the deposit covers the work done so far; if that work is worth less than the deposit, the difference is refunded, and if it's worth more, I'll tell you the figure before invoicing anything further. The remaining balance is invoiced separately and isn't due for work I haven't done.</p>
+
+<h3>Build (from £2,500, scoped per project)</h3>
+<p>Build projects are priced after a call and agreed in writing, including the payment stages. Cancellation and refunds follow that written quote. If it doesn't say otherwise, the same rule applies: you pay for work completed up to the point of cancelling.</p>
+
+<h3>Care Plan (from £25 / month)</h3>
+<p>You can cancel at any time by telling me. It stops at the end of the period you've already paid for. Part-periods already started aren't refunded, because hosting, backups and updates for that period have already been provided.</p>
+
+<h3>Design, merch and print-on-demand</h3>
+<p>Mockups, logos and brand kits are digital deliverables, and revisions within the agreed scope are included. Physical items made to your design (printed products, for example) are made to order, so the 14-day right to cancel doesn't apply once production has started. If an item arrives faulty, damaged or not as ordered, tell me within 30 days of delivery with a photo and I'll replace it or refund it.</p>
+
+<h3>Third-party costs</h3>
+<p>Costs I've paid to someone else on your behalf, such as domain registration or paid licences, can't be refunded once bought. I'll always tell you about them before I buy.</p>
+</div>
+</div>
+</section>
+
+<section id="faults">
+<div class="container">
+<div class="legal-body">
+<h2>Faulty or unsatisfactory work</h2>
+
+<h3>What you can expect</h3>
+<p>Services are carried out with reasonable care and skill, and what I deliver should match what we agreed. This is your legal right under the Consumer Rights Act 2015, and I treat it the same way for business customers.</p>
+
+<h3>If something's wrong</h3>
+<p>Tell me what's wrong within 30 days of delivery. If the work doesn't match the agreed scope, or something doesn't work as it should, I'll put it right at no charge. If I can't put it right in a reasonable time, you're entitled to a price reduction or a refund for the affected work. Changes that go beyond what we agreed are new work and are quoted separately.</p>
+
+<h3>Not covered</h3>
+<p>Problems caused by changes made by someone else after handover, by third-party services I don't control (hosting outages, payment-provider changes), or by content you supplied are outside this policy, though I'll usually help you sort them out.</p>
+</div>
+</div>
+</section>
+
+<section id="refunds">
+<div class="container">
+<div class="legal-body">
+<h2>How refunds work</h2>
+
+<h3>Timing</h3>
+<p>Once a refund is agreed, I process it within 14 days. It goes back to the card or payment method you used, through Stripe, and can take a few working days to show on your statement after that.</p>
+
+<h3>Amount</h3>
+<p>Refunds are in pounds sterling and are calculated as described above. Where something is owed for work already done, I'll send a short itemised breakdown first so you can see how the figure was reached.</p>
+
+<h3>Disagreements</h3>
+<p>If we can't agree, get in touch and I'll talk it through directly. You can also use Citizens Advice for free guidance, and your legal rights as a consumer are not affected by anything on this page.</p>
+</div>
+</div>
+</section>
+
+<section class="cta-band" id="contact-cta">
+<div class="container">
+<h2>Questions about any of this?</h2>
+<p>Send a message and I'll get back to you directly — no forms, no ticket numbers.</p>
+<a href="index.html#contact" class="btn btn-primary">Get in touch →</a>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<div class="foot-inner">
+<span class="foot-copy">© 2026 Ric-Lee Digital Developments · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
+<ul class="foot-links">
+<li><a href="services.html">Services</a></li>
+<li><a href="work.html">Work</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li><li><a href="returns.html">Returns</a></li>
+</ul>
+</div>
+<div class="payments-accepted">
+<span class="payments-label">Payments secured by Stripe</span>
+<div class="payment-marks" aria-hidden="true"><span class="pay-mark" title="Visa"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-style="italic" font-size="13" letter-spacing="-0.5" fill="#1A1F71">VISA</text></svg></span> <span class="pay-mark" title="Mastercard"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="15" r="9" fill="#EB001B"/><circle cx="28" cy="15" r="9" fill="#F79E1B" fill-opacity="0.85"/></svg></span> <span class="pay-mark" title="American Express"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="46" height="28" rx="3" fill="#006FCF"/><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="9.5" letter-spacing="0.5" fill="#fff">AMEX</text></svg></span> <span class="pay-mark" title="Apple Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#000"><path d="M16.1 10.9c.6-.7 1-1.7.9-2.7-.9.1-2 .6-2.6 1.4-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.3Z"/><path d="M19 12.2c-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.2 2.6 2.2 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.9-1 2.6-2.1.8-1.2 1.1-2.4 1.1-2.4-2.3-.9-2.6-3.3-2.6-3.4 0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6l-.3-.3Z"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="600" font-style="italic" font-size="9.5" fill="#000">Pay</text></svg></span> <span class="pay-mark" title="Google Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(13,15)" fill="none" stroke-width="3"><circle r="7" stroke="#4285F4" stroke-dasharray="11 33" stroke-dashoffset="0"/><circle r="7" stroke="#EA4335" stroke-dasharray="11 33" stroke-dashoffset="-11"/><circle r="7" stroke="#FBBC05" stroke-dasharray="11 33" stroke-dashoffset="-22"/><circle r="7" stroke="#34A853" stroke-dasharray="11 33" stroke-dashoffset="-33"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="500" font-size="9.5" fill="#5f6368">Pay</text></svg></span> <span class="pay-mark" title="Klarna"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="48" height="30" fill="#FFB3C7"/><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="10" letter-spacing="-0.3" fill="#0B051D">Klarna.</text></svg></span></div>
+</div>
+</div>
+</footer>
+
+<script>
+const html = document.documentElement;
+const btn = document.getElementById('themeToggle');
+function updateThemeUI(){
+btn.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode');
+}
+(function(){
+var t = localStorage.getItem('rl-theme') || 'light';
+if (t === 'dark') html.classList.add('dark');
+})();
+btn.addEventListener('click', function(){
+html.classList.toggle('dark');
+localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light');
+updateThemeUI();
+});
+updateThemeUI();
+if (window.matchMedia){
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+if (!localStorage.getItem('rl-theme')){
+html.classList.toggle('dark', e.matches);
+updateThemeUI();
+}
+});
+}
+</script>
+<script>
+(function(){
+  var b = document.getElementById('burger'), m = document.getElementById('mobileMenu');
+  if(!b || !m) return;
+  var tt = document.getElementById('themeToggle'), sw = m.querySelector('.mm-theme');
+  function sync(){ sw.setAttribute('aria-checked', document.documentElement.classList.contains('dark') ? 'true' : 'false'); }
+  function open(o){ m.hidden = !o; b.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); if(o) sync(); }
+  b.addEventListener('click', function(){ open(m.hidden); });
+  sw.addEventListener('click', function(){ if(tt) tt.click(); sync(); });
+  m.addEventListener('click', function(e){ if(e.target.closest('a')) open(false); });
+  document.addEventListener('click', function(e){ if(e.target.closest && e.target.closest('#themeToggle')) return; if(!m.hidden && !m.contains(e.target) && !b.contains(e.target)) open(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !m.hidden){ open(false); b.focus(); } });
+  if(window.matchMedia){ window.matchMedia('(min-width:641px)').addEventListener('change', function(e){ if(e.matches) open(false); }); }
+  new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  sync();
+  // footer: the burger now carries the nav, so on phones only the legal link stays
+  Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
+    var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
+  });
+})();
+</script>
+</body>
+</html>

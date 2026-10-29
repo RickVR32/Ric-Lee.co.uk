@@ -230,7 +230,7 @@ footer{padding:36px 0;}
 <nav>
 <ul class="nav-links">
 <li><a href="packages.html">Packages</a></li>
-<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="services.html">Services</a></li>
 <li><a href="work.html">Work</a></li>
 <li><a href="configurator.html">Get a quote</a></li>
 <li><a href="about.html" aria-current="page">About</a></li>
@@ -242,7 +242,7 @@ footer{padding:36px 0;}
 <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
 </button> <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="b-top" d="M4 6h16"/><path class="b-mid" d="M4 12h16"/><path class="b-bot" d="M4 18h16"/></svg></button>
 </div>
-</div> <div class="mobile-menu" id="mobileMenu" hidden><ul class="mm-links"><li><a href="packages.html">Packages</a></li><li><a href="index.html#capabilities">Capabilities</a></li><li><a href="work.html">Work</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="mm-quote" href="configurator.html">Get a quote</a><button type="button" class="mm-theme" role="switch" aria-checked="false"><span>Dark mode</span><span class="mm-switch"><i></i></span></button></div>
+</div> <div class="mobile-menu" id="mobileMenu" hidden><ul class="mm-links"><li><a href="packages.html">Packages</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Work</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="mm-quote" href="configurator.html">Get a quote</a><button type="button" class="mm-theme" role="switch" aria-checked="false"><span>Dark mode</span><span class="mm-switch"><i></i></span></button></div>
 </header>
 
 <main>
@@ -335,9 +335,9 @@ footer{padding:36px 0;}
 <div class="foot-inner">
 <span class="foot-copy">© 2026 Ric-Lee Digital Developments · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
 <ul class="foot-links">
-<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="services.html">Services</a></li>
 <li><a href="work.html">Work</a></li>
-<li><a href="privacy.html">Privacy &amp; Terms</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li><li><a href="returns.html">Returns</a></li>
 </ul>
 </div>
 <div class="payments-accepted">
@@ -458,7 +458,7 @@ updateThemeUI();
   sync();
   // footer: the burger now carries the nav, so on phones only the legal link stays
   Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
-    var a = li.querySelector('a'); if(!a || !/privacy/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
+    var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
   });
 })();
 </script>

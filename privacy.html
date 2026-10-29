@@ -188,7 +188,7 @@ footer{padding:36px 0;}
 <nav>
 <ul class="nav-links">
 <li><a href="packages.html">Packages</a></li>
-<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="services.html">Services</a></li>
 <li><a href="work.html">Work</a></li>
 <li><a href="configurator.html">Get a quote</a></li>
 <li><a href="about.html">About</a></li>
@@ -200,7 +200,7 @@ footer{padding:36px 0;}
 <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
 </button> <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="b-top" d="M4 6h16"/><path class="b-mid" d="M4 12h16"/><path class="b-bot" d="M4 18h16"/></svg></button>
 </div>
-</div> <div class="mobile-menu" id="mobileMenu" hidden><ul class="mm-links"><li><a href="packages.html">Packages</a></li><li><a href="index.html#capabilities">Capabilities</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="mm-quote" href="configurator.html">Get a quote</a><button type="button" class="mm-theme" role="switch" aria-checked="false"><span>Dark mode</span><span class="mm-switch"><i></i></span></button></div>
+</div> <div class="mobile-menu" id="mobileMenu" hidden><ul class="mm-links"><li><a href="packages.html">Packages</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="mm-quote" href="configurator.html">Get a quote</a><button type="button" class="mm-theme" role="switch" aria-checked="false"><span>Dark mode</span><span class="mm-switch"><i></i></span></button></div>
 </header>
 
 <main>
@@ -215,6 +215,7 @@ footer{padding:36px 0;}
 <div class="legal-jump">
 <a href="#privacy">Privacy Policy</a>
 <a href="#terms">Website Terms</a>
+<a href="returns.html">Returns &amp; Refunds</a>
 </div>
 </div>
 </section>
@@ -275,10 +276,10 @@ footer{padding:36px 0;}
 
 <h3>Portfolio figures</h3>
 <p>Every project's build spec on this site — hours, pricing, and the resulting valuation figures — is calculated openly at a single stated blended rate (currently £75–£95/hr) applied consistently across every listed project, with the hour ranges sourced from the actual scope delivered. These are estimates for illustrative and portfolio purposes, not invoices issued to any client, and are provided as transparently as possible so the methodology can be checked rather than taken on faith.</p>
-<p>For context, averaging estimates from four general-purpose AI valuation tools — each applying a different market-rate assumption to the same documented hours — puts an equivalent replacement value at roughly £91K–£181K. That range reflects different rate assumptions, not a different audit, and is provided here for context rather than as the site's headline figure.</p>
+<p>Taken together, the documented projects add up to a headline estimated build value of roughly £205K. That figure is the sum of each project's midpoint estimate at the stated rate, so it moves with the hours and rate band behind each listed project. It is an estimate of what comparable work would cost to commission, not revenue, profit, or a valuation of any business.</p>
 
 <h3>Payments</h3>
-<p>Payments for packages, deposits and invoices are processed by Stripe; card details are entered on Stripe's own pages and are never seen or stored by this site or by me. Prices are in pounds sterling. Where a package is paid by deposit, the remainder is invoiced separately.</p>
+<p>Payments for packages, deposits and invoices are processed by Stripe; card details are entered on Stripe's own pages and are never seen or stored by this site or by me. Prices are in pounds sterling. Where a package is paid by deposit, the remainder is invoiced separately. Cancellations, refunds and faulty work are covered in the <a href="returns.html">Returns &amp; Refunds Policy</a>.</p>
 <h3>Third-party links</h3>
 <p>Project links on this site (client sites such as psytectrics.com, umni-systems.com, elegant-hires.com, rev-restore.co.uk, and lifereadyfirstaid.co.uk) lead to independent businesses with their own privacy practices and terms, which this policy doesn't cover.</p>
 
@@ -309,9 +310,9 @@ footer{padding:36px 0;}
 <div class="foot-inner">
 <span class="foot-copy">© 2026 Ric-Lee Digital Developments · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
 <ul class="foot-links">
-<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="services.html">Services</a></li>
 <li><a href="work.html">Work</a></li>
-<li><a href="privacy.html">Privacy &amp; Terms</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li><li><a href="returns.html">Returns</a></li>
 </ul>
 </div>
 <div class="payments-accepted">
@@ -363,7 +364,7 @@ updateThemeUI();
   sync();
   // footer: the burger now carries the nav, so on phones only the legal link stays
   Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
-    var a = li.querySelector('a'); if(!a || !/privacy/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
+    var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
   });
 })();
 </script>
