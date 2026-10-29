@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Ric Lee</title>
+<meta name="description" content="Ric Lee is a solo developer and technical builder in London: websites, software, automation and infrastructure, designed, built and deployed directly by one person." />
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2c3a5e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+var stored = localStorage.getItem('rl-theme');
+var dark = stored ? stored === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (dark) document.documentElement.classList.add('dark');
+})();
+</script>
+<style>
+:root{
+--bg:#f7f4ee;
+--bg-soft:#ffffff;
+--panel:rgba(0,0,0,0.03);
+--text:#17160f;
+--muted:#6b6a60;
+--accent:#2c3a5e;
+--accent-soft:rgba(44,58,94,0.07);
+--accent-line:rgba(44,58,94,0.28);
+--line:rgba(0,0,0,0.1);
+--radius:3px;
+--accent-2:#4d6aa8;
+--shadow-sm:0 2px 10px rgba(23,22,15,0.05);
+--shadow-md:0 16px 40px rgba(23,22,15,0.09);
+--accent-glow:rgba(44,58,94,0.22);
+--accent-glow-strong:rgba(44,58,94,0.28);
+color-scheme: light;
+}
+html.dark{
+--bg:#141310;
+--bg-soft:#1c1b17;
+--panel:rgba(255,255,255,0.04);
+--text:#f2efe6;
+--muted:#9a978c;
+--accent:#7f9bd6;
+--accent-soft:rgba(127,155,214,0.1);
+--accent-line:rgba(127,155,214,0.32);
+--line:rgba(255,255,255,0.1);
+--accent-2:#a9c0e8;
+--shadow-sm:0 2px 12px rgba(0,0,0,0.3);
+--shadow-md:0 18px 44px rgba(0,0,0,0.4);
+--accent-glow:rgba(127,155,214,0.3);
+--accent-glow-strong:rgba(127,155,214,0.4);
+color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth; scrollbar-gutter:stable;}
+body{
+font-family:'IBM Plex Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.65;
+min-height:100vh;
+transition:background 0.3s, color 0.3s;
+}
+.container{width:min(1140px, calc(100% - 44px)); margin:0 auto;}
+a{color:inherit;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* NAV */
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.3s;}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.wordmark{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.wordmark img{height:46px; width:auto; display:block;}
+.wordmark-sub{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); border-left:1px solid var(--line); padding-left:14px; line-height:1.4; max-width:100px;}
+.logo-dark{display:block !important;}
+.logo-light{display:none !important;}
+html.dark .logo-dark{display:none !important;}
+html.dark .logo-light{display:block !important;}
+.nav-links{display:flex; gap:28px; list-style:none;}
+.nav-links a{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--muted); transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex; align-items:center; gap:18px;}
+.theme-toggle{width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; flex-shrink:0;}
+.theme-toggle:hover{color:var(--text); border-color:var(--accent);}
+.theme-toggle svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+.theme-icon-sun{display:none;}
+.theme-icon-moon{display:block;}
+html.dark .theme-icon-sun{display:block;}
+html.dark .theme-icon-moon{display:none;}
+
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border:1px solid var(--line); transition:all 0.2s;}
+.btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:var(--bg-soft); border-color:var(--accent); box-shadow:0 6px 18px var(--accent-glow);}
+.btn-primary:hover{opacity:0.92; transform:translateY(-1px); box-shadow:0 10px 24px var(--accent-glow-strong);}
+
+/* SECTION SHELL */
+section{padding:56px 0; border-bottom:1px solid var(--line);}
+.sec-tag{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+h1{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(2rem, 4.4vw, 3rem); line-height:1.14; letter-spacing:-0.01em; max-width:760px; margin-bottom:18px;}
+h2{font-family:'Fraunces',serif; font-optical-sizing:auto; font-weight:600; font-size:clamp(1.2rem,2.2vw,1.5rem); letter-spacing:-0.005em; margin-bottom:18px;}
+h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; margin:26px 0 10px;}
+
+/* LEGAL PROSE */
+.legal-intro{padding:70px 0 48px;}
+.legal-intro p{color:var(--muted); font-size:0.98rem; max-width:640px;}
+.legal-meta{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-top:22px;}
+.legal-jump{display:flex; gap:22px; margin-top:26px; flex-wrap:wrap;}
+.legal-jump a{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; color:var(--accent); border-bottom:1px solid var(--accent-line); padding-bottom:3px;}
+.legal-body{max-width:720px;}
+.legal-body p{font-size:0.92rem; color:var(--text); margin-bottom:14px;}
+.legal-body p.muted{color:var(--muted);}
+.legal-body ul{list-style:none; display:flex; flex-direction:column; gap:10px; margin:14px 0 22px;}
+.legal-body ul li{font-size:0.9rem; color:var(--text); display:flex; gap:12px; align-items:flex-start; padding-left:0;}
+.legal-body ul li::before{content:'—'; color:var(--accent); flex-shrink:0;}
+.legal-body a{color:var(--accent); text-decoration:underline; text-decoration-color:var(--accent-line);}
+.legal-table{width:100%; border-collapse:collapse; margin:14px 0 24px; font-size:0.86rem;}
+.legal-table th,.legal-table td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+.legal-table th{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); font-weight:500;}
+.cta-band{padding:64px 0; text-align:center; border-bottom:none;}
+.cta-band p{color:var(--muted); font-size:0.9rem; max-width:440px; margin:0 auto 28px;}
+
+/* FOOTER */
+footer{padding:36px 0;}
+.foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+.foot-copy{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); letter-spacing:0.04em;}
+.foot-links{display:flex; gap:20px; list-style:none;}
+.foot-links a{font-family:'IBM Plex Mono',monospace; font-size:0.64rem; color:var(--muted); text-decoration:none;}
+.foot-links a:hover{color:var(--accent);}
+.payments-accepted{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.payments-label{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+.payment-marks{display:flex; flex-wrap:wrap; align-items:center; gap:8px;} .pay-mark{display:inline-flex; align-items:center; justify-content:center; width:44px; height:28px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 1px var(--line); background:#fff; flex-shrink:0;} .pay-mark svg{display:block; width:100%; height:100%;}
+
+.breadcrumb{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;}
+.breadcrumb a{color:var(--muted); text-decoration:none;}
+.breadcrumb a:hover{color:var(--accent);}
+
+@media (max-width:640px){
+.nav-links{display:none;}
+.wordmark img{height:36px;}
+.legal-table{font-size:0.8rem;}
+.legal-table th,.legal-table td{padding:10px 8px;}
+}
+
+.about-layout{display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:stretch;}
+.about-layout > div:first-child{display:flex;}
+.about-code{position:relative; width:100%; align-self:stretch; min-height:340px; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:var(--bg-soft); box-shadow:var(--shadow-sm);}
+.about-code canvas{position:absolute; inset:0; width:100%; height:100%; display:block;}
+.about-code::after{content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center, transparent 45%, var(--bg-soft) 115%);}
+.about-body p{font-size:0.98rem; color:var(--text); margin-bottom:16px; max-width:560px; line-height:1.7;}
+.about-body p.muted{color:var(--muted);}
+.about-body h1{font-size:clamp(1.9rem, 3.6vw, 2.8rem); margin-bottom:20px;}
+.about-facts{list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:8px; padding:0;}
+.about-facts li{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);}
+.about-facts strong{color:var(--text); font-weight:500;}
+.about-sec{padding:72px 0; border-top:1px solid var(--line);}
+.about-sec h2{margin-bottom:28px; max-width:640px;}
+.principles{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+.principle{background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; padding:24px 26px; box-shadow:var(--shadow-sm);}
+.principle .pn{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.14em; color:var(--accent); margin-bottom:10px;}
+.principle h3{font-family:'Fraunces',serif; font-weight:500; font-size:1.2rem; line-height:1.25; margin-bottom:8px;}
+.principle p{font-size:0.9rem; color:var(--muted); line-height:1.7;}
+.story{max-width:680px; display:flex; flex-direction:column; gap:14px;}
+.story p{font-size:0.98rem; color:var(--muted); line-height:1.75;} .story p:first-child{color:var(--text);}
+.story a{color:var(--accent);}
+.scale-strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg-soft);}
+.scale-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+.scale-item{padding:34px 26px; border-left:1px solid var(--line);} .scale-item:first-child{border-left:none; padding-left:0;}
+.scale-num{font-family:'Fraunces',serif; font-weight:600; font-size:2.1rem; letter-spacing:-0.01em; color:var(--accent); line-height:1;}
+.scale-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:10px; line-height:1.5;}
+.tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px 40px;}
+.tech-cat{border-top:1px solid var(--line); padding-top:16px;}
+.tech-cat-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+.tech-cat-items{font-size:0.88rem; color:var(--text); line-height:1.8;}
+.about-cta{padding:84px 0; border-top:1px solid var(--line); text-align:left;}
+.about-cta h2{margin-bottom:14px; max-width:620px;}
+.about-cta p{color:var(--muted); max-width:560px; margin-bottom:28px; font-size:0.98rem;}
+.btn-ghost{color:var(--text); background:transparent;} .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+.cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+@media (max-width:900px){
+  .about-layout{grid-template-columns:1fr; gap:36px;} .about-code{min-height:260px;}
+  .principles{grid-template-columns:1fr;} .tech-grid{grid-template-columns:1fr 1fr;}
+  .scale-grid{grid-template-columns:1fr 1fr;} .scale-item:nth-child(3){border-left:none;} .scale-item{border-top:1px solid var(--line);} .scale-item:nth-child(-n+2){border-top:none;}
+}
+@media (max-width:560px){ .tech-grid{grid-template-columns:1fr;} .about-sec{padding:54px 0;} }
+</style>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3942dbb502444b50aea363d97c482829"}'></script> </head>
+<body>
+
+<header>
+<div class="container nav">
+<a href="index.html" class="wordmark">
+<img class="logo-dark" src="ric-lee-logo-dark.png" alt="Ric Lee" />
+<img class="logo-light" src="ric-lee-logo-light.png" alt="Ric Lee" />
+<span class="wordmark-sub">Web &amp; Software Development</span>
+</a>
+<nav>
+<ul class="nav-links">
+<li><a href="index.html#packages">Packages</a></li>
+<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="work.html">Work</a></li>
+<li><a href="configurator.html">Get a quote</a></li>
+<li><a href="about.html" aria-current="page">About</a></li>
+</ul>
+</nav>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+<svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 1 0 20.354 15.354z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="legal-intro" style="padding-bottom:64px;">
+<div class="container about-layout">
+<div><div class="about-code" aria-hidden="true"><canvas id="aboutCodeCanvas"></canvas></div></div>
+<div class="about-body">
+<div class="sec-tag">About</div>
+<h1>I'm Ric — a solo developer and technical builder based in London.</h1>
+<p>I started building software to solve my own problems. That grew into UMNi, then PsyTectrics, alongside commercial projects for other businesses — the kind of range that's usually split across an agency's departments, run instead by one person who actually does the work.</p>
+<p class="muted">Today I work across software, web development, automation, and infrastructure, with a particular interest in systems where different technologies have to work together. I like understanding the whole picture — not just the interface, not just the code, the system.</p>
+<ul class="about-facts">
+<li><strong>Based:</strong> London, UK</li>
+<li><strong>Studio:</strong> Ric-Lee Digital Developments</li>
+<li><strong>Response time:</strong> within 24 hours, working days</li>
+<li><strong>Delivery:</strong> direct — no subcontracting, no markup</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="about-sec">
+<div class="container">
+<div class="sec-tag">How I work</div>
+<h2>One person, one direction, nothing handed off.</h2>
+<div class="principles">
+<div class="principle"><div class="pn">01</div><h3>Start to finish, by me</h3><p>I design, build, integrate, deploy and maintain the systems myself, so every project keeps one consistent technical direction from the first idea through to production.</p></div>
+<div class="principle"><div class="pn">02</div><h3>Direct, with no layers</h3><p>No subcontracting, no markup, no account managers in between. You talk to the person writing the code, and every enquiry is read and answered personally.</p></div>
+<div class="principle"><div class="pn">03</div><h3>Built to run for real</h3><p>Work is deployed and handed over working, not left as a demo. The aim is systems that carry on doing their job once the project is finished.</p></div>
+<div class="principle"><div class="pn">04</div><h3>The whole system, not just the screen</h3><p>I care how the interface, the data, the integrations and the infrastructure fit together, because that is where projects usually go wrong.</p></div>
+</div>
+</div>
+</section>
+
+<section class="about-sec">
+<div class="container">
+<div class="sec-tag">Where it started</div>
+<h2>Built for myself first.</h2>
+<div class="story">
+<p>Most of what I know came from building things I needed. UMNi began as my own algorithmic trading infrastructure, and PsyTectrics as a behavioural assessment platform. Both had to actually work, every day, with real data, which is a hard teacher.</p>
+<p>That experience is what I bring to client projects: websites, booking systems, payments and automation built to the same standard as my own products. You can see what that looks like on the <a href="work.html">work page</a>.</p>
+</div>
+</div>
+</section>
+
+<section class="scale-strip">
+<div class="container">
+<div class="scale-grid">
+<div class="scale-item"><div class="scale-num mono">~£200K</div><div class="scale-label">Estimated equivalent build value across documented projects (midpoint estimates)</div></div>
+<div class="scale-item"><div class="scale-num mono">1,750+</div><div class="scale-label">Hours of documented development &amp; engineering</div></div>
+<div class="scale-item"><div class="scale-num mono">26</div><div class="scale-label">MT4 / MT5 software products developed</div></div>
+<div class="scale-item"><div class="scale-num mono">5</div><div class="scale-label">Production projects documented</div></div>
+</div>
+</div>
+</section>
+
+<section class="about-sec" style="border-top:none;">
+<div class="container">
+<div class="sec-tag">What I work with</div>
+<h2>The tools behind the work.</h2>
+<div class="tech-grid">
+<div class="tech-cat"><div class="tech-cat-label">Languages &amp; Development</div><div class="tech-cat-items">Python · JavaScript · HTML · CSS · SQL · MQL4 · MQL5</div></div>
+<div class="tech-cat"><div class="tech-cat-label">Frameworks &amp; Runtime</div><div class="tech-cat-items">Node.js · Express · Telethon · python-telegram-bot</div></div>
+<div class="tech-cat"><div class="tech-cat-label">Data</div><div class="tech-cat-items">PostgreSQL · SQLite · Supabase · JSON</div></div>
+<div class="tech-cat"><div class="tech-cat-label">Platforms &amp; Infrastructure</div><div class="tech-cat-items">GitHub · GitHub Pages · Vercel · Cloudflare · VPS</div></div>
+<div class="tech-cat"><div class="tech-cat-label">Integrations</div><div class="tech-cat-items">Stripe · Telegram · Anthropic API · Web3Forms</div></div>
+<div class="tech-cat"><div class="tech-cat-label">Development Practices</div><div class="tech-cat-items">Version control · CI/CD · API integration · relational data modelling · automated workflows · production deployment</div></div>
+</div>
+</div>
+</section>
+
+<section class="about-cta">
+<div class="container">
+<div class="sec-tag">Next step</div>
+<h2>Have a problem that needs building?</h2>
+<p>If you already know what you need, tell me. If you only know that something in the business is slow, repetitive or manual, that's fine too, and I'll help turn it into something concrete.</p>
+<div class="cta-row">
+<a href="configurator.html" class="btn btn-primary">Get a quote →</a>
+<a href="index.html#contact" class="btn btn-ghost">Send an enquiry</a>
+<a href="work.html" class="btn btn-ghost">View my work</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<div class="foot-inner">
+<span class="foot-copy">© 2026 Ric-Lee Digital Developments · All rights reserved · VAG coding &amp; diagnostics handled separately under VG Codeworks</span>
+<ul class="foot-links">
+<li><a href="index.html#capabilities">Capabilities</a></li>
+<li><a href="work.html">Work</a></li>
+<li><a href="privacy.html">Privacy &amp; Terms</a></li>
+</ul>
+</div>
+<div class="payments-accepted">
+<span class="payments-label">Payments secured by Stripe</span>
+<div class="payment-marks" aria-hidden="true"><span class="pay-mark" title="Visa"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-style="italic" font-size="13" letter-spacing="-0.5" fill="#1A1F71">VISA</text></svg></span> <span class="pay-mark" title="Mastercard"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="15" r="9" fill="#EB001B"/><circle cx="28" cy="15" r="9" fill="#F79E1B" fill-opacity="0.85"/></svg></span> <span class="pay-mark" title="American Express"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="46" height="28" rx="3" fill="#006FCF"/><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="9.5" letter-spacing="0.5" fill="#fff">AMEX</text></svg></span> <span class="pay-mark" title="Apple Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#000"><path d="M16.1 10.9c.6-.7 1-1.7.9-2.7-.9.1-2 .6-2.6 1.4-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.3Z"/><path d="M19 12.2c-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.2 2.6 2.2 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.9-1 2.6-2.1.8-1.2 1.1-2.4 1.1-2.4-2.3-.9-2.6-3.3-2.6-3.4 0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6l-.3-.3Z"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="600" font-style="italic" font-size="9.5" fill="#000">Pay</text></svg></span> <span class="pay-mark" title="Google Pay"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(13,15)" fill="none" stroke-width="3"><circle r="7" stroke="#4285F4" stroke-dasharray="11 33" stroke-dashoffset="0"/><circle r="7" stroke="#EA4335" stroke-dasharray="11 33" stroke-dashoffset="-11"/><circle r="7" stroke="#FBBC05" stroke-dasharray="11 33" stroke-dashoffset="-22"/><circle r="7" stroke="#34A853" stroke-dasharray="11 33" stroke-dashoffset="-33"/></g><text x="34.5" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="500" font-size="9.5" fill="#5f6368">Pay</text></svg></span> <span class="pay-mark" title="Klarna"><svg viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="48" height="30" fill="#FFB3C7"/><text x="24" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="10" letter-spacing="-0.3" fill="#0B051D">Klarna.</text></svg></span></div>
+</div>
+</div>
+</footer>
+
+<script>
+const html = document.documentElement;
+const btn = document.getElementById('themeToggle');
+function updateThemeUI(){
+btn.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode');
+}
+(function(){
+var t = localStorage.getItem('rl-theme') || 'light';
+if (t === 'dark') html.classList.add('dark');
+})();
+btn.addEventListener('click', function(){
+html.classList.toggle('dark');
+localStorage.setItem('rl-theme', html.classList.contains('dark') ? 'dark' : 'light');
+updateThemeUI();
+});
+updateThemeUI();
+if (window.matchMedia){
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+if (!localStorage.getItem('rl-theme')){
+html.classList.toggle('dark', e.matches);
+updateThemeUI();
+}
+});
+}
+</script>
+<script>
+/* Matrix-style falling code for the About panel. Follows the site's light/dark theme
+   (watches the html.dark class), pauses when off-screen, and shows a still frame
+   if the visitor prefers reduced motion. */
+(function(){
+  var canvas = document.getElementById('aboutCodeCanvas');
+  if(!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var GLYPHS = '01010101234567890123456789{}[]<>/=;:+*#&|'.split('');
+  var FS = 15, cols = 0, drops = [], w = 0, h = 0, timer = null, running = false, last = 0;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var PALETTES = {
+    light: { bg: '#ffffff', fade: 'rgba(255,255,255,0.13)', body: 'rgba(44,58,94,0.85)', head: '#17160f' },
+    dark:  { bg: '#1c1b17', fade: 'rgba(28,27,23,0.13)',  body: 'rgba(61,220,132,0.75)', head: '#d6ffe8' }
+  };
+  function pal(){ return document.documentElement.classList.contains('dark') ? PALETTES.dark : PALETTES.light; }
+  function glyph(){ return GLYPHS[(Math.random() * GLYPHS.length) | 0]; }
+
+  function resize(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = canvas.getBoundingClientRect();
+    w = Math.max(1, Math.round(rect.width)); h = Math.max(1, Math.round(rect.height));
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(w / FS);
+    drops = [];
+    for(var i = 0; i < cols; i++) drops.push(-Math.random() * (h / FS));
+    paintBg();
+  }
+  function paintBg(){ ctx.fillStyle = pal().bg; ctx.fillRect(0, 0, w, h); }
+
+  function frame(){
+    var p = pal();
+    ctx.fillStyle = p.fade; ctx.fillRect(0, 0, w, h);
+    ctx.font = FS + 'px "IBM Plex Mono", monospace';
+    ctx.textBaseline = 'top';
+    for(var i = 0; i < cols; i++){
+      var y = drops[i] * FS;
+      if(y >= 0){
+        ctx.fillStyle = p.body; ctx.fillText(glyph(), i * FS, y - FS);
+        ctx.fillStyle = p.head; ctx.fillText(glyph(), i * FS, y);
+      }
+      if(y > h && Math.random() > 0.965) drops[i] = -Math.random() * 12;
+      else drops[i] += 1;
+    }
+  }
+  function loop(ts){
+    if(!running) return;
+    if(ts - last > 55){ last = ts; frame(); }
+    timer = window.requestAnimationFrame(loop);
+  }
+  function start(){ if(running || reduce) return; running = true; timer = window.requestAnimationFrame(loop); }
+  function stop(){ running = false; if(timer) window.cancelAnimationFrame(timer); }
+
+  resize();
+  if(reduce){ for(var k = 0; k < 90; k++) frame(); }
+
+  if('ResizeObserver' in window){ new ResizeObserver(function(){ resize(); if(reduce){ for(var k = 0; k < 90; k++) frame(); } }).observe(canvas); }
+  else window.addEventListener('resize', resize);
+
+  if('MutationObserver' in window){
+    new MutationObserver(function(){ paintBg(); if(reduce){ for(var k = 0; k < 90; k++) frame(); } })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){ entries[0].isIntersecting ? start() : stop(); }, { threshold: 0.05 }).observe(canvas);
+  } else start();
+})();
+</script>
+</body>
+</html>
