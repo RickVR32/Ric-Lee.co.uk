@@ -180,7 +180,7 @@ footer{padding:36px 0;}
 <div class="breadcrumb"><a href="index.html">Home</a> / Privacy &amp; Terms</div>
 <div class="sec-tag">Legal</div>
 <h1>Privacy Policy &amp; Website Terms</h1>
-<p>Plain-language version: I collect the minimum needed to reply to your enquiry, I don't run ads or trackers on this site, and I don't sell or share your details with anyone outside the two services listed below that actually send the message.</p>
+<p>Plain-language version: I collect the minimum needed to reply to your enquiry, I don't run ads or tracking cookies on this site, and I don't sell or share your details with anyone outside the services listed below that actually process the message, the quote or the payment.</p>
 <div class="legal-meta">Last updated — October 2026</div>
 <div class="legal-jump">
 <a href="#privacy">Privacy Policy</a>
@@ -200,23 +200,28 @@ footer{padding:36px 0;}
 <p>Ric Lee, trading as Ric-Lee Digital, operating ric-lee.co.uk. Based in London, UK. This site is a personal, hand-built portfolio and enquiry point — not a company with a data protection officer, so any request goes to me directly, personally, via the <a href="index.html#contact">contact form</a>.</p>
 
 <h3>What I collect, and why</h3>
-<p>The only personal data this site collects is what you choose to submit through the contact form:</p>
+<p>The only personal data this site collects is what you choose to submit through the contact form, the quote configurator, or a payment:</p>
 <table class="legal-table">
 <tr><th>Field</th><th>Why it's collected</th></tr>
 <tr><td>Name</td><td>So I know who I'm replying to</td></tr>
-<tr><td>Email or phone</td><td>So I can reply to your enquiry</td></tr>
+<tr><td>Email or phone</td><td>So I can reply to your enquiry (the quote configurator asks for an email address)</td></tr>
 <tr><td>Reference code (service)</td><td>So your enquiry reaches the right context</td></tr>
 <tr><td>Message details</td><td>The actual enquiry — what you're looking to build</td></tr>
+<tr><td>Quote selections and notes</td><td>What you picked in the configurator, so I can come back to you with an accurate scope and price</td></tr>
+<tr><td>Payment details</td><td>Only if you pay through Stripe: you enter these on Stripe's page, and they are not seen or stored by me. I receive your name, email and the amount paid.</td></tr>
 </table>
-<p class="muted">Legal basis: legitimate interest — responding to a business enquiry you've initiated. Nothing is collected passively, and there's no account system, checkout, or newsletter on this site.</p>
+<p class="muted">Legal basis: legitimate interest — responding to a business enquiry you've initiated; and performance of a contract where you pay for a package or an invoice. There's no account system or newsletter on this site.</p>
 
 <h3>Cookies &amp; local storage</h3>
-<p>This site sets no tracking or advertising cookies, and runs no analytics. The only thing stored in your browser is a single local-storage value remembering whether you last chose light or dark mode — it never leaves your device and isn't accessible to me.</p>
+<p>This site sets no tracking or advertising cookies. It uses Cloudflare Web Analytics to count visits in aggregate (pages viewed, country, device type), which Cloudflare describes as cookieless and not used to track individuals across sites. The only thing stored in your browser by this site is a single local-storage value remembering whether you last chose light or dark mode — it never leaves your device and isn't accessible to me. If you pay, you are taken to Stripe's own page, which sets the cookies Stripe needs to process payments securely.</p>
 
 <h3>Who else sees it</h3>
-<p>Submitting the contact form sends your details to two third-party processors that keep the site running without a custom backend:</p>
+<p>The site has no database of its own. Your details pass through these third-party processors to reach me and to send you replies:</p>
 <ul>
 <li><strong>Formspree</strong> (Formspree, Inc., US) — receives and forwards contact-form submissions by email. Their own <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">privacy policy</a> applies to data in transit through their service.</li>
+<li><strong>Cloudflare Workers and Telegram</strong> — a quote request from the configurator is relayed by a Cloudflare Worker and delivered to me as a private Telegram message. Nothing is stored in a database.</li>
+<li><strong>Resend</strong> — sends you the emails I trigger (for example a reply to your quote request or a payment link) from hello@ric-lee.co.uk.</li>
+<li><strong>Stripe</strong> — processes card and other payments and invoices. Stripe's own privacy policy applies to the data you give it.</li>
 <li><strong>Google Fonts</strong> — this site's typefaces load from Google's font CDN, which means your browser makes a direct request to Google's servers (and shares your IP address, as with any external resource) when the page loads.</li>
 </ul>
 <p>Hosting and DNS run on <strong>GitHub Pages</strong> and <strong>Cloudflare</strong> respectively — both process standard server-log data (IP address, browser type, request timestamps) as part of normal web infrastructure, not anything I query or use myself.</p>
@@ -242,6 +247,8 @@ footer{padding:36px 0;}
 <p>Every project's build spec on this site — hours, pricing, and the resulting valuation figures — is calculated openly at a single stated blended rate (currently £75–£95/hr) applied consistently across every listed project, with the hour ranges sourced from the actual scope delivered. These are estimates for illustrative and portfolio purposes, not invoices issued to any client, and are provided as transparently as possible so the methodology can be checked rather than taken on faith.</p>
 <p>For context, averaging estimates from four general-purpose AI valuation tools — each applying a different market-rate assumption to the same documented hours — puts an equivalent replacement value at roughly £91K–£181K. That range reflects different rate assumptions, not a different audit, and is provided here for context rather than as the site's headline figure.</p>
 
+<h3>Payments</h3>
+<p>Payments for packages, deposits and invoices are processed by Stripe; card details are entered on Stripe's own pages and are never seen or stored by this site or by me. Prices are in pounds sterling. Where a package is paid by deposit, the remainder is invoiced separately.</p>
 <h3>Third-party links</h3>
 <p>Project links on this site (client sites such as psytectrics.com, umni-systems.com, elegant-hires.com, rev-restore.co.uk, and lifereadyfirstaid.co.uk) lead to independent businesses with their own privacy practices and terms, which this policy doesn't cover.</p>
 
