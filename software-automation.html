@@ -288,6 +288,40 @@ footer{padding:36px 0;}
   .foot-hide-m{display:none !important;}
 }
 @media (min-width:641px){ .burger,.mobile-menu{display:none !important;} }
+
+/* animated service hero */
+.svc-anim{width:100%; aspect-ratio:13/8; border-radius:16px; border:1px solid var(--line); box-shadow:var(--shadow-md); background-color:var(--bg-soft); background-image:radial-gradient(var(--line) 1px, transparent 1px); background-size:18px 18px; overflow:hidden; position:relative;}
+html.dark .svc-anim{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(127,155,214,0.1);}
+.svc-anim svg{display:block; width:100%; height:100%;}
+.sc{--brand:var(--accent); --brand-2:var(--accent-2); --ok:#2e7d5b; --warm:#d4622b; --warm-2:#e8a05c;}
+html.dark .sc{--ok:#5fc08f; --warm:#ee7d4a; --warm-2:#f2b378;}
+.sc .k-soft{fill:var(--bg-soft);} .sc .k-bg{fill:var(--bg);} .sc .k-line{fill:var(--line);} .sc .k-acc{fill:var(--accent);} .sc .k-accs{fill:var(--accent-soft);}
+.sc .k-mut{fill:var(--muted);} .sc .k-txt{fill:var(--text);} .sc .k-ok{fill:var(--ok);}
+.sc .st-line{stroke:var(--line); stroke-width:1;} .sc .st-acc{stroke:var(--accent); stroke-width:1.5;}
+.sc .tm{font-family:'IBM Plex Mono',monospace;} .sc .tf{font-family:'Fraunces',serif;}
+.sc .A{opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);}
+.sc .P{opacity:0; transform:scale(.6); transform-box:fill-box; transform-origin:center; transition:opacity .4s ease, transform .5s cubic-bezier(.3,1.5,.5,1);}
+.sc .W{transform:scaleX(0); transform-box:fill-box; transform-origin:left center; transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.sc .G{transform:scaleY(0); transform-box:fill-box; transform-origin:center bottom; transition:transform .7s cubic-bezier(.2,.8,.2,1);}
+.sc .E{stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .8s ease;}
+.sc .br{fill:var(--brand); transition:fill .7s ease;} .sc .br2{fill:var(--brand-2); transition:fill .7s ease;} .sc .brs{stroke:var(--brand); transition:stroke .7s ease;}
+.sc.s1 .a1{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s2 .a2{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s3 .a3{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s4 .a4{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s5 .a5{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s6 .a6{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s7 .a7{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s8 .a8{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s9 .a9{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s10 .a10{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s11 .a11{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s12 .a12{opacity:1; transform:none; stroke-dashoffset:0;}
+
+@keyframes sc-press{50%{transform:scale(.93);}}
+@keyframes sc-ring{0%{opacity:.9; transform:scale(.9);}100%{opacity:0; transform:scale(1.5);}}
+@keyframes sc-blink{50%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){ .sc *{transition:none !important; animation:none !important;} }
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3942dbb502444b50aea363d97c482829"}'></script>
 </head>
@@ -332,7 +366,26 @@ footer{padding:36px 0;}
 <a href="packages.html" class="btn btn-ghost">See packages</a>
 </div>
 </div>
-<img class="svc-hero-img" src="img_software-automation.jpg" alt="Software &amp; Automation" />
+<div class="svc-anim" aria-hidden="true"><svg class="sc" data-stages="10" data-step="640" viewBox="0 0 520 320" role="presentation" focusable="false">
+<rect x="14" y="14" width="492" height="292" rx="12" fill="none" class="st-line" opacity="0"/>
+<g class="A a1"><rect x="28" y="60" width="92" height="44" rx="10" class="k-soft st-line"/><circle cx="43" cy="82" r="5" class="k-acc"/><text x="55" y="80" class="tm k-txt" font-size="9.5" font-weight="600">Schedule</text><text x="55" y="93" class="tm k-mut" font-size="7.5">every 5 min</text></g>
+<path class="E a2 st-acc" pathLength="1" d="M120 82 H150" fill="none" style="stroke-linecap:round"/>
+<g class="A a2"><rect x="150" y="60" width="92" height="44" rx="10" class="k-soft st-line"/><circle cx="165" cy="82" r="5" class="k-acc"/><text x="177" y="80" class="tm k-txt" font-size="9.5" font-weight="600">Python</text><text x="177" y="93" class="tm k-mut" font-size="7.5">fetch + parse</text></g>
+<path class="E a3 st-acc" pathLength="1" d="M242 82 H272" fill="none" style="stroke-linecap:round"/>
+<g class="A a3"><rect x="272" y="60" width="92" height="44" rx="10" class="k-soft st-line"/><circle cx="287" cy="82" r="5" class="k-acc"/><text x="299" y="80" class="tm k-txt" font-size="9.5" font-weight="600">Filter</text><text x="299" y="93" class="tm k-mut" font-size="7.5">only if new</text></g>
+<path class="E a4 st-acc" pathLength="1" d="M364 82 C382 82 380 48 398 48" fill="none" style="stroke-linecap:round"/>
+<path class="E a4 st-acc" pathLength="1" d="M364 82 C382 82 380 116 398 116" fill="none" style="stroke-linecap:round"/>
+<g class="A a5"><rect x="398" y="26" width="92" height="44" rx="10" class="k-soft st-line"/><circle cx="413" cy="48" r="5" class="k-acc"/><text x="425" y="46" class="tm k-txt" font-size="9.5" font-weight="600">Telegram</text><text x="425" y="59" class="tm k-mut" font-size="7.5">alert sent</text></g>
+<g class="A a5"><rect x="398" y="94" width="92" height="44" rx="10" class="k-soft st-line"/><circle cx="413" cy="116" r="5" class="k-acc"/><text x="425" y="114" class="tm k-txt" font-size="9.5" font-weight="600">Database</text><text x="425" y="127" class="tm k-mut" font-size="7.5">row logged</text></g>
+<g class="A a6"><circle r="3.6" class="k-acc" opacity="0"><animateMotion dur="3.2s" begin="0s" repeatCount="indefinite" path="M120 82 H150" keyPoints="0;1;1" keyTimes="0;0.19;1" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.17;0.19;1" dur="3.2s" begin="0s" repeatCount="indefinite"/></circle></g><g class="A a6"><circle r="3.6" class="k-acc" opacity="0"><animateMotion dur="3.2s" begin="0.6s" repeatCount="indefinite" path="M242 82 H272" keyPoints="0;1;1" keyTimes="0;0.19;1" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.17;0.19;1" dur="3.2s" begin="0.6s" repeatCount="indefinite"/></circle></g><g class="A a6"><circle r="3.6" class="k-acc" opacity="0"><animateMotion dur="3.2s" begin="1.2s" repeatCount="indefinite" path="M364 82 C382 82 380 48 398 48" keyPoints="0;1;1" keyTimes="0;0.19;1" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.17;0.19;1" dur="3.2s" begin="1.2s" repeatCount="indefinite"/></circle></g><g class="A a6"><circle r="3.6" class="k-acc" opacity="0"><animateMotion dur="3.2s" begin="1.2s" repeatCount="indefinite" path="M364 82 C382 82 380 116 398 116" keyPoints="0;1;1" keyTimes="0;0.19;1" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.17;0.19;1" dur="3.2s" begin="1.2s" repeatCount="indefinite"/></circle></g>
+<g class="A a6"><rect x="28" y="172" width="464" height="124" rx="10" class="k-bg st-line"/><circle cx="46" cy="187" r="3.5" class="k-line"/><circle cx="58" cy="187" r="3.5" class="k-line"/><circle cx="70" cy="187" r="3.5" class="k-line"/><text x="478" y="190" text-anchor="end" class="tm k-mut" font-size="8">run.log</text><path d="M28 198H492" class="st-line" fill="none"/></g>
+<g class="A a6"><text x="46" y="218" class="tm" font-size="9"><tspan class="k-mut">09:00:00</tspan><tspan class="k-txt" dx="10">trigger · schedule fired</tspan></text></g>
+<g class="A a7"><text x="46" y="234" class="tm" font-size="9"><tspan class="k-mut">09:00:01</tspan><tspan class="k-txt" dx="10">python · fetched 14 rows</tspan></text></g>
+<g class="A a8"><text x="46" y="250" class="tm" font-size="9"><tspan class="k-mut">09:00:01</tspan><tspan class="k-txt" dx="10">filter · 3 new, 11 skipped</tspan></text></g>
+<g class="A a9"><text x="46" y="266" class="tm" font-size="9"><tspan class="k-mut">09:00:02</tspan><tspan class="k-txt" dx="10">telegram · alert sent</tspan> <tspan dx="4" class="k-ok">✓</tspan></text></g>
+<g class="A a9"><text x="46" y="282" class="tm" font-size="9"><tspan class="k-mut">09:00:02</tspan><tspan class="k-txt" dx="10">db · 3 rows logged</tspan> <tspan dx="4" class="k-ok">✓</tspan></text></g>
+<g class="A a10"><rect x="410" y="266" width="66" height="18" rx="9" class="k-accs"/><circle cx="422" cy="275" r="3" class="k-ok"/><text x="430" y="278" class="tm k-txt" font-size="8">running</text></g>
+</svg></div>
 </div>
 </section>
 
@@ -465,6 +518,28 @@ updateThemeUI();
   Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
     var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
   });
+})();
+</script>
+<script>
+/* animated service hero: steps scene classes s1..sN on a timer, pauses off-screen */
+(function(){
+  var sc=document.querySelector('.sc'); if(!sc) return;
+  var N=parseInt(sc.getAttribute('data-stages'),10)||10, step=parseInt(sc.getAttribute('data-step'),10)||650;
+  var rm=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count=function(el,to,pre){ if(!el) return; var t0=null; function f(ts){ if(t0===null) t0=ts; var k=Math.min(1,(ts-t0)/800); var v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=(pre||'')+v.toLocaleString('en-GB'); if(k<1) requestAnimationFrame(f);} requestAnimationFrame(f); };
+  var hooks=window.scHooks||{};
+  function all(){ for(var i=1;i<=N;i++) sc.classList.add('s'+i); }
+  function clear(){ for(var i=1;i<=N;i++) sc.classList.remove('s'+i); }
+  if(rm){ sc.classList.add('rm'); all(); return; }
+  var n=0, vis=true, t;
+  function tick(){
+    if(!vis || document.hidden){ t=setTimeout(tick,400); return; }
+    if(n<N){ n++; sc.classList.add('s'+n); if(hooks[n]) hooks[n](count,sc); t=setTimeout(tick,step); }
+    else if(n===N){ n++; t=setTimeout(tick,2800); }
+    else { clear(); n=0; t=setTimeout(tick,1000); }
+  }
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ vis=e[0].isIntersecting; },{threshold:0.15}).observe(sc); }
+  tick();
 })();
 </script>
 </body>

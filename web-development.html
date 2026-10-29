@@ -290,6 +290,44 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
   .foot-hide-m{display:none !important;}
 }
 @media (min-width:641px){ .burger,.mobile-menu{display:none !important;} }
+
+/* animated service hero */
+.svc-anim{width:100%; aspect-ratio:13/8; border-radius:16px; border:1px solid var(--line); box-shadow:var(--shadow-md); background-color:var(--bg-soft); background-image:radial-gradient(var(--line) 1px, transparent 1px); background-size:18px 18px; overflow:hidden; position:relative;}
+html.dark .svc-anim{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(127,155,214,0.1);}
+.svc-anim svg{display:block; width:100%; height:100%;}
+.sc{--brand:var(--accent); --brand-2:var(--accent-2); --ok:#2e7d5b; --warm:#d4622b; --warm-2:#e8a05c;}
+html.dark .sc{--ok:#5fc08f; --warm:#ee7d4a; --warm-2:#f2b378;}
+.sc .k-soft{fill:var(--bg-soft);} .sc .k-bg{fill:var(--bg);} .sc .k-line{fill:var(--line);} .sc .k-acc{fill:var(--accent);} .sc .k-accs{fill:var(--accent-soft);}
+.sc .k-mut{fill:var(--muted);} .sc .k-txt{fill:var(--text);} .sc .k-ok{fill:var(--ok);}
+.sc .st-line{stroke:var(--line); stroke-width:1;} .sc .st-acc{stroke:var(--accent); stroke-width:1.5;}
+.sc .tm{font-family:'IBM Plex Mono',monospace;} .sc .tf{font-family:'Fraunces',serif;}
+.sc .A{opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);}
+.sc .P{opacity:0; transform:scale(.6); transform-box:fill-box; transform-origin:center; transition:opacity .4s ease, transform .5s cubic-bezier(.3,1.5,.5,1);}
+.sc .W{transform:scaleX(0); transform-box:fill-box; transform-origin:left center; transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.sc .G{transform:scaleY(0); transform-box:fill-box; transform-origin:center bottom; transition:transform .7s cubic-bezier(.2,.8,.2,1);}
+.sc .E{stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .8s ease;}
+.sc .br{fill:var(--brand); transition:fill .7s ease;} .sc .br2{fill:var(--brand-2); transition:fill .7s ease;} .sc .brs{stroke:var(--brand); transition:stroke .7s ease;}
+.sc.s1 .a1{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s2 .a2{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s3 .a3{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s4 .a4{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s5 .a5{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s6 .a6{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s7 .a7{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s8 .a8{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s9 .a9{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s10 .a10{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s11 .a11{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s12 .a12{opacity:1; transform:none; stroke-dashoffset:0;}
+
+@keyframes sc-press{50%{transform:scale(.93);}}
+@keyframes sc-ring{0%{opacity:.9; transform:scale(.9);}100%{opacity:0; transform:scale(1.5);}}
+@keyframes sc-blink{50%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){ .sc *{transition:none !important; animation:none !important;} }
+
+.sc .cur{opacity:0; transform:translate(440px,262px); transition:transform 1s cubic-bezier(.4,0,.2,1), opacity .4s ease;}
+.sc.s4 .cur{opacity:1;} .sc.s5 .cur{transform:translate(112px,212px);} .sc.s9 .cur{transform:translate(372px,252px);}
+.sc.s6 .cta{animation:sc-press .45s ease; transform-box:fill-box; transform-origin:center;}
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3942dbb502444b50aea363d97c482829"}'></script> </head>
 <body>
@@ -333,7 +371,27 @@ html.dark .svc-hero-img{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50
 <a href="packages.html" class="btn btn-ghost">See packages</a>
 </div>
 </div>
-<img class="svc-hero-img" src="img_web-development.jpg" alt="Web Development" />
+<div class="svc-anim" aria-hidden="true"><svg class="sc" data-stages="10" data-step="640" viewBox="0 0 520 320" role="presentation" focusable="false">
+<defs><clipPath id="wclip"><rect x="300" y="96" width="170" height="124" rx="10"/></clipPath></defs>
+<rect x="30" y="22" width="460" height="276" rx="12" class="k-soft st-line"/>
+<path d="M30 52H490" class="st-line" fill="none"/>
+<circle cx="48" cy="37" r="4" class="k-line"/><circle cx="62" cy="37" r="4" class="k-line"/><circle cx="76" cy="37" r="4" class="k-line"/>
+<rect x="150" y="29" width="220" height="16" rx="8" class="k-bg st-line"/>
+<text x="260" y="40.5" text-anchor="middle" class="tm k-mut" font-size="9">yourbusiness.co.uk</text>
+<g class="A a1"><rect x="52" y="66" width="18" height="18" rx="4" class="k-acc"/><rect x="84" y="72" width="36" height="6" rx="3" class="k-line"/><rect x="128" y="72" width="36" height="6" rx="3" class="k-line"/><rect x="172" y="72" width="36" height="6" rx="3" class="k-line"/><rect x="420" y="68" width="52" height="14" rx="7" class="k-accs"/></g>
+<rect class="W a2 k-txt" x="52" y="104" width="230" height="14" rx="3"/>
+<rect class="W a3 k-txt" x="52" y="126" width="170" height="14" rx="3"/>
+<g class="A a4"><rect x="52" y="152" width="210" height="5" rx="2.5" class="k-line"/><rect x="52" y="163" width="196" height="5" rx="2.5" class="k-line"/><rect x="52" y="174" width="120" height="5" rx="2.5" class="k-line"/></g>
+<g class="A a5"><g class="cta"><rect x="52" y="196" width="104" height="28" rx="6" class="k-acc"/><text x="104" y="213.5" text-anchor="middle" class="tm k-bg" font-size="9" letter-spacing="0.8">GET A QUOTE</text></g><rect x="164" y="196" width="84" height="28" rx="6" fill="none" class="st-line"/><text x="206" y="213.5" text-anchor="middle" class="tm k-mut" font-size="9" letter-spacing="0.8">OUR WORK</text></g>
+<g class="A a5" style="transition-delay:.12s"><rect x="300" y="96" width="170" height="124" rx="10" class="k-accs st-line"/><g clip-path="url(#wclip)"><circle cx="436" cy="132" r="13" class="k-acc" opacity=".4"/><path d="M300 220 L352 164 L388 196 L418 170 L470 220 Z" class="k-acc" opacity=".22"/><path d="M300 220 L338 190 L372 220 Z" class="k-acc" opacity=".3"/></g></g>
+<g class="A a6"><rect x="52" y="238" width="130" height="46" rx="8" class="k-bg st-line"/><circle cx="68" cy="254" r="6" class="k-acc" opacity=".85"/><rect x="82" y="251" width="70" height="5" rx="2.5" class="k-txt" opacity=".7"/><rect x="62" y="268" width="100" height="4" rx="2" class="k-line"/></g>
+<g class="A a7"><rect x="195" y="238" width="130" height="46" rx="8" class="k-bg st-line"/><circle cx="211" cy="254" r="6" class="k-acc" opacity=".85"/><rect x="225" y="251" width="70" height="5" rx="2.5" class="k-txt" opacity=".7"/><rect x="205" y="268" width="100" height="4" rx="2" class="k-line"/></g>
+<g class="A a8"><rect x="338" y="238" width="130" height="46" rx="8" class="k-bg st-line"/><circle cx="354" cy="254" r="6" class="k-acc" opacity=".85"/><rect x="368" y="251" width="70" height="5" rx="2.5" class="k-txt" opacity=".7"/><rect x="348" y="268" width="100" height="4" rx="2" class="k-line"/></g>
+<g class="P a9"><circle cx="452" cy="100" r="25" class="k-soft st-line"/></g>
+<circle class="E a9" cx="452" cy="100" r="19" pathLength="1" fill="none" style="stroke:var(--ok);stroke-width:3.5;stroke-linecap:round;" transform="rotate(-90 452 100)"/>
+<g class="A a9"><text x="452" y="104.5" text-anchor="middle" class="tm k-txt" font-size="13" font-weight="600">100</text></g>
+<g class="cur"><path d="M0 0 L0 15 L4 11.5 L7 18 L9.5 17 L6.6 10.5 L12 10.5 Z" class="k-txt" style="stroke:var(--bg);stroke-width:1;"/></g>
+</svg></div>
 </div>
 </section>
 
@@ -515,6 +573,28 @@ updateThemeUI();
   Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
     var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
   });
+})();
+</script>
+<script>
+/* animated service hero: steps scene classes s1..sN on a timer, pauses off-screen */
+(function(){
+  var sc=document.querySelector('.sc'); if(!sc) return;
+  var N=parseInt(sc.getAttribute('data-stages'),10)||10, step=parseInt(sc.getAttribute('data-step'),10)||650;
+  var rm=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count=function(el,to,pre){ if(!el) return; var t0=null; function f(ts){ if(t0===null) t0=ts; var k=Math.min(1,(ts-t0)/800); var v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=(pre||'')+v.toLocaleString('en-GB'); if(k<1) requestAnimationFrame(f);} requestAnimationFrame(f); };
+  var hooks=window.scHooks||{};
+  function all(){ for(var i=1;i<=N;i++) sc.classList.add('s'+i); }
+  function clear(){ for(var i=1;i<=N;i++) sc.classList.remove('s'+i); }
+  if(rm){ sc.classList.add('rm'); all(); return; }
+  var n=0, vis=true, t;
+  function tick(){
+    if(!vis || document.hidden){ t=setTimeout(tick,400); return; }
+    if(n<N){ n++; sc.classList.add('s'+n); if(hooks[n]) hooks[n](count,sc); t=setTimeout(tick,step); }
+    else if(n===N){ n++; t=setTimeout(tick,2800); }
+    else { clear(); n=0; t=setTimeout(tick,1000); }
+  }
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ vis=e[0].isIntersecting; },{threshold:0.15}).observe(sc); }
+  tick();
 })();
 </script>
 </body>

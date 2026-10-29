@@ -289,6 +289,42 @@ footer{padding:36px 0;}
   .foot-hide-m{display:none !important;}
 }
 @media (min-width:641px){ .burger,.mobile-menu{display:none !important;} }
+
+/* animated service hero */
+.svc-anim{width:100%; aspect-ratio:13/8; border-radius:16px; border:1px solid var(--line); box-shadow:var(--shadow-md); background-color:var(--bg-soft); background-image:radial-gradient(var(--line) 1px, transparent 1px); background-size:18px 18px; overflow:hidden; position:relative;}
+html.dark .svc-anim{border-color:rgba(255,255,255,0.2); box-shadow:0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(127,155,214,0.1);}
+.svc-anim svg{display:block; width:100%; height:100%;}
+.sc{--brand:var(--accent); --brand-2:var(--accent-2); --ok:#2e7d5b; --warm:#d4622b; --warm-2:#e8a05c;}
+html.dark .sc{--ok:#5fc08f; --warm:#ee7d4a; --warm-2:#f2b378;}
+.sc .k-soft{fill:var(--bg-soft);} .sc .k-bg{fill:var(--bg);} .sc .k-line{fill:var(--line);} .sc .k-acc{fill:var(--accent);} .sc .k-accs{fill:var(--accent-soft);}
+.sc .k-mut{fill:var(--muted);} .sc .k-txt{fill:var(--text);} .sc .k-ok{fill:var(--ok);}
+.sc .st-line{stroke:var(--line); stroke-width:1;} .sc .st-acc{stroke:var(--accent); stroke-width:1.5;}
+.sc .tm{font-family:'IBM Plex Mono',monospace;} .sc .tf{font-family:'Fraunces',serif;}
+.sc .A{opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);}
+.sc .P{opacity:0; transform:scale(.6); transform-box:fill-box; transform-origin:center; transition:opacity .4s ease, transform .5s cubic-bezier(.3,1.5,.5,1);}
+.sc .W{transform:scaleX(0); transform-box:fill-box; transform-origin:left center; transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.sc .G{transform:scaleY(0); transform-box:fill-box; transform-origin:center bottom; transition:transform .7s cubic-bezier(.2,.8,.2,1);}
+.sc .E{stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .8s ease;}
+.sc .br{fill:var(--brand); transition:fill .7s ease;} .sc .br2{fill:var(--brand-2); transition:fill .7s ease;} .sc .brs{stroke:var(--brand); transition:stroke .7s ease;}
+.sc.s1 .a1{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s2 .a2{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s3 .a3{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s4 .a4{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s5 .a5{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s6 .a6{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s7 .a7{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s8 .a8{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s9 .a9{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s10 .a10{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s11 .a11{opacity:1; transform:none; stroke-dashoffset:0;}
+.sc.s12 .a12{opacity:1; transform:none; stroke-dashoffset:0;}
+
+@keyframes sc-press{50%{transform:scale(.93);}}
+@keyframes sc-ring{0%{opacity:.9; transform:scale(.9);}100%{opacity:0; transform:scale(1.5);}}
+@keyframes sc-blink{50%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){ .sc *{transition:none !important; animation:none !important;} }
+
+.sc.s7 .ring{animation:sc-ring 1.4s ease-out infinite;}
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3942dbb502444b50aea363d97c482829"}'></script> </head>
 <body>
@@ -332,7 +368,26 @@ footer{padding:36px 0;}
 <a href="packages.html" class="btn btn-ghost">See packages</a>
 </div>
 </div>
-<img class="svc-hero-img" src="img_app-software-development.jpg" alt="App &amp; Software Development" />
+<div class="svc-anim" aria-hidden="true"><svg class="sc" data-stages="10" data-step="640" viewBox="0 0 520 320" role="presentation" focusable="false">
+<rect x="30" y="22" width="460" height="276" rx="12" class="k-soft st-line"/>
+<path d="M92 22V298" class="st-line" fill="none"/>
+<rect x="46" y="38" width="16" height="16" rx="4" class="k-acc"/>
+<rect x="42" y="72" width="36" height="22" rx="6" class="k-accs"/><rect x="48" y="80" width="24" height="6" rx="3" class="k-acc"/>
+<rect x="48" y="106" width="24" height="6" rx="3" class="k-line"/><rect x="48" y="130" width="24" height="6" rx="3" class="k-line"/><rect x="48" y="154" width="24" height="6" rx="3" class="k-line"/>
+<text x="110" y="52" class="tf k-txt" font-size="14" font-weight="600">Bookings</text>
+<g class="A a1"><rect x="424" y="38" width="50" height="18" rx="9" class="k-accs"/><circle cx="436" cy="47" r="3" class="k-ok"/><text x="444" y="50.5" class="tm k-txt" font-size="8.5">live</text></g>
+<text x="110" y="76" class="tm k-mut" font-size="8" letter-spacing="1.4">NOVEMBER</text>
+<g class="A a1"><rect x="110" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="138" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="166" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="194" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="222" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="250" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="278" y="84" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="110" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="138" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="166" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="194" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="222" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="250" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="278" y="108" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="110" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="138" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="166" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="194" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="222" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="250" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="278" y="132" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="110" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="138" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="166" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="194" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="222" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="250" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="278" y="156" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="110" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="138" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="166" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="194" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="222" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="250" y="180" width="24" height="20" rx="4" class="k-bg st-line"/><rect x="278" y="180" width="24" height="20" rx="4" class="k-bg st-line"/></g>
+<rect class="P a2 k-acc" x="138" y="84" width="24" height="20" rx="4"/><rect class="P a2 k-acc" x="194" y="108" width="24" height="20" rx="4"/><rect class="P a3 k-acc" x="250" y="108" width="24" height="20" rx="4"/><rect class="P a3 k-acc" x="166" y="132" width="24" height="20" rx="4"/><rect class="P a4 k-acc" x="110" y="156" width="24" height="20" rx="4"/><rect class="P a4 k-acc" x="222" y="156" width="24" height="20" rx="4"/><rect class="P a5 k-acc" x="278" y="132" width="24" height="20" rx="4"/><rect class="P a5 k-acc" x="138" y="180" width="24" height="20" rx="4"/><rect class="P a6 k-acc" x="194" y="180" width="24" height="20" rx="4"/><rect class="P a6 k-acc" x="250" y="84" width="24" height="20" rx="4"/>
+<g class="P a7"><rect x="222" y="132" width="24" height="20" rx="4" style="fill:var(--ok)"/></g>
+<rect class="ring" x="222" y="132" width="24" height="20" rx="4" fill="none" style="stroke:var(--ok);stroke-width:2;transform-box:fill-box;transform-origin:center;opacity:0"/>
+<g class="A a2"><rect x="322" y="82" width="72" height="52" rx="8" class="k-bg st-line"/><text x="332" y="98" class="tm k-mut" font-size="7.5" letter-spacing="1">BOOKINGS</text><text id="cnt1" x="332" y="122" class="tf k-txt" font-size="19" font-weight="600">24</text></g>
+<g class="A a3"><rect x="402" y="82" width="72" height="52" rx="8" class="k-bg st-line"/><text x="412" y="98" class="tm k-mut" font-size="7.5" letter-spacing="1">REVENUE</text><text id="cnt2" x="412" y="122" class="tf k-txt" font-size="19" font-weight="600">£3,840</text></g>
+<g class="A a4"><path d="M322 198H474" class="st-line" fill="none"/></g>
+<rect class="G a4 k-acc" x="324" y="182" width="17" height="16" rx="3" style="transition-delay:0ms" opacity="0.45"/><rect class="G a4 k-acc" x="350" y="174" width="17" height="24" rx="3" style="transition-delay:70ms" opacity="0.55"/><rect class="G a4 k-acc" x="376" y="178" width="17" height="20" rx="3" style="transition-delay:140ms" opacity="0.65"/><rect class="G a4 k-acc" x="402" y="166" width="17" height="32" rx="3" style="transition-delay:210ms" opacity="0.75"/><rect class="G a4 k-acc" x="428" y="170" width="17" height="28" rx="3" style="transition-delay:280ms" opacity="0.85"/><rect class="G a4 k-acc" x="454" y="154" width="17" height="44" rx="3" style="transition-delay:350ms" opacity="0.95"/>
+<g class="A a8"><rect x="110" y="218" width="364" height="64" rx="10" class="k-bg st-line"/><circle cx="140" cy="250" r="13" class="k-ok"/><path d="M134 250 l4.5 4.5 l8-9" fill="none" style="stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"/><text x="164" y="246" class="tf k-txt" font-size="13" font-weight="600">Payment received</text><text x="164" y="262" class="tm k-mut" font-size="8.5">£450 deposit · Stripe · booking confirmed</text></g>
+<g class="A a9"><rect x="396" y="236" width="68" height="18" rx="9" class="k-accs"/><text x="430" y="248.5" text-anchor="middle" class="tm k-txt" font-size="8">email sent</text></g>
+</svg></div>
 </div>
 </section>
 
@@ -479,6 +534,28 @@ updateThemeUI();
   Array.prototype.forEach.call(document.querySelectorAll('.foot-links li'), function(li){
     var a = li.querySelector('a'); if(!a || !/privacy|returns/i.test(a.getAttribute('href') || '')) li.classList.add('foot-hide-m');
   });
+})();
+</script>
+<script>window.scHooks={2:function(c){c(document.getElementById('cnt1'),24);},3:function(c){c(document.getElementById('cnt2'),3840,'£');}};</script><script>
+/* animated service hero: steps scene classes s1..sN on a timer, pauses off-screen */
+(function(){
+  var sc=document.querySelector('.sc'); if(!sc) return;
+  var N=parseInt(sc.getAttribute('data-stages'),10)||10, step=parseInt(sc.getAttribute('data-step'),10)||650;
+  var rm=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count=function(el,to,pre){ if(!el) return; var t0=null; function f(ts){ if(t0===null) t0=ts; var k=Math.min(1,(ts-t0)/800); var v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=(pre||'')+v.toLocaleString('en-GB'); if(k<1) requestAnimationFrame(f);} requestAnimationFrame(f); };
+  var hooks=window.scHooks||{};
+  function all(){ for(var i=1;i<=N;i++) sc.classList.add('s'+i); }
+  function clear(){ for(var i=1;i<=N;i++) sc.classList.remove('s'+i); }
+  if(rm){ sc.classList.add('rm'); all(); return; }
+  var n=0, vis=true, t;
+  function tick(){
+    if(!vis || document.hidden){ t=setTimeout(tick,400); return; }
+    if(n<N){ n++; sc.classList.add('s'+n); if(hooks[n]) hooks[n](count,sc); t=setTimeout(tick,step); }
+    else if(n===N){ n++; t=setTimeout(tick,2800); }
+    else { clear(); n=0; t=setTimeout(tick,1000); }
+  }
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ vis=e[0].isIntersecting; },{threshold:0.15}).observe(sc); }
+  tick();
 })();
 </script>
 </body>
